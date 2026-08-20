@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, Search } from 'lucide-react';
+import { ChevronLeft, Plus, Search } from 'lucide-react';
 import { CreateGroupPage } from './CreateGroupPage';
 
 export type GroupType = 'temp' | 'event' | 'none';
@@ -172,9 +172,9 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
       <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/90 backdrop-blur-xs z-10">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-semibold text-slate-900 tracking-tight leading-[22px]">
@@ -183,21 +183,10 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
 
         <button
           onClick={() => setIsCreatingGroup(true)}
-          className="w-8 h-8 flex items-center justify-center text-slate-800 hover:bg-slate-200/60 rounded-full transition-colors active:scale-95"
+          className="system-plus-button"
           title="创建群组"
         >
-          {/* Custom Add User Icon matching screenshot */}
-          <svg
-            className="w-6 h-6 stroke-slate-800 fill-none stroke-[2]"
-            viewBox="0 0 24 24"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <line x1="19" y1="8" x2="19" y2="14" />
-            <line x1="16" y1="11" x2="22" y2="11" />
-          </svg>
+          <Plus />
         </button>
       </div>
 
@@ -210,7 +199,7 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full bg-white rounded-xl pl-9 pr-4 py-2 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full h-10 bg-white rounded-xl pl-9 pr-4 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
           />
         </div>
       </div>
@@ -264,7 +253,7 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
                 >
                   <div className="flex items-center gap-3.5 min-w-0 flex-1 pr-2">
                     {/* CIRCULAR Avatar Grid (2x2) */}
-                    <div className="w-12 h-12 rounded-full overflow-hidden grid grid-cols-2 gap-0.5 p-0.5 bg-slate-200/80 shadow-2xs border border-slate-100 flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full overflow-hidden grid grid-cols-2 gap-0.5 p-0.5 bg-slate-200/80 shadow-2xs border border-slate-100 flex-shrink-0">
                       {group.gridAvatars.map((imgUrl, idx) => (
                         <img
                           key={idx}

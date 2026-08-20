@@ -4,6 +4,7 @@ import { ContactItem } from '../types';
 import { SearchBar } from './SearchBar';
 import { Avatar } from './Avatar';
 import { HeaderPlusMenu } from './HeaderPlusMenu';
+import { StatusBar } from './StatusBar';
 
 interface ContactsPageProps {
   contacts: ContactItem[];
@@ -35,39 +36,41 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
 
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-6 relative">
-      {/* Top Header */}
-      <div className="px-5 pt-3 pb-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/90 backdrop-blur-xs z-10">
-        <div className="w-8"></div> {/* Spacer */}
-        <h1 className="text-[17px] font-semibold text-slate-900 tracking-tight leading-[22px]">通讯录</h1>
-        <div className="relative">
-          <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-200/60 active:scale-95 transition-all"
-            title="更多选项"
-          >
-            <div className="w-6 h-6 rounded-full border border-slate-800 flex items-center justify-center">
-              <Plus className="w-4 h-4 stroke-[2.5]" />
-            </div>
-          </button>
-
-          {/* Plus Menu Popover */}
-          <HeaderPlusMenu
-            isOpen={isMenuOpen}
-            onClose={() => setIsMenuOpen(false)}
-            onScan={() => {
-              setIsMenuOpen(false);
-              onScanQr?.();
-            }}
-            onCreateGroup={() => {
-              setIsMenuOpen(false);
-              onCreateGroup?.();
-            }}
-          />
+      <div className="app-plan-query-bg px-3 pb-3 relative z-10">
+        <div className="-mx-3 mb-1">
+          <StatusBar />
         </div>
-      </div>
 
-      {/* Search Bar */}
-      <div className="px-3 mb-2.5">
+        {/* Top Header */}
+        <div className="px-2 pb-3 flex items-center justify-between">
+          <div className="w-8"></div> {/* Spacer */}
+          <h1 className="text-[17px] font-semibold text-slate-900 tracking-tight leading-[22px]">通讯录</h1>
+          <div className="relative">
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="system-plus-button"
+              title="更多选项"
+            >
+              <Plus />
+            </button>
+
+            {/* Plus Menu Popover */}
+            <HeaderPlusMenu
+              isOpen={isMenuOpen}
+              onClose={() => setIsMenuOpen(false)}
+              onScan={() => {
+                setIsMenuOpen(false);
+                onScanQr?.();
+              }}
+              onCreateGroup={() => {
+                setIsMenuOpen(false);
+                onCreateGroup?.();
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Search Bar */}
         <SearchBar
           value={searchQuery}
           onChange={(val) => {
@@ -91,7 +94,7 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
               <div className="w-10 h-10 rounded-full bg-[#10b981] flex items-center justify-center text-white shadow-xs">
                 <Users className="w-5 h-5 fill-current" />
               </div>
-              <span className="text-[17px] font-semibold text-slate-900 leading-[22px]">我的群组</span>
+              <span className="text-[15px] font-semibold text-slate-900 leading-[20px]">我的群组</span>
             </div>
             <ChevronRight className="w-5 h-5 text-slate-300" />
           </div>
@@ -115,8 +118,8 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[17px] font-semibold text-slate-900 leading-[22px]">企业通讯录</div>
-                  <div className="text-[13px] text-slate-500 mt-0.5 leading-[18px]">广东省广新控股集团有限公司</div>
+                  <div className="text-[15px] font-semibold text-slate-900 leading-[20px]">企业通讯录</div>
+                  <div className="text-[12px] text-slate-500 mt-0.5 leading-[16px]">广东省广新控股集团有限公司</div>
                 </div>
               </div>
             </div>
@@ -164,7 +167,7 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
                   >
                     {/* CIRCULAR Avatar */}
                     <Avatar src={contact.avatar} name={contact.name} size="sm" />
-                    <span className="text-[17px] font-semibold text-slate-900 truncate leading-[22px]">
+                    <span className="text-[15px] font-semibold text-slate-900 truncate leading-[20px]">
                       {contact.name}
                     </span>
                   </div>

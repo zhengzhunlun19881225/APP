@@ -193,7 +193,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#f4f6fa] select-none relative overflow-hidden">
+    <div className="flex flex-col h-full app-plan-query-page-bg select-none relative overflow-hidden">
       {/* Toast Alert */}
       {toastMessage && (
         <div className="absolute top-14 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 text-white text-[13px] px-4 py-2 rounded-full shadow-lg border border-slate-700/80 backdrop-blur-md flex items-center gap-1.5 animate-in fade-in zoom-in-95">
@@ -203,12 +203,12 @@ export const EventListPage: React.FC<EventListPageProps> = ({
       )}
 
       {/* Top Header */}
-      <div className="bg-white px-3 py-2.5 flex items-center justify-between border-b border-slate-100 shadow-xs z-10">
+      <div className="bg-transparent px-3 py-2.5 flex items-center justify-between z-10">
         <button
           onClick={onBack}
-          className="p-1 -ml-1 text-slate-700 hover:text-slate-900 active:scale-95 transition-transform flex items-center cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">事件列表</h1>
         <div className="flex items-center gap-1">
@@ -219,7 +219,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-white px-3 pt-2 pb-2.5 border-b border-slate-100 space-y-2.5">
+      <div className="bg-transparent px-3 pt-2 pb-2.5 space-y-2.5">
         {/* Search Input */}
         <div className="relative">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -228,7 +228,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索事件名称 / 类别 / 地点 / 编号..."
-            className="w-full pl-9 pr-8 py-1.5 bg-[#f5f6fa] text-slate-800 placeholder-slate-400 text-[13px] rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500 border border-slate-200/70"
+            className="w-full h-10 pl-9 pr-8 py-0 bg-white/85 text-slate-800 placeholder-slate-400 text-[13px] rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500 border border-white/60 shadow-2xs backdrop-blur-md"
           />
           {searchQuery && (
             <button
@@ -249,7 +249,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
               className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all flex-shrink-0 cursor-pointer ${
                 activeLevelFilter === lvl
                   ? 'bg-[#1677ff] text-white shadow-2xs'
-                  : 'bg-[#f0f2f5] text-slate-700 hover:bg-slate-200'
+                  : 'bg-white/75 text-slate-700 hover:bg-white'
               }`}
             >
               {lvl === '全部' ? '全部级别' : `${lvl}事件`}

@@ -18,6 +18,8 @@ interface SurveillanceFullscreenModalProps {
   onToggleFavorite?: (cameraId: string) => void;
 }
 
+const TEST_SURVEILLANCE_VIDEO = '/surveillance-test/people-detection.mp4';
+
 export const SurveillanceFullscreenModal: React.FC<SurveillanceFullscreenModalProps> = ({
   camera,
   onClose,
@@ -69,9 +71,14 @@ export const SurveillanceFullscreenModal: React.FC<SurveillanceFullscreenModalPr
 
       {/* Main Video Stream Frame */}
       <div className="relative w-full h-full flex items-center justify-center">
-        <img
-          src={camera.videoPoster}
-          alt={camera.name}
+        <video
+          src={TEST_SURVEILLANCE_VIDEO}
+          poster={camera.videoPoster}
+          aria-label={camera.name}
+          autoPlay
+          loop
+          playsInline
+          muted={isMuted}
           className="w-full h-full object-cover transition-transform duration-200"
           style={{ transform: `scale(${scale})` }}
         />

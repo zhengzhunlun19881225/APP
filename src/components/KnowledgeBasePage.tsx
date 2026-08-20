@@ -15,6 +15,7 @@ import {
   Sparkles,
   ArrowLeft
 } from 'lucide-react';
+import { StatusBar } from './StatusBar';
 
 interface KnowledgeBasePageProps {
   onBack: () => void;
@@ -595,21 +596,24 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
     : '知识库';
 
   return (
-    <div className="flex flex-col h-full bg-[#f8f9fc] select-none">
+    <div className="flex flex-col h-full app-plan-query-page-bg select-none">
       {/* Top Header */}
-      <div className="px-4 pt-3 pb-2.5 flex items-center justify-between sticky top-0 bg-white border-b border-slate-100 z-20">
-        <button
-          onClick={handleBack}
-          className="p-1 -ml-1 text-slate-700 hover:text-slate-900 active:scale-95 transition-all"
-        >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
-        </button>
+      <div className="sticky top-0 z-20">
+        <StatusBar />
+        <div className="px-3 pb-2.5 flex items-center justify-between">
+          <button
+            onClick={handleBack}
+            className="system-back-button"
+          >
+            <ChevronLeft />
+          </button>
 
-        <h1 className="text-[17px] font-bold text-slate-900 tracking-tight truncate max-w-[240px] text-center">
-          {currentHeaderTitle}
-        </h1>
+          <h1 className="text-[17px] font-bold text-slate-900 tracking-tight truncate max-w-[240px] text-center">
+            {currentHeaderTitle}
+          </h1>
 
-        <div className="w-6" /> {/* Placeholder for balance */}
+          <div className="w-6" /> {/* Placeholder for balance */}
+        </div>
       </div>
 
       {/* Main Content Area */}
@@ -618,7 +622,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
         {selectedDoc ? (
           <div className="flex-1 flex flex-col bg-white overflow-hidden">
             {/* Document Action Bar */}
-            <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between">
+            <div className="px-3 py-2.5 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-blue-100 text-blue-700 uppercase">
                   {selectedDoc.type}
@@ -705,7 +709,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
           <>
             {/* Top 3 Tabs (集团 / 团队 / 个人) - Shown on root level */}
             {navStack.length === 0 && (
-              <div className="px-4 pt-3 pb-1 bg-white">
+              <div className="px-3 pt-3 pb-1 bg-transparent">
                 <div className="bg-slate-100/90 p-1 rounded-xl flex items-center">
                   <button
                     onClick={() => {
@@ -751,7 +755,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
             )}
 
             {/* Search Bar */}
-            <div className="px-4 py-2 bg-white border-b border-slate-100">
+            <div className="px-3 py-2 bg-transparent">
               <div className="relative flex items-center">
                 <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
                 <input
@@ -759,14 +763,14 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="搜索"
-                  className="w-full bg-slate-50 text-xs text-slate-800 placeholder-slate-400 pl-9 pr-4 py-2 rounded-xl border border-slate-200/70 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full h-10 bg-slate-50 text-xs text-slate-800 placeholder-slate-400 pl-9 pr-4 py-0 rounded-xl border border-slate-200/70 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
 
             {/* Breadcrumb path for nested levels (Matching Screenshot 5.2) */}
             {navStack.length > 0 && (
-              <div className="px-4 py-2 bg-white text-xs border-b border-slate-100 flex items-center gap-1.5 flex-wrap">
+              <div className="px-3 py-2 bg-white text-xs flex items-center gap-1.5 flex-wrap">
                 <button
                   onClick={() => setNavStack([])}
                   className="text-blue-600 font-medium hover:underline"
@@ -792,7 +796,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
             )}
 
             {/* List Content Area */}
-            <div className="flex-1 overflow-y-auto px-4 py-3">
+            <div className="flex-1 overflow-y-auto px-3 py-3">
               {/* Level 1: Root Department / Folder Grid & List */}
               {navStack.length === 0 && (
                 <div className="bg-white rounded-2xl border border-slate-100 shadow-2xs divide-y divide-slate-100 overflow-hidden">

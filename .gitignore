@@ -5,5 +5,10 @@ dist/
 coverage/
 .DS_Store
 *.log
+work-home-preview.png
+gradient-top-preview.png
+no-header-line-preview.png
+surveillance-*-debug.png
+surveillance-test-preview.png
 .env*
 !.env.example

@@ -1602,9 +1602,9 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
       <div className="px-4 py-3 flex items-center justify-between z-20 relative">
         <button
           onClick={messages.length > 0 ? () => setMessages([]) : onBack}
-          className="w-9 h-9 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[18px] font-bold text-slate-900 tracking-tight">{agent.name}</h1>
@@ -1614,10 +1614,10 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
             setMessages([]);
             showToast('已开启全新会话');
           }}
-          className="w-9 h-9 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:scale-95 transition-all"
+          className="system-plus-button"
           title="新增对话"
         >
-          <Plus className="w-5 h-5 stroke-[2.2]" />
+          <Plus />
         </button>
       </div>
 

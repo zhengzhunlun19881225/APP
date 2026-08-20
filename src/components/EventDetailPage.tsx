@@ -107,12 +107,12 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
       )}
 
       {/* Top Navigation Header */}
-      <div className="bg-white px-3 py-2.5 flex items-center justify-between border-b border-slate-100 shadow-xs z-10">
+      <div className="app-plan-query-bg px-3 py-2.5 flex items-center justify-between z-10">
         <button
           onClick={onBack}
-          className="p-1 -ml-1 text-slate-700 hover:text-slate-900 active:scale-95 transition-transform flex items-center cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">事件详情</h1>
         <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 overflow-hidden border border-slate-200">

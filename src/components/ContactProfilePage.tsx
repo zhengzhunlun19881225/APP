@@ -32,10 +32,10 @@ export const ContactProfilePage: React.FC<ContactProfilePageProps> = ({
       <div className="px-3 pt-3 pb-2 flex items-center justify-between bg-white z-10 sticky top-0">
         <button
           onClick={onBack}
-          className="w-10 h-10 -ml-1 flex items-center justify-center text-slate-800 hover:bg-slate-100 rounded-full transition-colors active:scale-95"
+          className="system-back-button"
           title="返回"
         >
-          <ChevronLeft className="w-7 h-7 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
         <div className="w-10"></div> {/* Balanced Spacer */}
       </div>

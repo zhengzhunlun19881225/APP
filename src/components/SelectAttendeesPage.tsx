@@ -378,14 +378,14 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
   const departmentsList = currentCompany === '星网信通' ? XINGWANG_DEPARTMENTS : GUANGXIN_DEPARTMENTS;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#f4f5f8] flex flex-col select-none overflow-hidden animate-fade-in font-sans">
+    <div className="fixed inset-0 z-50 app-plan-query-page-bg flex flex-col select-none overflow-hidden animate-fade-in font-sans">
       {/* 顶部导航 Header (对照原型图2) */}
-      <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
+      <div className="px-4 py-3 bg-transparent flex items-center justify-between sticky top-0 z-20">
         <button
           onClick={handleGoBack}
-          className="w-8 h-8 flex items-center justify-center -ml-1.5 rounded-full text-slate-800 hover:bg-slate-100 active:scale-95 transition-all cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
@@ -404,7 +404,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
       </div>
 
       {/* 搜索框 (对照原型图2) */}
-      <div className="px-4 pt-3 pb-2 bg-[#f4f5f8]">
+      <div className="px-4 pt-3 pb-2 bg-transparent">
         <div className="relative flex items-center w-full">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
           <input
@@ -412,7 +412,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full bg-white rounded-xl pl-9 pr-8 py-2.5 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-200/70 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full h-10 bg-white rounded-xl pl-9 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-200/70 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
           />
           {searchQuery && (
             <button

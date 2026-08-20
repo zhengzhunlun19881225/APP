@@ -190,12 +190,12 @@ export const BookMeetingPage: React.FC<BookMeetingPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f8f9fb] select-none relative overflow-hidden animate-fade-in">
       {/* Top Header (对照原型) */}
-      <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100/90 sticky top-0 z-20 shadow-2xs">
+      <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center -ml-1.5 rounded-full text-slate-800 hover:bg-slate-100 active:scale-95 transition-all cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+          <ChevronLeft />
         </button>
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
           预约会议

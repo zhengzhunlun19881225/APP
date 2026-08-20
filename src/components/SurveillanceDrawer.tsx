@@ -177,7 +177,7 @@ export const SurveillanceDrawer: React.FC<SurveillanceDrawerProps> = ({
 
       {/* Search Input Bar (Matches 搜索 in all list screenshots) */}
       <div className="px-4 py-2.5">
-        <div className="relative flex items-center bg-[#f4f5f8] rounded-xl px-3 py-2 border border-slate-200/70 focus-within:border-blue-500 focus-within:bg-white transition-all">
+        <div className="relative flex h-10 items-center bg-[#f4f5f8] rounded-xl px-3 py-0 border border-slate-200/70 focus-within:border-blue-500 focus-within:bg-white transition-all">
           <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
           <input
             type="text"

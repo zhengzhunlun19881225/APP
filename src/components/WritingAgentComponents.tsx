@@ -392,9 +392,9 @@ export const WritingKnowledgeBaseSelector: React.FC<KnowledgeBaseSelectorProps> 
               onClose();
             }
           }}
-          className="p-1 -ml-1 text-slate-700 hover:text-slate-900 active:scale-95"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft />
         </button>
 
         <h2 className="text-[17px] font-bold text-slate-800">
@@ -454,7 +454,7 @@ export const WritingKnowledgeBaseSelector: React.FC<KnowledgeBaseSelectorProps> 
 
       {/* Search Input Box */}
       <div className="p-3 bg-white border-b border-slate-100">
-        <div className="bg-slate-50 rounded-xl px-3 py-2 flex items-center gap-2 border border-slate-200/80 focus-within:border-blue-400">
+        <div className="h-10 bg-slate-50 rounded-xl px-3 py-0 flex items-center gap-2 border border-slate-200/80 focus-within:border-blue-400">
           <Search className="w-4 h-4 text-slate-400" />
           <input
             type="text"
@@ -711,9 +711,9 @@ export const DocumentReaderAndEditorModal: React.FC<DocumentReaderAndEditorProps
           <button
             type="button"
             onClick={onClose}
-            className="p-1 -ml-1 text-slate-700 hover:text-slate-900 active:scale-95"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft />
           </button>
           <div className="w-8" />
           <button

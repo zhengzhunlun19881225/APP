@@ -2,20 +2,13 @@ import React, { useState } from 'react';
 import {
   Bell,
   Phone,
-  FileText,
-  Search,
-  BookOpen,
-  GraduationCap,
-  Video,
-  Eye,
-  Box,
-  SlidersHorizontal,
   Clock,
   Check,
-  ChevronRight,
-  Sparkles
+  SlidersHorizontal,
+  UserRound
 } from 'lucide-react';
 import { AiAgentAvatar } from './AiAgentAvatar';
+import { StatusBar } from './StatusBar';
 
 interface HomePageProps {
   onNavigateToTraining?: () => void;
@@ -49,25 +42,36 @@ export const HomePage: React.FC<HomePageProps> = ({
   onNavigateToDutyHandover
 }) => {
   const [taskTab, setTaskTab] = useState<'todo' | 'done'>('todo');
+  const quickActions = [
+    { label: '事项列表', icon: '/work-home-assets/events.png', onClick: onNavigateToEventList },
+    { label: '预案查询', icon: '/work-home-assets/plans.png', onClick: onNavigateToPlanQuery },
+    { label: '交班日志', icon: '/work-home-assets/handover.png', onClick: onNavigateToDutyHandover },
+    { label: '物资管理', icon: '/work-home-assets/materials.png', onClick: onNavigateToMaterials },
+    { label: '发起会议', icon: '/work-home-assets/meeting.png', onClick: onNavigateToMeeting },
+    { label: '监控', icon: '/work-home-assets/monitoring.png', onClick: onNavigateToMonitoring },
+    { label: '知识库', icon: '/work-home-assets/knowledge.png', onClick: onNavigateToKnowledgeBase },
+    { label: '培训考试', icon: '/work-home-assets/training.png', onClick: onNavigateToTraining }
+  ];
 
   return (
-    <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-6 relative">
-      {/* Top Banner with Background Image */}
-      <div className="relative w-full h-44 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 p-4 text-white flex flex-col justify-end overflow-hidden pb-5">
-        {/* Background Decorative Graphic */}
-        <div className="absolute inset-0 opacity-35 pointer-events-none">
+    <div className="flex flex-col h-full bg-[#f0f3f7] select-none overflow-y-auto pb-6 relative">
+      <div className="relative z-0 h-[358px] flex-shrink-0 overflow-visible">
+        {/* Airport hero */}
+        <div className="absolute inset-x-0 top-0 h-[217px] overflow-hidden bg-sky-500">
           <img
-            src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80"
-            alt="Header BG"
-            className="w-full h-full object-cover"
+            src="/work-home-assets/airport-hero.png"
+            alt="济南机场"
+            className="h-full w-full object-cover object-center"
           />
         </div>
 
-        {/* User Info & Bell Row */}
-        <div className="flex items-center justify-between z-10 px-1">
-          {/* Left: Avatar & Text */}
-          <div className="flex items-center gap-3">
-            {/* User Avatar */}
+        <div className="relative z-10 pt-1">
+          <StatusBar />
+        </div>
+
+        {/* User row */}
+        <div className="absolute left-[15px] right-[18px] top-[70px] z-10 flex items-center justify-between">
+          <div className="flex items-center gap-3 min-w-0">
             <div
               onClick={onNavigateToProfile}
               className="relative flex-shrink-0 cursor-pointer active:scale-95 transition-transform"
@@ -76,144 +80,87 @@ export const HomePage: React.FC<HomePageProps> = ({
               <img
                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
                 alt="Avatar"
-                className="w-13 h-13 rounded-full border-2 border-white object-cover shadow-sm"
+                className="size-[45px] rounded-full border-2 border-white object-cover shadow-sm"
               />
-              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#10b981] border-2 border-white rounded-full" />
+              <span className="absolute bottom-[1px] right-[1px] size-2.5 rounded-full border-2 border-white bg-[#14c38e]" />
             </div>
 
-            {/* Greeting & Subtitle */}
-            <div className="flex-1 min-w-0">
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[17px] font-bold text-white tracking-tight leading-[22px]">
+                <span className="text-[14px] font-normal text-white leading-[20px]">
                   上午好，刘强
                 </span>
-                <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-[#10b981] text-[11px] font-semibold text-white shadow-2xs">
-                  <Check className="w-3 h-3 stroke-[3]" />
+                <span className="inline-flex h-[19px] items-center gap-0.5 rounded-full border border-white/70 bg-[#15bc84] px-[6px] text-[12px] text-white shadow-2xs">
+                  <Check className="size-3 stroke-[3]" />
                   在线
                 </span>
               </div>
-              <p className="text-[15px] font-medium text-white/95 mt-0.5 tracking-tight leading-[20px]">
-                您有 <span className="text-[#f59e0b] font-bold text-[17px]">20</span> 条待办任务
+              <p className="mt-0.5 text-[16px] font-semibold leading-[20px] text-white">
+                您有<span className="text-[#ff9500]">20</span>条待办任务
               </p>
             </div>
           </div>
 
-          {/* Right: Bell Icon with Badge */}
-          <button className="relative p-1 text-white hover:opacity-80 transition-opacity flex-shrink-0 mr-1">
-            <Bell className="w-6 h-6 stroke-[1.8] text-white" />
-            <span className="absolute -top-1 -right-1.5 bg-[#ef4444] text-white text-[11px] font-bold px-1.5 py-0.2 rounded-full border border-white leading-none shadow-2xs">
+          <button className="relative mt-1 flex size-8 items-center justify-center text-slate-800 transition-opacity hover:opacity-80">
+            <Bell className="size-[24px] fill-slate-900/10 stroke-[1.8]" />
+            <span className="absolute right-[-1px] top-[-1px] flex h-[13px] min-w-[18px] items-center justify-center rounded-full bg-[#f05656] px-1 text-[9px] font-medium leading-none text-white">
               26
             </span>
           </button>
         </div>
-      </div>
 
-      {/* Quick Action Grid (8 Icons) */}
-      <div className="px-3 -mt-3 z-10 mb-3">
-        <div className="bg-white rounded-[18px] p-3 shadow-2xs border border-slate-100/80 grid grid-cols-4 gap-y-3.5 gap-x-2 text-center">
-          {/* 事项列表 / 事件列表 */}
-          <div
-            onClick={onNavigateToEventList}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/shixiang.svg" alt="事件列表" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">事件列表</span>
-          </div>
-
-          {/* 预案查询 */}
-          <div
-            onClick={onNavigateToPlanQuery}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/yuan.svg" alt="预案查询" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">预案查询</span>
-          </div>
-
-          {/* 交接日志 */}
-          <div
-            onClick={onNavigateToDutyHandover}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/jiaojie.svg" alt="交接日志" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">交接日志</span>
-          </div>
-
-          {/* 物资管理 */}
-          <div
-            onClick={onNavigateToMaterials}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/wuzi.svg" alt="物资管理" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">物资管理</span>
-          </div>
-
-          {/* 发起会议 */}
-          <div
-            onClick={onNavigateToMeeting}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/huiyi.svg" alt="发起会议" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">发起会议</span>
-          </div>
-
-          {/* 监控 */}
-          <div
-            onClick={onNavigateToMonitoring}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/jiankong.svg" alt="监控" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">监控</span>
-          </div>
-
-          {/* 知识库 */}
-          <div
-            onClick={onNavigateToKnowledgeBase}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/zhishi.svg" alt="知识库" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">知识库</span>
-          </div>
-
-          {/* 培训考试 */}
-          <div
-            onClick={onNavigateToTraining}
-            className="flex flex-col items-center cursor-pointer group"
-          >
-            <img src="/icons/peixun.svg" alt="培训考试" className="w-12 h-12 object-contain group-active:scale-95 transition-transform mb-1" />
-            <span className="text-[13px] text-slate-800 font-medium tracking-tight">培训考试</span>
+        {/* Quick action glass panel */}
+        <div className="absolute left-0 right-0 top-[174px] z-20 h-[176px] rounded-t-[16px] rounded-b-[12px] border border-white bg-gradient-to-b from-white/70 to-white shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-[4px]">
+          <div className="grid grid-cols-4 gap-y-[13px] px-0 pb-4 pt-5 text-center">
+            {quickActions.map((item) => (
+              <button
+                key={item.label}
+                onClick={item.onClick}
+                className="group flex flex-col items-center gap-[7px] cursor-pointer"
+              >
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className="size-[44px] rounded-[12px] object-contain transition-transform group-active:scale-95"
+                />
+                <span className="text-[12px] font-normal leading-[18px] text-[#222] tracking-normal">
+                  {item.label}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Task List Header */}
-      <div className="px-3 mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="h-[56px] flex-shrink-0 rounded-t-[16px] bg-gradient-to-b from-white via-white to-[#f2f1f5] px-8 pt-[15px] mb-2 flex items-start justify-between">
+        <div className="flex items-start gap-6">
           {/* 待办 Tab */}
           <button
             onClick={() => setTaskTab('todo')}
-            className={`flex items-center gap-1.5 text-[17px] font-semibold relative pb-1 transition-colors leading-[22px] ${
-              taskTab === 'todo' ? 'text-slate-900' : 'text-slate-400'
+            className={`relative flex items-center text-[15px] leading-[22px] transition-colors ${
+              taskTab === 'todo' ? 'font-medium text-[#03091b]' : 'font-normal text-[#4e5969]'
             }`}
           >
             待办
-            <span className="bg-rose-500 text-white text-[11px] font-bold px-1.5 py-0.2 rounded-full">
+            <span className="absolute -right-[18px] -top-1 flex size-[18px] items-center justify-center rounded-full bg-[#f53f6b] text-[12px] font-medium leading-[12px] text-white">
               12
             </span>
             {taskTab === 'todo' && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+              <span className="absolute -bottom-[7px] left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-[#007aff]" />
             )}
           </button>
 
           {/* 已办 Tab */}
           <button
             onClick={() => setTaskTab('done')}
-            className={`text-[17px] font-semibold relative pb-1 transition-colors leading-[22px] ${
-              taskTab === 'done' ? 'text-slate-900' : 'text-slate-400'
+            className={`relative text-[15px] leading-[22px] transition-colors ${
+              taskTab === 'done' ? 'font-medium text-[#03091b]' : 'font-normal text-[#4e5969]'
             }`}
           >
             已办
             {taskTab === 'done' && (
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
+              <span className="absolute -bottom-[7px] left-1/2 h-[3px] w-5 -translate-x-1/2 rounded-full bg-[#007aff]" />
             )}
           </button>
         </div>
@@ -221,15 +168,15 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Filter Button / View all events */}
         <button
           onClick={onNavigateToEventList}
-          className="flex items-center gap-1 text-[13px] text-blue-600 hover:text-blue-700 font-medium cursor-pointer"
+          className="flex items-center gap-2 text-[15px] leading-[22px] text-[#4e5969] hover:text-blue-600 cursor-pointer"
         >
-          <span>全部事件</span>
-          <ChevronRight className="w-3.5 h-3.5" />
+          <span>全部</span>
+          <SlidersHorizontal className="size-[15px] stroke-[1.8]" />
         </button>
       </div>
 
       {/* Task Cards List */}
-      <div className="px-3 space-y-3 flex-1">
+      <div className="px-3 space-y-2 flex-1">
         {/* Incident Detail Task Card (Navigates to EventDetailPage for 人员踩踏事件) */}
         <div
           onClick={onNavigateToEventDetail}
@@ -337,9 +284,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </h3>
 
             <div className="flex items-center gap-2 text-[15px] text-slate-600">
-              <span className="w-4 h-4 rounded-full border border-slate-300 flex items-center justify-center text-[10px]">
-                👤
-              </span>
+              <UserRound className="w-4 h-4 text-blue-500" />
               <span className="text-slate-800 font-medium">李敏浩</span>
               <span className="text-[13px] text-slate-500">(安保部 / 消防安全检查员)</span>
             </div>
@@ -376,9 +321,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <h3 className="text-[17px] font-semibold text-slate-900 leading-[22px]">突发事件审批</h3>
 
             <div className="flex items-center gap-2 text-[15px] text-slate-600">
-              <span className="w-4 h-4 rounded-full border border-slate-300 flex items-center justify-center text-[10px]">
-                👤
-              </span>
+              <UserRound className="w-4 h-4 text-blue-500" />
               <span className="text-slate-800 font-medium">张丽</span>
               <span className="text-[13px] text-slate-500">(集团总部/指挥中心值班员)</span>
             </div>

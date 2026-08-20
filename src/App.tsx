@@ -161,6 +161,21 @@ export default function App() {
     (acc, m) => acc + (m.unreadCount || 0),
     0
   );
+  const usesIntegratedStatusBar =
+    (activeTab === 'home' && !subPage && !selectedContactProfile && !activeChat && !isSearching) ||
+    (activeTab === 'messages' && !subPage && !selectedContactProfile && !activeChat && !isSearching) ||
+    (activeTab === 'contacts' && !subPage && !selectedContactProfile && !activeChat && !isSearching) ||
+    subPage === 'plan-query' ||
+    subPage === 'materials' ||
+    subPage === 'knowledge-base';
+  const usesGradientExternalStatusBar =
+    subPage === 'event-list' ||
+    subPage === 'duty-handover' ||
+    subPage === 'meeting' ||
+    subPage === 'training' ||
+    subPage === 'event-detail' ||
+    subPage === 'enterprise-directory' ||
+    subPage === 'create-group';
 
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-0 md:p-6 font-sans">
@@ -178,14 +193,15 @@ export default function App() {
       )}
 
       {/* Main Mobile Screen Frame Container */}
-      <div className="w-full max-w-[420px] h-[100vh] md:h-[860px] bg-white md:rounded-[48px] shadow-2xl border-0 md:border-[10px] border-slate-800 flex flex-col overflow-hidden relative">
+      <div className="w-[375px] h-[812px] max-w-[100vw] max-h-[100vh] bg-white md:rounded-[44px] shadow-2xl border-0 md:border-[10px] border-slate-800 flex flex-col overflow-hidden relative">
         {/* Mobile Top Speaker/Notch indicator for high fidelity frame */}
         <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-slate-800 rounded-b-2xl z-30"></div>
 
-        {/* Status Bar */}
-        <div className="pt-1 md:pt-3">
-          <StatusBar />
-        </div>
+        {!usesIntegratedStatusBar && (
+          <div className={`pt-1 md:pt-3 ${usesGradientExternalStatusBar ? 'app-plan-query-status-bg' : ''}`}>
+            <StatusBar />
+          </div>
+        )}
 
         {/* Content Area */}
         <div className="flex-1 overflow-hidden relative">
@@ -623,4 +639,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -132,9 +132,9 @@ export const LayerDetailModal: React.FC<LayerDetailModalProps> = ({
       <div className="h-12 bg-white border-b border-slate-100 px-3 flex items-center justify-between">
         <button
           onClick={onClose}
-          className="p-1 text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
         <h2 className="text-[16px] font-bold text-slate-900 truncate max-w-[240px]">{title}</h2>
         <div className="w-8" />

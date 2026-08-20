@@ -25,6 +25,7 @@ import {
   Truck,
   PlusCircle
 } from 'lucide-react';
+import { StatusBar } from './StatusBar';
 
 // Types
 export interface MaterialBatchItem {
@@ -394,14 +395,17 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'list' && (
         <div className="flex flex-col h-full">
           {/* Top Sky & Cloud Gradient Header */}
-          <div className="bg-gradient-to-b from-[#8fc1f5] via-[#aed5fb] to-[#d6ebfd] pt-3 pb-3 px-4 relative z-20 shadow-xs">
+          <div className="app-plan-query-bg pt-0 pb-3 px-3 relative z-20">
+            <div className="-mx-3 mb-1">
+              <StatusBar />
+            </div>
             {/* Top Bar */}
             <div className="flex items-center justify-between mb-3 relative">
               <button
                 onClick={onBack}
-                className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+                className="system-back-button"
               >
-                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                <ChevronLeft />
               </button>
 
               <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
@@ -412,9 +416,9 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               <div className="relative">
                 <button
                   onClick={() => setShowPlusMenu((prev) => !prev)}
-                  className="w-8 h-8 rounded-full bg-white/50 active:bg-white/80 flex items-center justify-center text-slate-800 transition-colors shadow-2xs"
+                  className="system-plus-button"
                 >
-                  <Plus className="w-5 h-5 stroke-[2.5]" />
+                  <Plus />
                 </button>
 
                 {/* Popover Bubble Menu (新增物资购置 / 物资调动 / 新增空间物资) */}
@@ -463,7 +467,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
 
             {/* Search Input Bar */}
             <div className="relative mb-3">
-              <div className="bg-white/85 backdrop-blur-md rounded-xl flex items-center px-3.5 py-2.5 shadow-2xs border border-white/60 focus-within:bg-white transition-all">
+              <div className="bg-white/85 backdrop-blur-md rounded-xl flex h-10 items-center px-3 py-0 shadow-2xs border border-white/60 focus-within:bg-white transition-all">
                 <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
                 <input
                   type="text"
@@ -531,7 +535,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
           </div>
 
           {/* Material Cards List */}
-          <div className="flex-1 overflow-y-auto px-4 py-3.5 space-y-3">
+          <div className="flex-1 overflow-y-auto px-3 py-3.5 space-y-3">
             {filteredMaterials.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 text-center text-slate-400">
                 <Package className="w-12 h-12 stroke-1 mb-2 text-slate-300" />
@@ -607,13 +611,16 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'batch-detail' && selectedBatch && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="bg-gradient-to-b from-[#8fc1f5] via-[#aed5fb] to-[#d6ebfd] pt-3 pb-3 px-4 shadow-xs sticky top-0 z-20">
+          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+            <div className="-mx-3 mb-1">
+              <StatusBar />
+            </div>
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCurrentView('list')}
-                className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+                className="system-back-button"
               >
-                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                <ChevronLeft />
               </button>
               <h1 className="text-[17px] font-bold text-slate-900">
                 批次详情
@@ -748,13 +755,16 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'space-detail' && selectedSpace && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="bg-gradient-to-b from-[#8fc1f5] via-[#aed5fb] to-[#d6ebfd] pt-3 pb-3 px-4 shadow-xs sticky top-0 z-20">
+          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+            <div className="-mx-3 mb-1">
+              <StatusBar />
+            </div>
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCurrentView('batch-detail')}
-                className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+                className="system-back-button"
               >
-                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                <ChevronLeft />
               </button>
               <h1 className="text-[17px] font-bold text-slate-900">
                 空间物资详情
@@ -841,13 +851,16 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'add-purchase' && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="bg-gradient-to-b from-[#8fc1f5] via-[#aed5fb] to-[#d6ebfd] pt-3 pb-3 px-4 shadow-xs sticky top-0 z-20">
+          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+            <div className="-mx-3 mb-1">
+              <StatusBar />
+            </div>
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCurrentView('list')}
-                className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+                className="system-back-button"
               >
-                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                <ChevronLeft />
               </button>
               <h1 className="text-[17px] font-bold text-slate-900">
                 新增物资购置
@@ -1066,13 +1079,16 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'transfer' && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="bg-gradient-to-b from-[#8fc1f5] via-[#aed5fb] to-[#d6ebfd] pt-3 pb-3 px-4 shadow-xs sticky top-0 z-20">
+          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+            <div className="-mx-3 mb-1">
+              <StatusBar />
+            </div>
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCurrentView('list')}
-                className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+                className="system-back-button"
               >
-                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                <ChevronLeft />
               </button>
               <h1 className="text-[17px] font-bold text-slate-900">
                 物资调动
@@ -1247,13 +1263,16 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'add-space-material' && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="bg-gradient-to-b from-[#8fc1f5] via-[#aed5fb] to-[#d6ebfd] pt-3 pb-3 px-4 shadow-xs sticky top-0 z-20">
+          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+            <div className="-mx-3 mb-1">
+              <StatusBar />
+            </div>
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCurrentView('list')}
-                className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+                className="system-back-button"
               >
-                <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                <ChevronLeft />
               </button>
               <h1 className="text-[17px] font-bold text-slate-900">
                 新增空间物资

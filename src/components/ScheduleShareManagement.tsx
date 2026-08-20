@@ -248,19 +248,19 @@ export const ScheduleShareManagement: React.FC<ScheduleShareManagementProps> = (
       <div className="bg-white px-4 py-3 border-b border-slate-100 flex items-center justify-between shadow-2xs z-20">
         <button
           onClick={onBack}
-          className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-700 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">定时分享管理</h1>
 
         <button
           onClick={handleOpenCreate}
-          className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-100 active:scale-95 transition-all"
+          className="system-plus-button"
           title="新建定时分享"
         >
-          <Plus className="w-5 h-5 stroke-[2.5]" />
+          <Plus />
         </button>
       </div>
 

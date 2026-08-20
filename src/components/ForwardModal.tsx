@@ -1142,9 +1142,9 @@ export const ForwardModal: React.FC<ForwardModalProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={popView}
-            className="w-8 h-8 -ml-2 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 active:scale-95 transition-all cursor-pointer"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+            <ChevronLeft />
           </button>
 
           {headerProps.showClose && (
@@ -1179,7 +1179,7 @@ export const ForwardModal: React.FC<ForwardModalProps> = ({
 
       {/* 2. Search Input Bar */}
       <div className="px-4 py-2.5 bg-white border-b border-slate-100 flex items-center gap-2">
-        <div className="flex-1 h-9 px-3 bg-[#f4f5f8] rounded-lg flex items-center gap-2 border border-transparent focus-within:border-blue-400 focus-within:bg-white transition-all">
+        <div className="flex-1 h-10 px-3 py-0 bg-[#f4f5f8] rounded-lg flex items-center gap-2 border border-transparent focus-within:border-blue-400 focus-within:bg-white transition-all">
           <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"

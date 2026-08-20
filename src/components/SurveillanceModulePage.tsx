@@ -152,10 +152,10 @@ export const SurveillanceModulePage: React.FC<SurveillanceModulePageProps> = ({ 
           {/* Back Button to return to Homepage/Dashboard */}
           <button
             onClick={onBack}
-            className="h-11 w-11 bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white active:scale-95 transition-all cursor-pointer flex-shrink-0"
+            className="system-back-button"
             title="返回工作台"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.4]" />
+            <ChevronLeft />
           </button>
 
           {/* Search Box Input Trigger */}
@@ -184,9 +184,9 @@ export const SurveillanceModulePage: React.FC<SurveillanceModulePageProps> = ({ 
           <div className="h-14 border-b border-slate-100 px-3 flex items-center gap-2">
             <button
               onClick={() => setIsSearchOpen(false)}
-              className="p-1 text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+              <ChevronLeft />
             </button>
             <div className="flex-1 relative flex items-center">
               <input

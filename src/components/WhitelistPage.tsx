@@ -124,9 +124,9 @@ export const WhitelistPage: React.FC<WhitelistPageProps> = ({
         <div className="px-3 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
           <button
             onClick={() => setSubView('list')}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft />
           </button>
 
           <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
@@ -208,9 +208,9 @@ export const WhitelistPage: React.FC<WhitelistPageProps> = ({
       <div className="px-3 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">

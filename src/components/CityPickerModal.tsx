@@ -54,9 +54,9 @@ export const CityPickerModal: React.FC<CityPickerModalProps> = ({
       <div className="px-3 pt-3 pb-2.5 bg-white border-b border-slate-100 flex items-center gap-2">
         <button
           onClick={onClose}
-          className="p-1 text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
         <div className="flex-1 relative flex items-center">
           <input

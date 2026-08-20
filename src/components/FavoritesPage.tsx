@@ -138,9 +138,9 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={onBack}
-            className="p-1 -ml-1 text-slate-700 hover:text-slate-900 active:scale-95 transition-all cursor-pointer"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+            <ChevronLeft />
           </button>
           <h1 className="text-[17px] font-bold text-slate-900">我的收藏</h1>
         </div>
@@ -151,7 +151,7 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({
 
       {/* Search Input Bar */}
       <div className="px-4 py-2.5 bg-white border-b border-slate-100">
-        <div className="flex items-center bg-[#f1f3f5] rounded-full px-3.5 py-1.5 border border-transparent focus-within:border-blue-300 focus-within:bg-white transition-all">
+        <div className="flex h-10 items-center bg-[#f1f3f5] rounded-full px-3.5 py-0 border border-transparent focus-within:border-blue-300 focus-within:bg-white transition-all">
           <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
           <input
             type="text"

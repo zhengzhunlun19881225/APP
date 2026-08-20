@@ -499,7 +499,7 @@ export const ChatHistoryPage: React.FC<ChatHistoryPageProps> = ({
       <div className="flex flex-col h-full bg-white select-none animate-in fade-in duration-150">
         {/* Search Header */}
         <div className="px-4 pt-3 pb-3 flex items-center gap-3 border-b border-slate-100/60 bg-white">
-          <div className="flex-1 flex items-center gap-2 bg-[#f4f5f8] rounded-full px-3 py-2 text-slate-800">
+          <div className="flex-1 h-10 flex items-center gap-2 bg-[#f4f5f8] rounded-full px-3 py-0 text-slate-800">
             <Search className="w-4 h-4 text-slate-400 shrink-0" />
             <input
               type="text"
@@ -694,9 +694,9 @@ export const ChatHistoryPage: React.FC<ChatHistoryPageProps> = ({
         <div className="px-4 py-3 flex items-center justify-between border-b border-slate-100 sticky top-0 bg-white z-10">
           <button
             onClick={() => setCurrentView('main')}
-            className="flex items-center text-slate-800 active:opacity-70 p-1 -ml-1"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+            <ChevronLeft />
           </button>
           <span className="text-[17px] font-semibold text-slate-900">按日期查找</span>
           <div className="w-6" />
@@ -809,9 +809,9 @@ export const ChatHistoryPage: React.FC<ChatHistoryPageProps> = ({
         <div className="px-4 py-3 flex items-center justify-between bg-white border-b border-slate-100 sticky top-0 z-20">
           <button
             onClick={() => setCurrentView('main')}
-            className="flex items-center text-slate-800 active:opacity-70 p-1 -ml-1"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+            <ChevronLeft />
           </button>
           <span className="text-[17px] font-semibold text-slate-900">聊天文件</span>
           <button
@@ -826,7 +826,7 @@ export const ChatHistoryPage: React.FC<ChatHistoryPageProps> = ({
         {/* Search & Category Filter Bar */}
         <div className="px-4 py-2.5 bg-white border-b border-slate-100/80 flex items-center gap-3 relative z-20">
           {/* Search Box */}
-          <div className="flex-1 flex items-center gap-2 bg-[#f4f5f8] rounded-lg px-3 py-1.5 text-slate-800">
+          <div className="flex-1 h-10 flex items-center gap-2 bg-[#f4f5f8] rounded-lg px-3 py-0 text-slate-800">
             <Search className="w-4 h-4 text-slate-400 shrink-0" />
             <input
               type="text"
@@ -1072,9 +1072,9 @@ export const ChatHistoryPage: React.FC<ChatHistoryPageProps> = ({
               setCurrentView('main');
             }
           }}
-          className="flex items-center text-slate-800 active:opacity-70 p-1 -ml-1"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
 
         <span className="text-[17px] font-semibold text-slate-900">图片及视频</span>

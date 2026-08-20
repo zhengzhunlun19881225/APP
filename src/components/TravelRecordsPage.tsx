@@ -174,9 +174,9 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
         <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f6f9]/95 backdrop-blur-md z-20 border-b border-slate-200/50">
           <button
             onClick={() => setSelectedRecord(null)}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all cursor-pointer"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2]" />
+            <ChevronLeft />
           </button>
 
           <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
@@ -330,9 +330,9 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
       <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f6f9]/95 backdrop-blur-md z-20 border-b border-slate-200/50">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
@@ -351,7 +351,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="搜索"
-            className="w-full bg-white rounded-xl pl-9.5 pr-8 py-2.5 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-200/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full h-10 bg-white rounded-xl pl-9.5 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-200/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
           />
           {searchText && (
             <button

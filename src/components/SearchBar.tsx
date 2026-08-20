@@ -20,7 +20,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <div className="relative w-full" onClick={onClick}>
-      <div className="flex items-center bg-white rounded-[12px] px-4 py-2.5 border border-slate-100 shadow-2xs transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400 cursor-pointer">
+      <div className="flex h-10 items-center bg-white rounded-[12px] px-3 py-0 border border-slate-100 shadow-2xs transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400 cursor-pointer">
         <Search className="w-4 h-4 text-slate-400 mr-2.5 flex-shrink-0" />
         <input
           type="text"
@@ -47,4 +47,3 @@ export const SearchBar: React.FC<SearchBarProps> = ({
     </div>
   );
 };
-

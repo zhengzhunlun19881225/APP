@@ -161,9 +161,9 @@ export const SkillTreePage: React.FC<SkillTreePageProps> = ({ onBack, onSelectQu
       <div className="bg-white px-4 py-3 border-b border-slate-100 flex items-center justify-between shadow-2xs z-20">
         <button
           onClick={onBack}
-          className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-700 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">技能树</h1>
@@ -183,7 +183,7 @@ export const SkillTreePage: React.FC<SkillTreePageProps> = ({ onBack, onSelectQu
               setCurrentPage(1);
             }}
             placeholder="搜索"
-            className="w-full bg-[#f1f5f9]/70 border border-slate-200/80 rounded-xl pl-9 pr-8 py-2 text-[14px] text-slate-800 placeholder-slate-400 outline-none focus:border-[#0070f3] focus:bg-white transition-all"
+            className="w-full h-10 bg-[#f1f5f9]/70 border border-slate-200/80 rounded-xl pl-9 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 outline-none focus:border-[#0070f3] focus:bg-white transition-all"
           />
           {searchKeyword && (
             <button

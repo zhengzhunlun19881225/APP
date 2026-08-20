@@ -353,9 +353,9 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
       <div className="px-4 pt-3 pb-2.5 flex items-center justify-between z-20 relative bg-gradient-to-b from-[#d9ebfc] via-[#e5f1fd] to-[#edf5ff]">
         <button
           onClick={onBack}
-          className="w-8 h-8 rounded-full bg-white/70 shadow-2xs border border-slate-100/60 flex items-center justify-center text-slate-800 hover:bg-white active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-5 h-5 stroke-[2.4]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">预案详情</h1>

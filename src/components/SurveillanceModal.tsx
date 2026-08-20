@@ -32,6 +32,8 @@ interface PlaybackEvent {
   videoUrl: string;
 }
 
+const TEST_SURVEILLANCE_VIDEO = '/surveillance-test/people-detection.mp4';
+
 const PLAYBACK_EVENTS: PlaybackEvent[] = [
   {
     id: 'evt-1',
@@ -40,7 +42,7 @@ const PLAYBACK_EVENTS: PlaybackEvent[] = [
     type: 'person',
     title: '检测到有人活动',
     thumbnail: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+    videoUrl: TEST_SURVEILLANCE_VIDEO
   },
   {
     id: 'evt-2',
@@ -49,7 +51,7 @@ const PLAYBACK_EVENTS: PlaybackEvent[] = [
     type: 'motion',
     title: '检测到画面变化',
     thumbnail: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=400&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
+    videoUrl: TEST_SURVEILLANCE_VIDEO
   },
   {
     id: 'evt-3',
@@ -58,7 +60,7 @@ const PLAYBACK_EVENTS: PlaybackEvent[] = [
     type: 'doorbell',
     title: '门铃推送',
     thumbnail: 'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=400&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
+    videoUrl: TEST_SURVEILLANCE_VIDEO
   },
   {
     id: 'evt-4',
@@ -67,7 +69,7 @@ const PLAYBACK_EVENTS: PlaybackEvent[] = [
     type: 'alarm',
     title: '紧急报警',
     thumbnail: 'https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=400&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'
+    videoUrl: TEST_SURVEILLANCE_VIDEO
   },
   {
     id: 'evt-5',
@@ -76,7 +78,7 @@ const PLAYBACK_EVENTS: PlaybackEvent[] = [
     type: 'person',
     title: '检测到有人活动',
     thumbnail: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=400&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4'
+    videoUrl: TEST_SURVEILLANCE_VIDEO
   },
   {
     id: 'evt-6',
@@ -85,7 +87,7 @@ const PLAYBACK_EVENTS: PlaybackEvent[] = [
     type: 'motion',
     title: '检测到画面变化',
     thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80',
-    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+    videoUrl: TEST_SURVEILLANCE_VIDEO
   }
 ];
 
@@ -151,7 +153,7 @@ export const SurveillanceModal: React.FC<SurveillanceModalProps> = ({
   const currentEvent = PLAYBACK_EVENTS.find((e) => e.id === activeEventId) || PLAYBACK_EVENTS[0];
   const currentVideoSrc = showPlayback
     ? currentEvent.videoUrl
-    : 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+    : TEST_SURVEILLANCE_VIDEO;
 
   // Handle Video AutoPlay & Mute sync
   useEffect(() => {
@@ -413,9 +415,9 @@ export const SurveillanceModal: React.FC<SurveillanceModalProps> = ({
           <div className="w-full h-full grid grid-cols-2 grid-rows-2 gap-1 bg-black p-1">
             {[
               { id: '1', name: camera.name || '办公 A 区西北 (主路)', src: currentVideoSrc, active: true },
-              { id: '2', name: '大堂主入口 (辅路)', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4', active: false },
-              { id: '3', name: '东侧走廊通道', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', active: false },
-              { id: '4', name: '南区地下车库', src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4', active: false }
+              { id: '2', name: '大堂主入口 (辅路)', src: TEST_SURVEILLANCE_VIDEO, active: false },
+              { id: '3', name: '东侧走廊通道', src: TEST_SURVEILLANCE_VIDEO, active: false },
+              { id: '4', name: '南区地下车库', src: TEST_SURVEILLANCE_VIDEO, active: false }
             ].map((cell, idx) => (
               <div
                 key={cell.id}
@@ -847,9 +849,14 @@ export const SurveillanceModal: React.FC<SurveillanceModalProps> = ({
 
                     {/* Right: Snapshot Thumbnail Preview */}
                     <div className="relative w-24 h-14 rounded-lg overflow-hidden border border-slate-200/80 shadow-2xs flex-shrink-0 bg-slate-100">
-                      <img
-                        src={event.thumbnail}
-                        alt={event.title}
+                      <video
+                        src={event.videoUrl}
+                        poster={event.thumbnail}
+                        aria-label={event.title}
+                        autoPlay
+                        loop
+                        playsInline
+                        muted
                         className="w-full h-full object-cover"
                       />
 
@@ -1102,4 +1109,3 @@ export const SurveillanceModal: React.FC<SurveillanceModalProps> = ({
     </div>
   );
 };
-

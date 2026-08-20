@@ -873,12 +873,12 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
   // STEP 2: MEMBER PICKER SCREEN (完全对照用户需求与截图)
   if (currentStep === 'picker') {
     return (
-      <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative">
+      <div className="flex flex-col h-full app-plan-query-page-bg select-none relative">
         {/* Top Header Bar */}
-        <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/95 backdrop-blur-xs z-10">
+        <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-transparent z-10">
           <button
             onClick={handleCancelOrBack}
-            className="text-[17px] text-slate-700 font-normal hover:text-slate-900 active:scale-95 transition-all"
+            className="h-8 min-w-[56px] flex items-center justify-start rounded-full text-[14px] font-medium text-[#0070f3] hover:bg-blue-50 active:scale-95 transition-all"
           >
             {navStack.length > 1 ? (
               <span className="flex items-center gap-0.5 font-medium">
@@ -906,7 +906,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
               value={pickerSearch}
               onChange={(e) => setPickerSearch(e.target.value)}
               placeholder="搜索"
-              className="w-full bg-white rounded-xl pl-9 pr-4 py-2 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full h-10 bg-white rounded-xl pl-9 pr-4 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
             />
             {pickerSearch && (
               <button
@@ -1285,14 +1285,14 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
 
   // STEP 1: CREATE GROUP FORM (群组创建主界面)
   return (
-    <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-24">
+    <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-y-auto pb-24">
       {/* Navigation Top Header */}
-      <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/90 backdrop-blur-xs z-10">
+      <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-transparent z-10">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">

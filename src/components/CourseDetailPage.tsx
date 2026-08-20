@@ -150,9 +150,9 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
         <div className="px-4 py-3 flex items-center justify-between border-b border-slate-100 bg-white sticky top-0 z-10">
           <button
             onClick={() => setReadingDoc(null)}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:scale-95 transition-all"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2]" />
+            <ChevronLeft />
           </button>
 
           <h1 className="text-[15px] font-bold text-slate-900 truncate max-w-[200px]">
@@ -366,12 +366,12 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-10">
       {/* Top Header Navigation */}
-      <div className="px-4 py-3 flex items-center justify-between bg-white/90 backdrop-blur-md sticky top-0 z-20">
+      <div className="px-4 py-3 flex items-center justify-between app-plan-query-bg sticky top-0 z-20">
         <button
           onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">

@@ -354,7 +354,7 @@ export const GlobalSearchPage: React.FC<GlobalSearchPageProps> = ({
     <div className="absolute inset-0 z-40 bg-white flex flex-col select-none overflow-hidden animate-in fade-in duration-200">
       {/* Top Search Header Bar */}
       <div className="pt-2 px-4 pb-2 bg-white flex items-center gap-2.5 border-b border-slate-100/80">
-        <div className="flex-1 flex items-center bg-[#f1f3f5] rounded-full px-3.5 py-1.5 border border-transparent focus-within:border-blue-300 focus-within:bg-white transition-all">
+        <div className="flex-1 h-10 flex items-center bg-[#f1f3f5] rounded-full px-3.5 py-0 border border-transparent focus-within:border-blue-300 focus-within:bg-white transition-all">
           <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
           <input
             type="text"

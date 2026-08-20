@@ -548,12 +548,12 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'home' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-10">
           {/* Header */}
-          <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
+          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={onBack}
-              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:scale-95 transition-all"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+              <ChevronLeft />
             </button>
             <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
               会议室预约
@@ -566,7 +566,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </button>
           </div>
 
-          <div className="p-3.5 space-y-3.5">
+          <div className="p-3 space-y-3.5">
             {/* Blue Banner Banner Card (对照图1顶部) */}
             <div className="relative w-full rounded-[22px] bg-gradient-to-r from-[#2f7bf6] via-[#3b82f6] to-[#60a5fa] p-4 text-white shadow-sm overflow-hidden flex items-center justify-between">
               <div className="relative z-10 space-y-1.5 max-w-[65%]">
@@ -795,12 +795,12 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'all-rooms' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-10 bg-[#f4f5f8]">
           {/* Top Header */}
-          <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
+          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={() => setActiveView('home')}
-              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:scale-95 transition-all cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+              <ChevronLeft />
             </button>
             <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
               全部会议室
@@ -815,7 +815,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
 
           {/* Search Input Box */}
           <div className="p-3 bg-white border-b border-slate-100 sticky top-[53px] z-10 space-y-2.5">
-            <div className="bg-[#f2f4f8] rounded-xl px-3.5 py-2 flex items-center gap-2 text-[13px]">
+            <div className="h-10 bg-[#f2f4f8] rounded-xl px-3 py-0 flex items-center gap-2 text-[13px]">
               <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <input
                 type="text"
@@ -967,7 +967,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
           </div>
 
           {/* Meeting Room Cards List */}
-          <div className="p-3.5 space-y-4">
+          <div className="p-3 space-y-4">
             {filteredRooms.length === 0 ? (
               <div className="bg-white rounded-2xl p-8 text-center text-slate-400 space-y-2">
                 <Building2 className="w-10 h-10 mx-auto text-slate-300 stroke-[1.5]" />
@@ -1141,12 +1141,12 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'my-bookings' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-10">
           {/* Header */}
-          <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
+          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={() => setActiveView('home')}
-              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:scale-95 transition-all"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+              <ChevronLeft />
             </button>
             <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
               我的预约
@@ -1209,8 +1209,8 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
           </div>
 
           {/* Search & Date Picker Filter Row (对照图2) */}
-          <div className="px-3.5 py-3 flex items-center gap-2">
-            <div className="flex-1 bg-white rounded-xl px-3 py-2 border border-slate-200/80 flex items-center gap-2 text-[12px]">
+          <div className="px-3 py-3 flex items-center gap-2">
+            <div className="flex-1 h-10 bg-white rounded-xl px-3 py-0 border border-slate-200/80 flex items-center gap-2 text-[12px]">
               <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <input
                 type="text"
@@ -1232,7 +1232,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
           </div>
 
           {/* Booking Cards List (对照图2) */}
-          <div className="px-3.5 space-y-3.5">
+          <div className="px-3 space-y-3.5">
             {filteredMeetings.length === 0 ? (
               <div className="bg-white rounded-2xl p-8 text-center text-slate-400 space-y-2">
                 <CalendarCheck className="w-10 h-10 mx-auto text-slate-300 stroke-[1.5]" />
@@ -1392,12 +1392,12 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'detail' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-20">
           {/* Header */}
-          <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
+          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={() => setActiveView('my-bookings')}
-              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 active:scale-95 transition-all"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+              <ChevronLeft />
             </button>
             <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
               会议详情
@@ -1405,7 +1405,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             <div className="w-8" />
           </div>
 
-          <div className="p-3.5 space-y-3.5">
+          <div className="p-3 space-y-3.5">
             {/* Top Meeting Info Card (对照图3) */}
             <div className="bg-white rounded-[22px] p-4 border border-slate-100 shadow-2xs relative overflow-hidden flex items-center justify-between">
               <div className="space-y-2 max-w-[65%]">

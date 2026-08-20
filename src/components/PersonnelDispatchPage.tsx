@@ -327,9 +327,9 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
           <div className="bg-[#0070f3] text-white px-3.5 py-3 flex items-center justify-between shadow-xs sticky top-0 z-20">
             <button
               onClick={onBack}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+              <ChevronLeft />
             </button>
             <h1 className="text-[17px] font-bold tracking-tight text-white">
               人员调派
@@ -672,9 +672,9 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
           <div className="bg-[#0070f3] text-white px-3.5 py-3 flex items-center justify-between shadow-xs sticky top-0 z-20">
             <button
               onClick={() => setCurrentView('main')}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 active:scale-95 transition-all cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+              <ChevronLeft />
             </button>
             <h1 className="text-[17px] font-bold tracking-tight text-white">
               调派反馈

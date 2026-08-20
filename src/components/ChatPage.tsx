@@ -532,9 +532,9 @@ export const ChatPage: React.FC<ChatPageProps> = ({
           <>
             <button
               onClick={onBack}
-              className="w-8 h-8 flex items-center justify-center rounded-full text-slate-700 hover:bg-slate-200/60 active:scale-95 transition-all cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft />
             </button>
 
             <div className="text-center font-bold text-[17px] text-slate-900 truncate max-w-[200px]">

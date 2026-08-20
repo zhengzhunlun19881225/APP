@@ -298,9 +298,9 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
       <div className="h-12 bg-white border-b border-slate-100 px-3 flex items-center justify-between z-20">
         <button
           onClick={onBack}
-          className="p-1 text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight flex items-center gap-1.5">
           <span>疫情管控地图</span>

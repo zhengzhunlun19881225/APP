@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft, Search, ChevronDown, Calendar, X, FileText, Bookmark, Check } from 'lucide-react';
 import { PlanDetailPage, PlanDetailData } from './PlanDetailPage';
+import { StatusBar } from './StatusBar';
 
 interface PlanItem {
   id: string;
@@ -227,14 +228,17 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] relative overflow-hidden select-none">
       {/* Top Header with Soft Sky Gradient Background */}
-      <div className="bg-gradient-to-b from-[#81beee] via-[#a3d2f7] to-[#d3e9fa] pt-3 pb-3.5 px-4 relative z-20 shadow-xs">
+      <div className="app-plan-query-bg pt-0 pb-3.5 px-3 relative z-20">
+        <div className="-mx-3 mb-1">
+          <StatusBar />
+        </div>
         {/* Title Bar */}
         <div className="flex items-center justify-between mb-3 relative">
           <button
             onClick={onBack}
-            className="w-8 h-8 rounded-full bg-white/40 active:bg-white/60 flex items-center justify-center text-slate-800 transition-colors"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+            <ChevronLeft />
           </button>
           <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">
             预案查询
@@ -244,7 +248,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
 
         {/* Search Bar Input */}
         <div className="relative mb-3">
-          <div className="bg-white/85 backdrop-blur-md rounded-xl flex items-center px-3 py-2 shadow-2xs border border-white/60 focus-within:bg-white transition-all">
+          <div className="bg-white/85 backdrop-blur-md rounded-xl flex h-10 items-center px-3 py-0 shadow-2xs border border-white/60 focus-within:bg-white transition-all">
             <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
             <input
               type="text"
@@ -397,7 +401,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
       {/* Main List Area */}
       <div
         onClick={() => setActiveDropdown(null)}
-        className="flex-1 overflow-y-auto px-3.5 py-3 space-y-3"
+        className="flex-1 overflow-y-auto px-3 py-3 space-y-3"
       >
         {filteredPlans.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center text-slate-400">

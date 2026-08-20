@@ -65,14 +65,14 @@ export const EnterpriseDirectoryPage: React.FC<EnterpriseDirectoryPageProps> = (
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#f4f5f8] select-none">
+    <div className="flex flex-col h-full app-plan-query-page-bg select-none">
       {/* Top Header */}
-      <div className="flex-shrink-0 px-3 pt-3 pb-2.5 flex items-center justify-between bg-white border-b border-slate-100/90 sticky top-0 z-20">
+      <div className="flex-shrink-0 px-3 pt-3 pb-2.5 flex items-center justify-between bg-transparent sticky top-0 z-20">
         <button
           onClick={handleBackNav}
-          className="w-9 h-9 flex items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-6 h-6 stroke-[2]" />
+          <ChevronLeft />
         </button>
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">企业通讯录</h1>
         <div className="w-9"></div> {/* Spacer balance */}
@@ -81,8 +81,8 @@ export const EnterpriseDirectoryPage: React.FC<EnterpriseDirectoryPageProps> = (
       {/* Scrollable Container */}
       <div className="flex-1 overflow-y-auto pb-6">
         {/* Search Bar - White background, 12px (px-3) left/right padding */}
-        <div className="flex-shrink-0 px-3 pt-3 pb-2">
-          <div className="flex items-center bg-white rounded-[12px] px-3.5 py-2.5 border border-slate-100 shadow-2xs transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400">
+        <div className="flex-shrink-0 px-3 pt-3 pb-2 bg-transparent">
+          <div className="flex h-10 items-center bg-white rounded-[12px] px-3.5 py-0 border border-slate-100 shadow-2xs transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400">
             <Search className="w-4 h-4 text-slate-400 mr-2.5 flex-shrink-0" />
             <input
               type="text"
@@ -236,4 +236,3 @@ export const EnterpriseDirectoryPage: React.FC<EnterpriseDirectoryPageProps> = (
     </div>
   );
 };
-

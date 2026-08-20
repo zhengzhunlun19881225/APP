@@ -317,9 +317,9 @@ export const JingXiaobeiPage: React.FC<JingXiaobeiPageProps> = ({ onBack, onSele
       <div className="pt-3 pb-2 px-4 flex items-center justify-between z-20">
         <button
           onClick={chatMode ? () => setChatMode(false) : onBack}
-          className="w-9 h-9 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-50 active:scale-95 transition-all"
+          className="system-back-button"
         >
-          <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
+          <ChevronLeft />
         </button>
 
         <h1 className="text-[18px] font-bold text-slate-900 tracking-tight">智小星</h1>

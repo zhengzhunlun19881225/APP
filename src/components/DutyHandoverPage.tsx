@@ -592,25 +592,25 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative overflow-hidden">
       {/* Top Banner Header with Sky Blue Gradient */}
-      <div className="relative bg-gradient-to-b from-[#3b82f6] via-[#60a5fa] to-[#93c5fd] text-white pt-3 pb-3 px-4 shadow-sm flex-shrink-0">
+      <div className="relative app-plan-query-bg text-slate-900 pt-3 pb-3 px-4 flex-shrink-0">
         {/* Navigation & Month bar */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={onBack}
-              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 active:scale-95 flex items-center justify-center transition-all cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-5 h-5 text-white stroke-[2.5]" />
+              <ChevronLeft />
             </button>
 
             {/* Month dropdown trigger */}
             <div className="relative">
               <button
                 onClick={() => setMonthDropdownOpen(!monthDropdownOpen)}
-                className="flex items-center gap-1.5 text-[20px] font-bold text-white hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 text-[20px] font-bold text-slate-900 hover:opacity-90 active:scale-98 transition-all cursor-pointer"
               >
                 <span>{currentMonth}</span>
-                <ChevronDown className="w-4 h-4 text-white stroke-[2.5]" />
+                <ChevronDown className="w-4 h-4 text-slate-900 stroke-[2.5]" />
               </button>
 
               {monthDropdownOpen && (
@@ -655,7 +655,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
         </div>
 
         {/* Subtitle: 本周值班区间 */}
-        <div className="text-[13px] text-white/95 mt-1 font-medium tracking-tight">
+        <div className="text-[13px] text-slate-700 mt-1 font-medium tracking-tight">
           本周值班：8月18日 ~ 8月24日
         </div>
 

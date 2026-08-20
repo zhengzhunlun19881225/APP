@@ -113,9 +113,9 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
         <div className="bg-white px-4 py-3 border-b border-slate-100 flex items-center justify-between shadow-2xs">
           <button
             onClick={() => setIsFormOpen(false)}
-            className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-all"
+            className="system-back-button"
           >
-            <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+            <ChevronLeft />
           </button>
           <h1 className="text-[17px] font-bold text-slate-900 tracking-tight">整改填报</h1>
           <div className="w-8" />

@@ -463,9 +463,9 @@ export const MapPage: React.FC<MapPageProps> = ({
           <div className="h-14 border-b border-slate-100 px-3 flex items-center gap-2">
             <button
               onClick={() => setIsSearchOpen(false)}
-              className="p-1 text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+              className="system-back-button"
             >
-              <ChevronLeft className="w-6 h-6 stroke-[2.2]" />
+              <ChevronLeft />
             </button>
             <div className="flex-1 relative flex items-center">
               <input
