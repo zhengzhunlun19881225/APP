@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <rect width="96" height="96" rx="26" fill="url(#bg_peixun)"/>
+  <defs>
+    <linearGradient id="bg_peixun" x1="0" y1="0" x2="0" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00C853"/>
+      <stop offset="1" stop-color="#00897B"/>
+    </linearGradient>
+  </defs>
+  <!-- Cap Diamond Top -->
+  <polygon points="48,22 78,36 48,50 18,36" fill="white"/>
+  <!-- Skull Cap Base Cutout -->
+  <path d="M28 42V56C28 61.5 36.95 66 48 66C59.05 66 68 61.5 68 56V42C62 46.5 55 49 48 49C41 49 34 46.5 28 42Z" fill="white"/>
+  <!-- Tassel & Hanging Knot -->
+  <line x1="72" y1="38" x2="72" y2="56" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="72" cy="58" r="3" fill="white"/>
+</svg>

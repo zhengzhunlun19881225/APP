@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <rect width="96" height="96" rx="26" fill="url(#bg_yuan)"/>
+  <defs>
+    <linearGradient id="bg_yuan" x1="0" y1="0" x2="0" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D27B"/>
+      <stop offset="1" stop-color="#00B566"/>
+    </linearGradient>
+  </defs>
+  <!-- Main Folder Body -->
+  <path d="M22 28C22 24.6863 24.6863 22 28 22H42C43.8565 22 45.6203 22.8214 46.8284 24.2426L50.5858 28.6863C51.1899 29.398 52.0718 29.8085 53.0001 29.8085H68C71.3137 29.8085 74 32.4948 74 35.8085V66C74 69.3137 71.3137 72 68 72H28C24.6863 72 22 69.3137 22 66V28Z" fill="white"/>
+  <!-- Magnifying Glass Icon -->
+  <circle cx="53" cy="53" r="8.5" stroke="#00B566" stroke-width="4.5" fill="white"/>
+  <line x1="60" y1="60" x2="68" y2="68" stroke="#00B566" stroke-width="5" stroke-linecap="round"/>
+</svg>

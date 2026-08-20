@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <rect width="96" height="96" rx="26" fill="url(#bg_zhishi)"/>
+  <defs>
+    <linearGradient id="bg_zhishi" x1="0" y1="0" x2="0" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF9800"/>
+      <stop offset="1" stop-color="#E65100"/>
+    </linearGradient>
+  </defs>
+  <!-- Left Book Page -->
+  <path d="M22 30C22 26.6863 24.6863 24 28 24C36 24 42 27 48 30V68C42 65 36 62 28 62C24.6863 62 22 64.6863 22 68V30Z" fill="white"/>
+  <!-- Right Book Page -->
+  <path d="M74 30C74 26.6863 71.3137 24 68 24C60 24 54 27 48 30V68C54 65 60 62 68 62C71.3137 62 74 64.6863 74 68V30Z" fill="white" fill-opacity="0.92"/>
+</svg>

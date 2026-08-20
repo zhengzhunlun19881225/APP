@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <rect width="96" height="96" rx="26" fill="url(#bg_wuzi)"/>
+  <defs>
+    <linearGradient id="bg_wuzi" x1="0" y1="0" x2="0" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F80ED"/>
+      <stop offset="1" stop-color="#1565C0"/>
+    </linearGradient>
+  </defs>
+  <!-- House Outer Base -->
+  <path d="M48 20L20 41V70C20 72.7614 22.2386 75 25 75H71C73.7614 75 76 72.7614 76 70V41L48 20Z" fill="white"/>
+  <!-- 3 Box Cutouts inside -->
+  <rect x="42" y="38" width="12" height="12" rx="2.5" fill="#1565C0"/>
+  <rect x="32" y="54" width="12" height="12" rx="2.5" fill="#1565C0"/>
+  <rect x="52" y="54" width="12" height="12" rx="2.5" fill="#1565C0"/>
+</svg>

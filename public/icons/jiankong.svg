@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <rect width="96" height="96" rx="26" fill="url(#bg_jiankong)"/>
+  <defs>
+    <linearGradient id="bg_jiankong" x1="0" y1="0" x2="0" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00BCD4"/>
+      <stop offset="1" stop-color="#00838F"/>
+    </linearGradient>
+  </defs>
+  <!-- Security Camera Body & Hood -->
+  <g transform="rotate(-28 46 44)">
+    <path d="M26 30C26 27.7909 27.7909 26 30 26H64C66.2091 26 68 27.7909 68 30V48C68 50.2091 66.2091 52 64 52H30C27.7909 52 26 50.2091 26 48V30Z" fill="white"/>
+    <!-- Front Lens Rim Cutout -->
+    <rect x="22" y="24" width="6" height="30" rx="2" fill="white"/>
+    <circle cx="34" cy="39" r="4.5" fill="#00838F"/>
+  </g>
+  <!-- Mounting Bracket and Wall Plate -->
+  <path d="M52 58L62 68H72" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "name": "消息与通讯录",
+  "description": "移动端消息与通讯录一级页面UI应用",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
