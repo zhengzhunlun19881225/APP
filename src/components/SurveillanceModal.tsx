@@ -32,7 +32,7 @@ interface PlaybackEvent {
   videoUrl: string;
 }
 
-const TEST_SURVEILLANCE_VIDEO = '/surveillance-test/people-detection.mp4';
+const TEST_SURVEILLANCE_VIDEO = `${import.meta.env.BASE_URL}surveillance-test/people-detection.mp4`;
 
 const PLAYBACK_EVENTS: PlaybackEvent[] = [
   {

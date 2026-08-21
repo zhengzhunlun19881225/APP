@@ -264,7 +264,7 @@ export const AiPlusPage: React.FC<AiPlusPageProps> = ({ onSubViewChange }) => {
     <div
       className="flex flex-col h-full bg-cover bg-top bg-no-repeat relative overflow-hidden select-none"
       style={{
-        backgroundImage: `url('/agent-bg.svg'), linear-gradient(180deg, #edf4fe 0%, #f6f8fd 40%, #ffffff 100%)`
+        backgroundImage: `url('${import.meta.env.BASE_URL}agent-bg.svg'), linear-gradient(180deg, #edf4fe 0%, #f6f8fd 40%, #ffffff 100%)`
       }}
     >
       {/* Top Navigation Bar */}
@@ -1588,7 +1588,7 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
     <div
       className="flex flex-col h-full bg-cover bg-top bg-no-repeat relative overflow-hidden select-none animate-fade-in font-sans"
       style={{
-        backgroundImage: `url('/agent-bg.svg'), linear-gradient(180deg, #edf4fe 0%, #f6f8fd 40%, #ffffff 100%)`
+        backgroundImage: `url('${import.meta.env.BASE_URL}agent-bg.svg'), linear-gradient(180deg, #edf4fe 0%, #f6f8fd 40%, #ffffff 100%)`
       }}
     >
       {/* Toast Notification */}

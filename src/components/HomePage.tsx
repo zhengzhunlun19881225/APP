@@ -42,15 +42,16 @@ export const HomePage: React.FC<HomePageProps> = ({
   onNavigateToDutyHandover
 }) => {
   const [taskTab, setTaskTab] = useState<'todo' | 'done'>('todo');
+  const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`;
   const quickActions = [
-    { label: '事项列表', icon: '/work-home-assets/events.png', onClick: onNavigateToEventList },
-    { label: '预案查询', icon: '/work-home-assets/plans.png', onClick: onNavigateToPlanQuery },
-    { label: '交班日志', icon: '/work-home-assets/handover.png', onClick: onNavigateToDutyHandover },
-    { label: '物资管理', icon: '/work-home-assets/materials.png', onClick: onNavigateToMaterials },
-    { label: '发起会议', icon: '/work-home-assets/meeting.png', onClick: onNavigateToMeeting },
-    { label: '监控', icon: '/work-home-assets/monitoring.png', onClick: onNavigateToMonitoring },
-    { label: '知识库', icon: '/work-home-assets/knowledge.png', onClick: onNavigateToKnowledgeBase },
-    { label: '培训考试', icon: '/work-home-assets/training.png', onClick: onNavigateToTraining }
+    { label: '事项列表', icon: assetUrl('work-home-assets/events.png'), onClick: onNavigateToEventList },
+    { label: '预案查询', icon: assetUrl('work-home-assets/plans.png'), onClick: onNavigateToPlanQuery },
+    { label: '交班日志', icon: assetUrl('work-home-assets/handover.png'), onClick: onNavigateToDutyHandover },
+    { label: '物资管理', icon: assetUrl('work-home-assets/materials.png'), onClick: onNavigateToMaterials },
+    { label: '发起会议', icon: assetUrl('work-home-assets/meeting.png'), onClick: onNavigateToMeeting },
+    { label: '监控', icon: assetUrl('work-home-assets/monitoring.png'), onClick: onNavigateToMonitoring },
+    { label: '知识库', icon: assetUrl('work-home-assets/knowledge.png'), onClick: onNavigateToKnowledgeBase },
+    { label: '培训考试', icon: assetUrl('work-home-assets/training.png'), onClick: onNavigateToTraining }
   ];
 
   return (
@@ -59,7 +60,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Airport hero */}
         <div className="absolute inset-x-0 top-0 h-[217px] overflow-hidden bg-sky-500">
           <img
-            src="/work-home-assets/airport-hero.png"
+            src={assetUrl('work-home-assets/airport-hero.png')}
             alt="济南机场"
             className="h-full w-full object-cover object-center"
           />

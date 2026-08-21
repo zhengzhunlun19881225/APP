@@ -18,7 +18,7 @@ interface SurveillanceFullscreenModalProps {
   onToggleFavorite?: (cameraId: string) => void;
 }
 
-const TEST_SURVEILLANCE_VIDEO = '/surveillance-test/people-detection.mp4';
+const TEST_SURVEILLANCE_VIDEO = `${import.meta.env.BASE_URL}surveillance-test/people-detection.mp4`;
 
 export const SurveillanceFullscreenModal: React.FC<SurveillanceFullscreenModalProps> = ({
   camera,
