@@ -104,7 +104,7 @@ export const SurveillanceDrawer: React.FC<SurveillanceDrawerProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="absolute inset-x-0 bottom-0 z-40 bg-white rounded-t-[24px] shadow-2xl flex flex-col border-t border-slate-200/90 transition-all duration-300 max-h-[82%] sm:max-h-[75%] h-[560px] select-none animate-in slide-in-from-bottom">
+    <div className="absolute inset-x-0 bottom-0 z-40 app-bottom-sheet shadow-2xl flex flex-col border-t border-slate-200/90 transition-all duration-300 max-h-[82%] sm:max-h-[75%] h-[560px] select-none animate-in slide-in-from-bottom">
       {/* Drag Handle Bar */}
       <div className="w-full flex justify-center pt-2.5 pb-1 cursor-grab">
         <div className="w-10 h-1 bg-slate-300 rounded-full"></div>
@@ -177,14 +177,14 @@ export const SurveillanceDrawer: React.FC<SurveillanceDrawerProps> = ({
 
       {/* Search Input Bar (Matches 搜索 in all list screenshots) */}
       <div className="px-4 py-2.5">
-        <div className="relative flex h-10 items-center bg-[#f4f5f8] rounded-xl px-3 py-0 border border-slate-200/70 focus-within:border-blue-500 focus-within:bg-white transition-all">
-          <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
+        <div className="app-search-shell !bg-[#f8fafc] !border-slate-200/70 !backdrop-blur-none">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full bg-transparent text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none"
+            className="app-search-input"
           />
           {searchQuery && (
             <button onClick={() => setSearchQuery('')} className="p-0.5 text-slate-400 hover:text-slate-600">
@@ -672,7 +672,7 @@ export const SurveillanceDrawer: React.FC<SurveillanceDrawerProps> = ({
       {/* Multi-Select Modal for 预案 (Matches 列表-预案收藏3.png) */}
       {showPlanFilterModal && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-xs select-none">
-          <div className="bg-white w-full max-w-lg rounded-t-[20px] overflow-hidden shadow-2xl flex flex-col max-h-[80vh] border-t border-slate-200 animate-in slide-in-from-bottom">
+          <div className="app-bottom-sheet w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[80vh] border-t border-slate-200 animate-in slide-in-from-bottom">
             {/* Modal Title */}
             <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-center relative">
               <h3 className="text-[16px] font-bold text-slate-900">选择预案</h3>

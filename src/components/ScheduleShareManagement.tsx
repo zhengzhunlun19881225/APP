@@ -273,7 +273,7 @@ export const ScheduleShareManagement: React.FC<ScheduleShareManagementProps> = (
             value={searchDateRange}
             onChange={(e) => setSearchDateRange(e.target.value)}
             placeholder="开始日期 至 结束日期"
-            className="w-full text-[13px] bg-transparent placeholder-slate-400 outline-none"
+            className="w-full text-[14px] bg-transparent placeholder-slate-400 outline-none"
           />
         </div>
         <button
@@ -368,7 +368,7 @@ export const ScheduleShareManagement: React.FC<ScheduleShareManagementProps> = (
       {/* ================= EDIT / CREATE SCHEDULED SHARE MODAL (1:1 with Images 4 & 5) ================= */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-2xs animate-fade-in">
-          <div className="w-full max-w-lg bg-white rounded-t-3xl sm:rounded-3xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-slide-up">
+          <div className="w-full max-w-lg app-bottom-sheet sm:rounded-[20px] max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-slide-up">
             {/* Modal Header */}
             <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
               <div className="w-6" />
@@ -575,7 +575,7 @@ export const ScheduleShareManagement: React.FC<ScheduleShareManagementProps> = (
       {/* ================= WEEKDAY PICKER BOTTOM SHEET (1:1 with Image 6) ================= */}
       {isWeekdayDrawerOpen && (
         <div className="fixed inset-0 z-60 flex items-end justify-center bg-black/50 backdrop-blur-2xs animate-fade-in">
-          <div className="w-full max-w-lg bg-white rounded-t-3xl p-5 space-y-5 shadow-2xl animate-slide-up">
+          <div className="w-full max-w-lg app-bottom-sheet p-5 space-y-5 shadow-2xl animate-slide-up">
             {/* Header */}
             <div className="flex items-center justify-between pb-1">
               <div className="w-6" />

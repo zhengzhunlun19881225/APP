@@ -67,7 +67,7 @@ export const GroupMutePage: React.FC<GroupMutePageProps> = ({ onBack, onNotice }
     return (
       <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-8">
         {/* Top Header */}
-        <div className="px-4 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
+        <div className="px-2 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
           <button
             onClick={() => setActiveSubPage('main')}
             className="text-[15px] font-normal text-blue-600 hover:text-blue-700 transition-colors"
@@ -90,7 +90,7 @@ export const GroupMutePage: React.FC<GroupMutePageProps> = ({ onBack, onNotice }
           </button>
         </div>
 
-        <div className="px-3 space-y-3 mt-1">
+        <div className="px-2 space-y-2 mt-1">
           {/* Section Header */}
           <div className="text-[13px] text-slate-400 font-normal px-1 mt-1">
             设置禁言时段
@@ -182,7 +182,7 @@ export const GroupMutePage: React.FC<GroupMutePageProps> = ({ onBack, onNotice }
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-8">
       {/* Top Header */}
-      <div className="px-3 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
+      <div className="px-2 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -197,7 +197,7 @@ export const GroupMutePage: React.FC<GroupMutePageProps> = ({ onBack, onNotice }
         <div className="w-8"></div>
       </div>
 
-      <div className="px-3 space-y-3 mt-1">
+      <div className="px-2 space-y-2 mt-1">
         {/* Sub Header / Feedback link */}
         <div className="flex justify-between items-center px-1">
           <span className="text-[13px] text-slate-400 font-normal">意见反馈</span>

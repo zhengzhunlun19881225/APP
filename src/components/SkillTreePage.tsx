@@ -173,8 +173,8 @@ export const SkillTreePage: React.FC<SkillTreePageProps> = ({ onBack, onSelectQu
 
       {/* Global Search Input Box (1:1 with Images 1 & 2) */}
       <div className="px-4 pt-3 pb-2 bg-white">
-        <div className="relative flex items-center">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+        <div className="app-search-shell !bg-[#f8fafc] !border-slate-200/80 !backdrop-blur-none">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchKeyword}
@@ -183,7 +183,7 @@ export const SkillTreePage: React.FC<SkillTreePageProps> = ({ onBack, onSelectQu
               setCurrentPage(1);
             }}
             placeholder="搜索"
-            className="w-full h-10 bg-[#f1f5f9]/70 border border-slate-200/80 rounded-xl pl-9 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 outline-none focus:border-[#0070f3] focus:bg-white transition-all"
+            className="app-search-input"
           />
           {searchKeyword && (
             <button
@@ -191,7 +191,7 @@ export const SkillTreePage: React.FC<SkillTreePageProps> = ({ onBack, onSelectQu
                 setSearchKeyword('');
                 setCurrentPage(1);
               }}
-              className="absolute right-3 p-1 text-slate-400 hover:text-slate-600 active:scale-95"
+              className="p-1 text-slate-400 hover:text-slate-600 active:scale-95"
             >
               <X className="w-3.5 h-3.5" />
             </button>

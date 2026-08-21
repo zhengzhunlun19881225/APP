@@ -171,7 +171,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
     return (
       <div className="flex flex-col h-full bg-[#f4f6f9] select-none overflow-y-auto">
         {/* Navigation Bar */}
-        <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f6f9]/95 backdrop-blur-md z-20 border-b border-slate-200/50">
+        <div className="px-2 py-3 flex items-center justify-between sticky top-0 bg-[#f4f6f9]/95 backdrop-blur-md z-20 border-b border-slate-200/50">
           <button
             onClick={() => setSelectedRecord(null)}
             className="system-back-button"
@@ -187,9 +187,9 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
         </div>
 
         {/* Detail Content Cards */}
-        <div className="px-4 py-3.5 space-y-3.5 pb-16">
+        <div className="px-2 py-2 space-y-2 pb-16">
           {/* Top Status & Summary Card */}
-          <div className="bg-white rounded-[16px] p-4.5 shadow-2xs border border-slate-100/90 relative overflow-hidden">
+          <div className="app-card p-4 relative overflow-hidden">
             {/* Header with Code and Status Badge */}
             <div className="flex items-start justify-between gap-3 mb-3.5">
               <h2 className="text-[17px] font-bold text-slate-900 tracking-tight break-all">
@@ -238,7 +238,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
           </div>
 
           {/* Section 1: 基本信息 Card */}
-          <div className="bg-white rounded-[16px] p-4.5 shadow-2xs border border-slate-100/90 space-y-3.5">
+          <div className="app-card p-4 space-y-3.5">
             {/* Title with Blue Accent Bar */}
             <div className="flex items-center gap-2">
               <div className="w-1 h-3.5 bg-[#0070f3] rounded-full" />
@@ -276,7 +276,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
           </div>
 
           {/* Section 2: 状态信息 Card */}
-          <div className="bg-white rounded-[16px] p-4.5 shadow-2xs border border-slate-100/90 space-y-3.5">
+          <div className="app-card p-4 space-y-3.5">
             {/* Title with Blue Accent Bar */}
             <div className="flex items-center gap-2">
               <div className="w-1 h-3.5 bg-[#0070f3] rounded-full" />
@@ -327,7 +327,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f6f9] select-none overflow-hidden">
       {/* Navigation Bar */}
-      <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f6f9]/95 backdrop-blur-md z-20 border-b border-slate-200/50">
+      <div className="px-2 py-3 flex items-center justify-between sticky top-0 bg-[#f4f6f9]/95 backdrop-blur-md z-20 border-b border-slate-200/50">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -343,20 +343,20 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
       </div>
 
       {/* Search and Date Filter Bar (Match Screenshot 2) */}
-      <div className="px-4 pt-3 pb-2 flex items-center gap-2.5">
-        <div className="flex-1 relative flex items-center">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+      <div className="px-2 pt-3 pb-2 flex items-center gap-2.5">
+        <div className="app-search-shell flex-1 !bg-white !border-slate-200/80">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="搜索"
-            className="w-full h-10 bg-white rounded-xl pl-9.5 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-200/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="app-search-input"
           />
           {searchText && (
             <button
               onClick={() => setSearchText('')}
-              className="absolute right-3 text-slate-400 hover:text-slate-600"
+              className="text-slate-400 hover:text-slate-600"
             >
               <X className="w-4 h-4" />
             </button>
@@ -380,7 +380,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
 
       {/* Filter Tabs if date picker opened */}
       {showDatePicker && (
-        <div className="px-4 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar bg-slate-100/70 border-b border-slate-200/60 animate-in fade-in duration-200">
+        <div className="px-2 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar bg-slate-100/70 border-b border-slate-200/60 animate-in fade-in duration-200">
           {(['全部', '草稿', '审批中', '完成'] as const).map((tab) => (
             <button
               key={tab}
@@ -398,7 +398,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
       )}
 
       {/* Record List Items (Match Screenshot 2) */}
-      <div className="flex-1 px-4 py-2 overflow-y-auto space-y-3.5 pb-20">
+      <div className="flex-1 px-2 py-2 overflow-y-auto space-y-2 pb-20">
         {filteredRecords.length === 0 ? (
           <div className="py-20 text-center text-slate-400 text-[14px]">
             未找到匹配的单据记录
@@ -408,7 +408,7 @@ export const TravelRecordsPage: React.FC<TravelRecordsPageProps> = ({
             <div
               key={item.id}
               onClick={() => setSelectedRecord(item)}
-              className="bg-white rounded-[16px] p-4.5 shadow-2xs border border-slate-100/90 hover:border-blue-200/80 active:scale-[0.99] transition-all cursor-pointer space-y-2.5"
+              className="app-card p-4 hover:border-blue-200/80 active:scale-[0.99] transition-all cursor-pointer space-y-2.5"
             >
               {/* Header Row: 单据编号 + 箭头 */}
               <div className="flex items-center justify-between pb-1 border-b border-slate-100/60">

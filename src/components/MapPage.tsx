@@ -887,7 +887,7 @@ export const MapPage: React.FC<MapPageProps> = ({ onOverlayChange }) => {
             onClick={() => setShowLayerDrawer(false)}
             className="flex-1"
           />
-          <div className="bg-white rounded-t-3xl shadow-2xl p-5 max-h-[82%] overflow-y-auto space-y-5 animate-in slide-in-from-bottom duration-250">
+          <div className="app-bottom-sheet shadow-2xl p-5 max-h-[82%] overflow-y-auto space-y-5 animate-in slide-in-from-bottom duration-250">
             {/* Drawer Header */}
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">

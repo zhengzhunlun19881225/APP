@@ -289,9 +289,9 @@ export const AiPlusPage: React.FC<AiPlusPageProps> = ({ onSubViewChange }) => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto px-3.5 py-3 space-y-3.5">
+      <div className="flex-1 overflow-y-auto px-3 py-2 space-y-4">
         {/* Banner Card: 创作助手 (Dark Forest Emerald Gradient) */}
-        <div className="bg-gradient-to-r from-[#0d2a1f] via-[#12382a] to-[#1a4a38] rounded-[22px] p-4 text-white shadow-md relative overflow-hidden space-y-3">
+        <div className="bg-gradient-to-r from-[#0d2a1f] via-[#12382a] to-[#1a4a38] rounded-[16px] p-4 text-white shadow-md relative overflow-hidden space-y-3">
           {/* Decorative Background Glowing Circle */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-400/10 rounded-full blur-xl pointer-events-none" />
 
@@ -337,7 +337,7 @@ export const AiPlusPage: React.FC<AiPlusPageProps> = ({ onSubViewChange }) => {
         </div>
 
         {/* Agents Listing Section */}
-        <div className="bg-white rounded-[22px] p-4 shadow-2xs border border-slate-100 space-y-3">
+        <div className="app-card p-4 space-y-2">
           {/* Category Tabs */}
           <div className="flex items-center justify-between border-b border-slate-100 pb-2.5 px-1">
             {[
@@ -1698,10 +1698,10 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
           {/* Stacked Cards Deck Area (Scaled to 90%) */}
           <div className="w-full max-w-[340px] relative my-auto py-4 flex flex-col items-center scale-90 origin-center">
             {/* Background Layer Card 2 */}
-            <div className="absolute top-0 w-[84%] h-[180px] bg-white/40 rounded-[24px] border border-white/60 shadow-xs -translate-y-2 pointer-events-none" />
+            <div className="absolute top-0 w-[84%] h-[180px] bg-white/40 rounded-[16px] border border-white/60 shadow-xs -translate-y-2 pointer-events-none" />
             
             {/* Background Layer Card 1 (Underneath card showing next question during drag) */}
-            <div className="absolute top-2 w-[92%] h-[185px] bg-white/85 backdrop-blur-xs rounded-[24px] border border-white/90 shadow-md -translate-y-1 p-5 flex flex-col justify-center overflow-hidden pointer-events-none transition-all">
+            <div className="absolute top-2 w-[92%] h-[185px] bg-white/85 backdrop-blur-xs rounded-[16px] border border-white/90 shadow-md -translate-y-1 p-5 flex flex-col justify-center overflow-hidden pointer-events-none transition-all">
               <span className="absolute top-2 left-3 text-3xl text-slate-200/90 font-serif leading-none select-none">“</span>
               <span className="absolute bottom-4 right-3 text-3xl text-slate-200/90 font-serif leading-none select-none">”</span>
 
@@ -1730,7 +1730,7 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, x: -100 }}
                 transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                className="relative w-full bg-white/95 backdrop-blur-md rounded-[26px] p-6 shadow-xl border border-white/90 flex flex-col justify-between min-h-[200px] z-10 touch-pan-y cursor-grab active:cursor-grabbing select-none"
+                className="relative w-full bg-white/95 backdrop-blur-md rounded-[16px] p-6 shadow-xl border border-white/90 flex flex-col justify-between min-h-[200px] z-10 touch-pan-y cursor-grab active:cursor-grabbing select-none"
               >
                 {/* Decorative Quotes */}
                 <span className="absolute top-3 left-4 text-4xl text-slate-200/90 font-serif leading-none select-none pointer-events-none">
@@ -1790,7 +1790,7 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
                   {msg.attachedDocs && msg.attachedDocs.length > 0 && (
                     <div className="flex items-center gap-1.5 justify-end flex-wrap">
                       <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-white border border-slate-200/90 text-slate-700 text-[11px] shadow-2xs">
-                        <span className="w-4 h-4 rounded bg-red-500 text-white text-[9px] font-bold flex items-center justify-center flex-shrink-0">PDF</span>
+                        <span className="w-4 h-4 rounded bg-red-500 text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0">PDF</span>
                         <span className="font-medium max-w-[140px] truncate">{msg.attachedDocs[0].name}</span>
                         <span className="text-slate-400">{msg.attachedDocs[0].size}</span>
                       </div>
@@ -1885,7 +1885,7 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
                               ))}
                             </ul>
                           ) : (
-                            <p className="text-[12px] text-slate-600 leading-relaxed">{sec.content}</p>
+                            <p className="text-[14px] text-slate-600 leading-relaxed">{sec.content}</p>
                           )}
                         </div>
                       ))}
@@ -2072,19 +2072,19 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
                         {chartType === 'bar' && (
                           <div className="h-44 relative flex items-end justify-between px-2 pt-4 border-b border-l border-slate-200">
                             {/* Y Axis scale ticks */}
-                            <div className="absolute top-0 left-0 text-[9px] text-slate-400">
+                            <div className="absolute top-0 left-0 text-[10px] text-slate-400">
                               亿元 8
                             </div>
-                            <div className="absolute top-1/4 left-0 -ml-1 text-[9px] text-slate-400">
+                            <div className="absolute top-1/4 left-0 -ml-1 text-[10px] text-slate-400">
                               6
                             </div>
-                            <div className="absolute top-2/4 left-0 -ml-1 text-[9px] text-slate-400">
+                            <div className="absolute top-2/4 left-0 -ml-1 text-[10px] text-slate-400">
                               4
                             </div>
-                            <div className="absolute top-3/4 left-0 -ml-1 text-[9px] text-slate-400">
+                            <div className="absolute top-3/4 left-0 -ml-1 text-[10px] text-slate-400">
                               2
                             </div>
-                            <div className="absolute bottom-0 left-0 -ml-1 text-[9px] text-slate-400">
+                            <div className="absolute bottom-0 left-0 -ml-1 text-[10px] text-slate-400">
                               0
                             </div>
 
@@ -2267,7 +2267,7 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
                             >
                               <div className="flex items-center gap-2 min-w-0 pr-2">
                                 <div
-                                  className={`w-6 h-6 rounded flex items-center justify-center text-[9px] font-bold flex-shrink-0 ${
+                                  className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
                                     cite.type === 'pdf'
                                       ? 'bg-red-50 text-red-600 border border-red-200/60'
                                       : 'bg-blue-50 text-blue-600 border border-blue-200/60'
@@ -2741,7 +2741,7 @@ const DataAgentChatView: React.FC<DataAgentChatViewProps> = ({
                   <div className="flex items-center gap-1.5 font-bold text-slate-700 text-[12px]">
                     <span>知识库原文上下文片段</span>
                   </div>
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70 text-slate-600 text-[12px] leading-relaxed whitespace-pre-line font-mono bg-opacity-75">
+                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/70 text-slate-600 text-[14px] leading-relaxed whitespace-pre-line font-mono bg-opacity-75">
                     {selectedCitation.contextSnippet}
                   </div>
                 </div>

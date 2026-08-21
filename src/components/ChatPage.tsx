@@ -1168,7 +1168,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({
       {/* Viewing Merged Records Detail Modal */}
       {viewingMergedRecord && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
-          <div className="bg-[#f4f5f8] rounded-t-3xl max-h-[85%] flex flex-col overflow-hidden shadow-2xl border-t border-slate-100 animate-in slide-in-from-bottom duration-250">
+          <div className="app-bottom-sheet !bg-[#f4f5f8] max-h-[85%] flex flex-col overflow-hidden shadow-2xl border-t border-slate-100 animate-in slide-in-from-bottom duration-250">
             <div className="px-4 py-3.5 bg-white border-b border-slate-100 flex items-center justify-between">
               <h3 className="text-[15px] font-bold text-slate-900 truncate">
                 {viewingMergedRecord.content}
@@ -1262,7 +1262,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({
       {/* Call Scenario Simulation Modal Sheet */}
       {showCallOptionModal && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
-          <div className="bg-white rounded-t-3xl p-5 shadow-2xl border-t border-slate-100 animate-in slide-in-from-bottom duration-250 select-none">
+          <div className="app-bottom-sheet p-5 shadow-2xl border-t border-slate-100 animate-in slide-in-from-bottom duration-250 select-none">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">

@@ -144,7 +144,7 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
       </div>
 
       {/* Bottom Half: Search & List (Matches 位置.png) */}
-      <div className="flex-1 bg-white rounded-t-3xl -mt-4 relative z-30 shadow-2xl flex flex-col overflow-hidden border-t border-slate-100">
+      <div className="flex-1 app-bottom-sheet -mt-4 relative z-30 shadow-2xl flex flex-col overflow-hidden border-t border-slate-100">
         {/* Search Bar */}
         <div className="p-3 border-b border-slate-100">
           <div className="h-10 px-3 bg-slate-100/80 rounded-xl flex items-center gap-2 border border-slate-200/60">
@@ -154,7 +154,7 @@ export const LocationPickerModal: React.FC<LocationPickerModalProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="搜索地点、街道或建筑物"
-              className="flex-1 bg-transparent text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none"
+              className="flex-1 bg-transparent text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none"
             />
           </div>
         </div>

@@ -212,7 +212,7 @@ export const BookMeetingPage: React.FC<BookMeetingPageProps> = ({
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             placeholder="请输入会议主题"
-            className="w-full text-[16px] text-slate-700 font-normal outline-none bg-transparent placeholder:text-slate-300"
+            className="app-form-control text-[15px]"
           />
         </div>
 
@@ -770,11 +770,11 @@ export const BookMeetingPage: React.FC<BookMeetingPageProps> = ({
               设置会议密码
             </h3>
             <input
-              type="text"
+              type="tel"
               value={meetingPassword}
               onChange={(e) => setMeetingPassword(e.target.value)}
               placeholder="请输入6位数字密码"
-              className="w-full text-center tracking-widest text-[20px] font-bold px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-blue-500"
+              className="app-form-control text-center tracking-widest !text-[20px] font-bold"
               maxLength={6}
             />
             <div className="flex gap-2">

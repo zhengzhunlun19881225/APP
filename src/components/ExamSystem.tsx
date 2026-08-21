@@ -610,7 +610,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
         </div>
 
         <div className="p-3.5 space-y-4">
-          <div className="relative w-full rounded-[22px] bg-gradient-to-r from-[#0070f3] via-[#0088ff] to-[#00b2ff] p-5 text-white shadow-md overflow-hidden">
+          <div className="relative w-full rounded-[16px] bg-gradient-to-r from-[#0070f3] via-[#0088ff] to-[#00b2ff] p-5 text-white shadow-md overflow-hidden">
             <div className="relative z-10 max-w-[70%] space-y-2">
               <h2 className="text-[18px] font-bold tracking-tight text-white leading-snug">
                 {examData.title}
@@ -650,7 +650,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
             </h3>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white rounded-[18px] p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
+              <div className="app-card p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
                 <div className="w-11 h-11 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0">
                   <FileEdit className="w-5 h-5 stroke-[2.2]" />
                 </div>
@@ -664,7 +664,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white rounded-[18px] p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
+              <div className="app-card p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
                 <div className="w-11 h-11 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center flex-shrink-0">
                   <Award className="w-5 h-5 stroke-[2.2]" />
                 </div>
@@ -678,7 +678,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white rounded-[18px] p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
+              <div className="app-card p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
                 <div className="w-11 h-11 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-5 h-5 stroke-[2.2]" />
                 </div>
@@ -692,7 +692,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
                 </div>
               </div>
 
-              <div className="bg-white rounded-[18px] p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
+              <div className="app-card p-3.5 border border-slate-100 shadow-2xs flex items-center gap-3">
                 <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0">
                   <CheckCircle2 className="w-5 h-5 stroke-[2.2]" />
                 </div>
@@ -713,7 +713,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
               考试须知
             </h3>
 
-            <div className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-2xs flex items-center justify-between relative overflow-hidden">
+            <div className="app-card p-4 border border-slate-100 shadow-2xs flex items-center justify-between relative overflow-hidden">
               <div className="space-y-2.5 max-w-[70%]">
                 <div className="flex items-start gap-2">
                   <span className="w-4 h-4 rounded-full bg-blue-100 text-blue-600 text-[11px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -818,7 +818,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
       </div>
 
       <div className="flex-1 overflow-y-auto px-3.5 py-4 space-y-4">
-        <div className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-xs space-y-4">
+        <div className="app-card p-4 border border-slate-100 shadow-xs space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div className="flex items-center gap-2">
               <span className="w-1 h-4 bg-[#0070f3] rounded-full" />
@@ -971,7 +971,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
 
       {showAnswerSheet && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex flex-col justify-end animate-fade-in">
-          <div className="bg-white rounded-t-[24px] p-4 max-h-[80vh] overflow-y-auto space-y-4 shadow-2xl">
+          <div className="app-bottom-sheet p-4 max-h-[80vh] overflow-y-auto space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-[16px] font-bold text-slate-900">答题卡</h3>
 
@@ -1119,7 +1119,7 @@ export const ExamSystem: React.FC<ExamSystemProps> = ({
 
       {resultModalState && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[24px] p-6 max-w-xs w-full text-center space-y-4 shadow-2xl relative border border-slate-100">
+          <div className="app-modal p-6 max-w-xs w-full text-center space-y-4 shadow-2xl relative border border-slate-100">
             <button
               onClick={handleConfirmResult}
               className="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"

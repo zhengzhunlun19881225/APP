@@ -147,7 +147,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
     return (
       <div className="flex flex-col h-full bg-white select-none overflow-hidden z-50">
         {/* Doc Header */}
-        <div className="px-4 py-3 flex items-center justify-between border-b border-slate-100 bg-white sticky top-0 z-10">
+        <div className="px-2 py-3 flex items-center justify-between border-b border-slate-100 bg-white sticky top-0 z-10">
           <button
             onClick={() => setReadingDoc(null)}
             className="system-back-button"
@@ -366,7 +366,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-10">
       {/* Top Header Navigation */}
-      <div className="px-4 py-3 flex items-center justify-between app-plan-query-bg sticky top-0 z-20">
+      <div className="px-2 py-3 flex items-center justify-between app-plan-query-bg sticky top-0 z-20">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -489,7 +489,7 @@ export const CourseDetailPage: React.FC<CourseDetailPageProps> = ({
       )}
 
       {/* Tabs Container (课件信息 vs 课件列表) */}
-      <div className="mt-3 mx-3 bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 min-h-[380px]">
+      <div className="mt-3 mx-3 app-card p-4 shadow-2xs border border-slate-100/80 min-h-[380px]">
         {/* Tab Headers */}
         <div className="flex items-center justify-center gap-16 border-b border-slate-100/60 pb-3 mb-4">
           <button

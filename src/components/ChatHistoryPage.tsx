@@ -785,7 +785,7 @@ export const ChatHistoryPage: React.FC<ChatHistoryPageProps> = ({
                   >
                     <span className="text-[15px] font-medium leading-none">{d}</span>
                     {isToday && (
-                      <span className="text-[9px] text-blue-600 absolute -bottom-3.5 font-normal">
+                      <span className="text-[10px] text-blue-600 absolute -bottom-3.5 font-normal">
                         今天
                       </span>
                     )}

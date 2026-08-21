@@ -380,7 +380,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
   return (
     <div className="fixed inset-0 z-50 app-plan-query-page-bg flex flex-col select-none overflow-hidden animate-fade-in font-sans">
       {/* 顶部导航 Header (对照原型图2) */}
-      <div className="px-4 py-3 bg-transparent flex items-center justify-between sticky top-0 z-20">
+      <div className="px-2 py-3 bg-transparent flex items-center justify-between sticky top-0 z-20">
         <button
           onClick={handleGoBack}
           className="system-back-button"
@@ -404,20 +404,20 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
       </div>
 
       {/* 搜索框 (对照原型图2) */}
-      <div className="px-4 pt-3 pb-2 bg-transparent">
-        <div className="relative flex items-center w-full">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+      <div className="px-2 pt-3 pb-2 bg-transparent">
+        <div className="app-search-shell">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full h-10 bg-white rounded-xl pl-9 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-200/70 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="app-search-input"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 p-1 text-slate-400 hover:text-slate-600"
+              className="p-1 text-slate-400 hover:text-slate-600"
             >
               <X className="w-4 h-4" />
             </button>
@@ -426,14 +426,14 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
       </div>
 
       {/* 主体滚动内容区 */}
-      <div className="flex-1 overflow-y-auto px-4 pb-28 space-y-3">
+      <div className="flex-1 overflow-y-auto px-2 pb-28 space-y-2">
         {/* 如果正在搜索，优先展示搜索结果 */}
         {searchResults !== null ? (
           <div>
             <p className="text-[12px] font-medium text-slate-400 px-1 mb-2">
               搜索结果 ({searchResults.length})
             </p>
-            <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100 divide-y divide-slate-100">
+            <div className="app-card p-3 divide-y divide-slate-100">
               {searchResults.length === 0 ? (
                 <div className="py-8 text-center text-slate-400 text-[14px]">
                   未找到匹配的联系人
@@ -485,7 +485,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
             {navPath === 'root' && (
               <>
                 {/* 分组与通讯录入口卡片 (对照原型图2) */}
-                <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/90 space-y-2.5">
+                <div className="app-card p-3 space-y-2">
                   {/* 我的群组 */}
                   <div
                     onClick={() => setNavPath('groups')}
@@ -558,7 +558,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
                     最近联系人
                   </p>
 
-                  <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100/90 divide-y divide-slate-100">
+                  <div className="app-card p-3 divide-y divide-slate-100">
                     {RECENT_LIST.map(contact => {
                       const isChecked = selectedMap.has(contact.id);
                       return (
@@ -611,7 +611,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
                   全部群组 ({GROUPS_DATA.length})
                 </p>
 
-                <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100 divide-y divide-slate-100">
+                <div className="app-card p-3 divide-y divide-slate-100">
                   {GROUPS_DATA.map(group => (
                     <div
                       key={group.id}
@@ -665,7 +665,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
                   </button>
                 </div>
 
-                <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100 divide-y divide-slate-100">
+                <div className="app-card p-3 divide-y divide-slate-100">
                   {activeGroup.members.map(member => {
                     const isChecked = selectedMap.has(member.id);
                     return (
@@ -714,7 +714,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
                   {currentCompany} 组织架构
                 </p>
 
-                <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100 divide-y divide-slate-100">
+                <div className="app-card p-3 divide-y divide-slate-100">
                   {departmentsList.map(dept => {
                     const deptMemberIds = dept.members.map(m => m.id);
                     const isChecked =
@@ -780,7 +780,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
                   </button>
                 </div>
 
-                <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100 divide-y divide-slate-100">
+                <div className="app-card p-3 divide-y divide-slate-100">
                   {activeDept.members.map(member => {
                     const isChecked = selectedMap.has(member.id);
                     return (
@@ -858,7 +858,7 @@ export const SelectAttendeesPage: React.FC<SelectAttendeesPageProps> = ({
       {/* ---------------- 弹窗: 已选择人员列表 Sheet / Modal (对照原型图3: 8-消息-发起群聊-选择联系人（组织架构）-已选择.png) ---------------- */}
       {showSelectedSheet && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 backdrop-blur-2xs animate-fade-in">
-          <div className="w-full max-w-md bg-white rounded-t-[20px] overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[580px] animate-slide-up">
+          <div className="w-full max-w-md app-bottom-sheet overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[580px] animate-slide-up">
             {/* Header: 已选择 (3) 与 确定 (对照图3) */}
             <div className="px-5 py-4 flex items-center justify-between border-b border-slate-100 relative">
               <div className="w-12">

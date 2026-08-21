@@ -177,7 +177,7 @@ export const SelectMeetingRoomsPage: React.FC<SelectMeetingRoomsPageProps> = ({
   return (
     <div className="fixed inset-0 z-50 bg-[#f4f5f8] flex flex-col select-none overflow-hidden animate-fade-in font-sans">
       {/* 顶部导航 Header (对照原型图2) */}
-      <div className="px-4 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
+      <div className="px-2 py-3 bg-white flex items-center justify-between border-b border-slate-100 sticky top-0 z-20 shadow-2xs">
         <button
           onClick={onCancel}
           className="system-back-button"
@@ -201,19 +201,19 @@ export const SelectMeetingRoomsPage: React.FC<SelectMeetingRoomsPageProps> = ({
       {/* 搜索与过滤栏 */}
       <div className="px-4 pt-3 pb-2 bg-white border-b border-slate-100 space-y-2.5">
         {/* 搜索框 */}
-        <div className="relative flex items-center w-full">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+        <div className="app-search-shell !bg-[#f8fafc] !border-slate-200/70 !backdrop-blur-none">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="搜索会议室 / 楼层 / 设备"
-            className="w-full h-10 bg-[#f4f5f8] rounded-xl pl-9 pr-8 py-0 text-[13px] text-slate-800 placeholder-slate-400 border border-transparent focus:border-blue-500 focus:bg-white transition-all outline-none"
+            className="app-search-input"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 p-1 text-slate-400 hover:text-slate-600 cursor-pointer"
+              className="p-1 text-slate-400 hover:text-slate-600 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -246,7 +246,7 @@ export const SelectMeetingRoomsPage: React.FC<SelectMeetingRoomsPageProps> = ({
       </div>
 
       {/* 会议室列表内容区 (对照图2样式) */}
-      <div className="flex-1 overflow-y-auto p-4 pb-28 space-y-3.5">
+      <div className="flex-1 overflow-y-auto px-2 py-2 pb-28 space-y-2">
         {filteredRooms.length === 0 ? (
           <div className="py-16 text-center text-slate-400 space-y-2">
             <Building className="w-12 h-12 mx-auto text-slate-300 stroke-[1.5]" />
@@ -259,7 +259,7 @@ export const SelectMeetingRoomsPage: React.FC<SelectMeetingRoomsPageProps> = ({
             return (
               <div
                 key={room.id}
-                className={`bg-white rounded-[20px] p-3.5 border transition-all flex gap-3.5 relative overflow-hidden shadow-2xs ${
+                className={`app-card p-3.5 border transition-all flex gap-3.5 relative overflow-hidden shadow-2xs ${
                   isSelected
                     ? 'border-[#0070f3] ring-1 ring-[#0070f3]/20 bg-blue-50/10'
                     : 'border-slate-100 hover:border-slate-200'

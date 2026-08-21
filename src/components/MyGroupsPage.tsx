@@ -169,7 +169,7 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-8">
       {/* Top Navigation Header */}
-      <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/90 backdrop-blur-xs z-10">
+      <div className="px-2 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/90 backdrop-blur-xs z-10">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -191,22 +191,22 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
       </div>
 
       {/* Search Input Bar */}
-      <div className="px-4 mt-1 mb-3">
-        <div className="relative flex items-center w-full">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+      <div className="px-2 mt-1 mb-2">
+        <div className="app-search-shell">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full h-10 bg-white rounded-xl pl-9 pr-4 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="app-search-input"
           />
         </div>
       </div>
 
       {/* Group Content Card Container */}
-      <div className="px-4 flex-1">
-        <div className="bg-white rounded-[24px] p-4 shadow-2xs border border-slate-100/80 min-h-[420px] space-y-4">
+      <div className="px-2 flex-1">
+        <div className="app-card p-4 min-h-[420px] space-y-4">
           {/* Tabs Navigation */}
           <div className="flex items-center justify-around border-b border-slate-100 pb-3 pt-1">
             <button
@@ -266,7 +266,7 @@ export const MyGroupsPage: React.FC<MyGroupsPageProps> = ({
 
                     {/* Group Title & Member Count with Tag underneath */}
                     <div className="flex flex-col min-w-0 justify-center">
-                      <span className="text-[16px] font-semibold text-slate-900 truncate leading-tight">
+                      <span className="text-[15px] font-semibold text-slate-900 truncate leading-tight">
                         {group.name} ({group.memberCount})
                       </span>
 

@@ -107,7 +107,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
       )}
 
       {/* Top Navigation Header */}
-      <div className="app-plan-query-bg px-3 py-2.5 flex items-center justify-between z-10">
+      <div className="app-plan-query-bg px-2 py-2.5 flex items-center justify-between z-10">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -125,12 +125,12 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
       </div>
 
       {/* Main Scrollable Content Area */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3 pb-24">
+      <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2 pb-24">
         {/* Card 1: Event Summary & Scene Photos */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100/80 relative">
+        <div className="app-card p-4 relative">
           {/* Top Right Status Badge */}
           <div className="absolute top-4 right-4">
-            <span className="px-2.5 py-1 bg-[#007aff] text-white text-[12px] font-bold rounded-[4px] shadow-xs">
+            <span className="px-2.5 py-1 bg-[#007aff] text-white text-[12px] font-bold app-badge shadow-xs">
               已响应
             </span>
           </div>
@@ -244,7 +244,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
         </div>
 
         {/* Card 2: Incident Metadata Table */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100/80 divide-y divide-slate-100">
+        <div className="app-card p-4 divide-y divide-slate-100">
           <div className="flex items-center justify-between py-2.5 first:pt-0">
             <span className="text-[13px] text-slate-500 font-medium">立案条件</span>
             <span className="text-[13px] text-slate-900 font-medium">公共场所人员过度聚集与踩踏险情</span>
@@ -260,7 +260,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
         </div>
 
         {/* Card 3: Supervisor (监督员) */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100/80">
+        <div className="app-card p-4">
           <div className="flex items-center gap-1.5 mb-3">
             <div className="w-1 h-3.5 bg-blue-600 rounded-full" />
             <h3 className="text-[14px] font-bold text-slate-900">监督员</h3>
@@ -291,7 +291,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
         </div>
 
         {/* Card 4: Tabbed Records (处理记录 / 传阅记录) */}
-        <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100/80">
+        <div className="app-card p-4">
           {/* Tabs Bar */}
           <div className="flex items-center justify-center gap-12 border-b border-slate-100 pb-3 mb-4">
             <button
@@ -426,7 +426,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                       <img src={item.avatar} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <h4 className="text-[14px] font-bold text-slate-900">{item.name}</h4>
+                      <h4 className="text-[15px] font-bold text-slate-900">{item.name}</h4>
                       <p className="text-[12px] text-slate-400">{item.department}</p>
                       {item.readTime && (
                         <p className="text-[11px] text-slate-400 mt-0.5">{item.readTime}</p>
@@ -517,7 +517,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
       {/* Modal 1: 态势研判分析 */}
       {actionModal === 'situation' && (
         <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in">
-          <div className="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
+          <div className="app-bottom-sheet w-full max-w-sm sm:rounded-[20px] p-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
@@ -539,7 +539,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                   <AlertTriangle className="w-4 h-4" />
                   <span>核心风险指标 (高危预警)</span>
                 </div>
-                <p className="text-slate-700 text-[12px] leading-relaxed">
+                <p className="text-slate-700 text-[14px] leading-relaxed">
                   当前该网格人流密度达 <span className="font-bold text-rose-600">4.8人/㎡</span>，已触发三级踩踏险情预警阀值。
                 </p>
               </div>
@@ -579,7 +579,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
       {/* Modal 2: 监控研判 (CCTV Multi-view) */}
       {actionModal === 'cctv' && (
         <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in">
-          <div className="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
+          <div className="app-bottom-sheet w-full max-w-sm sm:rounded-[20px] p-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">

@@ -501,7 +501,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
               >
                 <div className="flex items-center gap-2.5">
                   {item.color && (
-                    <span className={`w-3.5 h-3.5 rounded-full ${item.color} flex items-center justify-center text-[8px] text-white`}>
+                    <span className={`w-3.5 h-3.5 rounded-full ${item.color} flex items-center justify-center text-[10px] text-white`}>
                       ●
                     </span>
                   )}
@@ -595,7 +595,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
             className="w-10 h-10 bg-white/95 backdrop-blur-md rounded-xl shadow-lg border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer"
           >
             <Clock className="w-4 h-4 mb-0.5 stroke-[2.2]" />
-            <span className="text-[9px] font-bold">记录</span>
+            <span className="text-[10px] font-bold">记录</span>
           </button>
 
           {/* Zoom controls */}

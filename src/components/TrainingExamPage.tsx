@@ -39,7 +39,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
   return (
     <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-hidden">
       {/* Top Header */}
-      <div className="px-4 py-3 flex items-center justify-between bg-transparent z-20 shrink-0">
+      <div className="px-2 py-3 flex items-center justify-between bg-transparent z-20 shrink-0">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -55,9 +55,9 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto px-3 space-y-3.5 mt-2 pb-8">
+      <div className="flex-1 overflow-y-auto px-2 space-y-4 mt-2 pb-8">
         {/* 我的学习数据 Blue Card */}
-        <div className="relative w-full rounded-[20px] bg-gradient-to-r from-[#0070f3] via-[#0088ff] to-[#00b2ff] p-4 text-white overflow-hidden shadow-md">
+        <div className="relative w-full rounded-[16px] bg-gradient-to-r from-[#0070f3] via-[#0088ff] to-[#00b2ff] p-4 text-white overflow-hidden shadow-md">
           {/* Decorative Gold Trophy Image/Graphic */}
           <div className="absolute top-2 right-2 w-20 h-20 pointer-events-none drop-shadow-md">
             <svg viewBox="0 0 100 100" fill="none" className="w-full h-full">
@@ -155,14 +155,14 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
         </div>
 
         {/* Search Input */}
-        <div className="relative flex items-center w-full">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
+        <div className="app-search-shell">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full h-10 bg-white rounded-xl pl-9 pr-4 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+            className="app-search-input"
           />
         </div>
 
@@ -240,12 +240,12 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
         )}
 
         {/* List Items depending on activeTab */}
-        <div className="space-y-3 pt-1">
+        <div className="space-y-2 pt-1">
           {/* ================ TAB 1: 待办 (TODO) ================ */}
           {activeTab === 'todo' && (
             <>
               {/* Card 1: 应急预案知识考试 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 {/* Green Cover Poster */}
                 <div className="w-22 h-26 rounded-[12px] bg-gradient-to-b from-[#1cd99b] to-[#12bd84] p-2 flex flex-col justify-between text-white flex-shrink-0 shadow-xs relative overflow-hidden">
                   <div className="w-8 h-1 bg-white/40 rounded-full mb-1" />
@@ -329,7 +329,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
                     ]
                   })
                 }
-                className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden cursor-pointer active:scale-[0.99] transition-transform"
+                className="app-card p-3 flex gap-3 items-center relative overflow-hidden cursor-pointer active:scale-[0.99] transition-transform"
               >
                 {/* Blue Cover Poster */}
                 <div className="w-22 h-26 rounded-[12px] bg-gradient-to-b from-[#3ba2ff] to-[#0a7aff] p-2 flex flex-col justify-between text-white flex-shrink-0 shadow-xs relative overflow-hidden">
@@ -413,7 +413,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
                     ]
                   })
                 }
-                className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden cursor-pointer active:scale-[0.99] transition-transform"
+                className="app-card p-3 flex gap-3 items-center relative overflow-hidden cursor-pointer active:scale-[0.99] transition-transform"
               >
                 {/* Blue Cover Poster */}
                 <div className="w-22 h-26 rounded-[12px] bg-gradient-to-b from-[#3ba2ff] to-[#0a7aff] p-2 flex flex-col justify-between text-white flex-shrink-0 shadow-xs relative overflow-hidden">
@@ -470,7 +470,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
           {activeTab === 'training' && (
             <>
               {/* Card 1: 学习中 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 {/* Status Badge */}
                 <span className="absolute top-2 right-2 text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-bl-lg rounded-tr-lg">
                   学习中
@@ -521,7 +521,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
               </div>
 
               {/* Card 2: 已完成 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 <span className="absolute top-2 right-2 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-bl-lg rounded-tr-lg">
                   已完成
                 </span>
@@ -566,7 +566,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
               </div>
 
               {/* Card 3: 已完成 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 <span className="absolute top-2 right-2 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-bl-lg rounded-tr-lg">
                   已完成
                 </span>
@@ -616,7 +616,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
           {activeTab === 'exam' && (
             <>
               {/* Card 1: 及格 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 <span className="absolute top-2 right-2 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-bl-lg rounded-tr-lg">
                   及格
                 </span>
@@ -668,7 +668,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
               </div>
 
               {/* Card 2: 及格 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 <span className="absolute top-2 right-2 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-bl-lg rounded-tr-lg">
                   及格
                 </span>
@@ -720,7 +720,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
               </div>
 
               {/* Card 3: 未及格 */}
-              <div className="bg-white rounded-[16px] p-3 shadow-2xs border border-slate-100/80 flex gap-3 items-center relative overflow-hidden">
+              <div className="app-card p-3 flex gap-3 items-center relative overflow-hidden">
                 <span className="absolute top-2 right-2 text-[11px] font-semibold text-rose-500 bg-rose-50 px-2 py-0.5 rounded-bl-lg rounded-tr-lg">
                   未及格
                 </span>

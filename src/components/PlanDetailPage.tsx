@@ -429,12 +429,12 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
       </div>
 
       {/* Main Tab Content Body */}
-      <div className="flex-1 overflow-y-auto px-3.5 py-3 space-y-3">
+      <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2">
         {/* ===================== TAB 1: 基本信息 (Matches 编组 56.png) ===================== */}
         {activeTab === 'basic' && (
-          <div className="space-y-3 animate-fade-in">
+          <div className="space-y-2 animate-fade-in">
             {/* Properties Table Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 divide-y divide-slate-100 text-[13px]">
+            <div className="app-card p-4 divide-y divide-slate-100 text-[13px]">
               {detailRows.map((row) => (
                 <div key={row.label} className="py-2.5 first:pt-0 last:pb-0">
                   <div className="text-[12px] text-slate-400 mb-1">{row.label}</div>
@@ -454,7 +454,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
             </div>
 
             {/* Accordion 1: 编制目的 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 transition-all">
+            <div className="app-card p-4 transition-all">
               <div
                 onClick={() => toggleBasicSection('purpose')}
                 className="flex items-center justify-between cursor-pointer"
@@ -467,14 +467,14 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
                 />
               </div>
               {expandedBasicSections.purpose && (
-                <p className="mt-2.5 text-[12px] text-slate-600 leading-relaxed">
+                <p className="mt-2.5 text-[14px] text-slate-600 leading-relaxed">
                   {planData.purpose}
                 </p>
               )}
             </div>
 
             {/* Accordion 2: 适用范围 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 transition-all">
+            <div className="app-card p-4 transition-all">
               <div
                 onClick={() => toggleBasicSection('scope')}
                 className="flex items-center justify-between cursor-pointer"
@@ -487,14 +487,14 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
                 />
               </div>
               {expandedBasicSections.scope && (
-                <p className="mt-2.5 text-[12px] text-slate-600 leading-relaxed">
+                <p className="mt-2.5 text-[14px] text-slate-600 leading-relaxed">
                   {planData.scope}
                 </p>
               )}
             </div>
 
             {/* Accordion 3: 事件影响范围 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 transition-all">
+            <div className="app-card p-4 transition-all">
               <div
                 onClick={() => toggleBasicSection('impact')}
                 className="flex items-center justify-between cursor-pointer"
@@ -507,14 +507,14 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
                 />
               </div>
               {expandedBasicSections.impact && (
-                <p className="mt-2.5 text-[12px] text-slate-600 leading-relaxed">
+                <p className="mt-2.5 text-[14px] text-slate-600 leading-relaxed">
                   {planData.impactScope}
                 </p>
               )}
             </div>
 
             {/* Accordion 4: 衍生风险 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 transition-all">
+            <div className="app-card p-4 transition-all">
               <div
                 onClick={() => toggleBasicSection('risk')}
                 className="flex items-center justify-between cursor-pointer"
@@ -527,14 +527,14 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
                 />
               </div>
               {expandedBasicSections.risk && (
-                <p className="mt-2.5 text-[12px] text-slate-600 leading-relaxed">
+                <p className="mt-2.5 text-[14px] text-slate-600 leading-relaxed">
                   {planData.derivativeRisks}
                 </p>
               )}
             </div>
 
             {/* 预案附件 Section */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100">
+            <div className="app-card p-4">
               <h3 className="text-[14px] font-bold text-slate-900 mb-3">预案附件</h3>
               <div className="space-y-2.5">
                 {planData.attachments.map((file, idx) => (
@@ -579,7 +579,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
 
         {/* ===================== TAB 2: 应急组织 (Matches 编组 59.png) ===================== */}
         {activeTab === 'org' && (
-          <div className="space-y-3 animate-fade-in">
+          <div className="space-y-2 animate-fade-in">
             {renderLevelSelector()}
 
             {/* Accordion 1: 指挥部 (Expanded) */}
@@ -791,11 +791,11 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
 
         {/* ===================== TAB 3: 操作指令 (Matches 编组 62.png) ===================== */}
         {activeTab === 'directive' && (
-          <div className="space-y-3 animate-fade-in">
+          <div className="space-y-2 animate-fade-in">
             {renderLevelSelector()}
 
             {/* Command Tree Structure Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 flex flex-col items-center">
+            <div className="app-card p-4 flex flex-col items-center">
               {/* Level 1: 总指挥 */}
               <div
                 onClick={() => setShowDirectiveDetail(true)}
@@ -893,7 +893,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
             {/* Bottom Card: 指挥安排 (Matches 编组 62.png) */}
             <div className="bg-blue-50/70 rounded-2xl p-4 border border-blue-200/80 shadow-2xs space-y-2">
               <h4 className="text-[14px] font-bold text-slate-900">指挥安排</h4>
-              <p className="text-[12px] text-slate-700 leading-relaxed">
+              <p className="text-[14px] text-slate-700 leading-relaxed">
                 负责整体指挥协调，制定应急处置策略，下达指令，监督执行情况。
               </p>
               <div className="pt-1 flex justify-end">
@@ -911,11 +911,11 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
 
         {/* ===================== TAB 4: 资源预案 (Matches 编组 57.png) ===================== */}
         {activeTab === 'resource' && (
-          <div className="space-y-3 animate-fade-in">
+          <div className="space-y-2 animate-fade-in">
             {renderLevelSelector()}
 
             {/* Table 1: 交通运输类 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5">
+            <div className="app-card p-4 space-y-2.5">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-4 bg-blue-600 rounded-full" />
                 <h3 className="text-[14px] font-bold text-slate-900">交通运输类</h3>
@@ -944,7 +944,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
             </div>
 
             {/* Table 2: 医疗救护类 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5">
+            <div className="app-card p-4 space-y-2.5">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-4 bg-emerald-600 rounded-full" />
                 <h3 className="text-[14px] font-bold text-slate-900">医疗救护类</h3>
@@ -973,7 +973,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
             </div>
 
             {/* Table 3: 生活保障类 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5">
+            <div className="app-card p-4 space-y-2.5">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-4 bg-amber-600 rounded-full" />
                 <h3 className="text-[14px] font-bold text-slate-900">生活保障类</h3>
@@ -1005,7 +1005,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
 
         {/* ===================== TAB 5: 处置流程 (Matches 编组 58备份.png) ===================== */}
         {activeTab === 'process' && (
-          <div className="space-y-3 animate-fade-in">
+          <div className="space-y-2 animate-fade-in">
             {renderLevelSelector()}
 
             {/* Flowchart Diagram Card */}
@@ -1249,7 +1249,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
               </button>
             </div>
 
-            <div className="space-y-2 text-[12px] text-slate-700 leading-relaxed">
+            <div className="space-y-2 text-[14px] text-slate-700 leading-relaxed">
               <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-200/80 space-y-1.5">
                 <h5 className="font-bold text-blue-700">1. 指挥权限与层级</h5>
                 <p>总指挥由市领导担任，全面主持应急处置决策；副总指挥由市应急管理局局长担任，负责现场执行与协调督办。</p>
@@ -1284,7 +1284,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
               </button>
             </div>
 
-            <div className="space-y-2 text-[12px] text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div className="space-y-2 text-[14px] text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">
               <p>{selectedProcessNode.desc}</p>
               {selectedProcessNode.subNodes && (
                 <div className="pt-2 border-t border-slate-200/70">

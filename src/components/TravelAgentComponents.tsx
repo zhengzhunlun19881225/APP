@@ -100,7 +100,7 @@ export const FinancialTemplatesDrawer: React.FC<FinancialTemplatesDrawerProps> =
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 backdrop-blur-2xs animate-fade-in">
-      <div className="w-full max-w-md bg-white rounded-t-[24px] overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[540px] animate-slide-up">
+      <div className="w-full max-w-md app-bottom-sheet overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[540px] animate-slide-up">
         {/* Drawer Header */}
         <div className="px-5 py-4 flex items-center justify-between border-b border-slate-100">
           <button
@@ -121,7 +121,7 @@ export const FinancialTemplatesDrawer: React.FC<FinancialTemplatesDrawerProps> =
         </div>
 
         {/* Categories Bar */}
-        <div className="px-4 py-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar border-b border-slate-100/80 bg-slate-50/60">
+        <div className="px-2 py-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar border-b border-slate-100/80 bg-slate-50/60">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -138,7 +138,7 @@ export const FinancialTemplatesDrawer: React.FC<FinancialTemplatesDrawerProps> =
         </div>
 
         {/* Template List */}
-        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+        <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2">
           {filtered.map((item) => (
             <div
               key={item.id}
@@ -162,7 +162,7 @@ export const FinancialTemplatesDrawer: React.FC<FinancialTemplatesDrawerProps> =
                 </span>
               </div>
 
-              <p className="text-[12px] text-slate-500 leading-relaxed">
+              <p className="text-[14px] text-slate-500 leading-relaxed">
                 {item.description}
               </p>
 
@@ -229,7 +229,7 @@ export const TravelApplicationCard: React.FC<TravelApplicationCardProps> = ({
   onConfirm
 }) => {
   return (
-    <div className="border border-slate-200/90 rounded-[20px] p-4.5 bg-gradient-to-b from-[#fffbf8] to-white shadow-2xs space-y-3.5 relative overflow-hidden">
+    <div className="app-card p-4.5 bg-gradient-to-b from-[#fffbf8] to-white shadow-2xs space-y-3.5 relative overflow-hidden">
       {/* Header Row */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -340,7 +340,7 @@ export const TravelTransportCard: React.FC<TravelTransportCardProps> = ({
         为您推荐{from}到{to}的交通：
       </div>
 
-      <div className="bg-white border border-slate-100/90 rounded-[18px] p-4 shadow-2xs space-y-3">
+      <div className="app-card p-4 shadow-2xs space-y-3">
         <div className="text-[13px] text-slate-500">
           出发日期：{date}
         </div>
@@ -422,7 +422,7 @@ export const TravelHotelRecommendCard: React.FC<TravelHotelRecommendCardProps> =
         为您推荐酒店住宿：
       </div>
 
-      <div className="bg-white border border-slate-100/90 rounded-[18px] p-4 shadow-2xs space-y-3">
+      <div className="app-card p-4 shadow-2xs space-y-3">
         <div className="text-[13px] text-slate-500">
           目的地：{destination}
         </div>
@@ -540,7 +540,7 @@ export const HotelListCard: React.FC<HotelListCardProps> = ({
         {hotels.map((hotel) => (
           <div
             key={hotel.id}
-            className="bg-white border border-slate-200/90 rounded-[20px] p-3.5 shadow-2xs space-y-3 relative overflow-hidden"
+            className="app-card p-3.5 shadow-2xs space-y-3 relative overflow-hidden"
           >
             <div className="flex gap-3">
               {/* Hotel image with '智能推荐' yellow badge (Match Screenshot 4) */}
@@ -688,7 +688,7 @@ export const UnreimbursedInvoicesCard: React.FC<UnreimbursedInvoicesCardProps> =
         {items.map((item) => (
           <div
             key={item.id}
-            className="bg-white border border-slate-200/90 rounded-[20px] p-4 shadow-2xs space-y-3"
+            className="app-card p-4 shadow-2xs space-y-3"
           >
             {/* Header: 关联出差申请单 */}
             <div className="flex items-center gap-2 pb-2 border-b border-slate-100/60">
@@ -877,7 +877,7 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-2xs p-3 sm:p-4 animate-fade-in">
-      <div className="w-full max-w-lg bg-white rounded-[24px] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="w-full max-w-lg app-modal shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Modal Top Header */}
         <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-slate-100">
           <div className="w-6" />
@@ -1098,7 +1098,7 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                       type="text"
                       value={applicant}
                       onChange={(e) => setApplicant(e.target.value)}
-                      className="w-full px-3 py-2 pr-8 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                      className="app-form-select"
                     />
                     <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-2.5 pointer-events-none" />
                   </div>
@@ -1116,7 +1116,7 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                     type="text"
                     value={totalCalculated.toFixed(2)}
                     readOnly
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-[13px] font-medium text-slate-800 bg-slate-50 focus:outline-none"
+                    className="app-form-control"
                   />
                 </div>
 
@@ -1194,7 +1194,7 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                       onChange={(e) => setReason(e.target.value)}
                       placeholder="请输入"
                       maxLength={200}
-                      className="w-full p-3 pb-6 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 resize-none bg-white"
+                      className="app-form-textarea min-h-[112px] pb-6"
                     />
                     <span className="absolute right-2.5 bottom-2 text-[11px] text-slate-400">
                       {reason.length}/200
@@ -1220,7 +1220,7 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                       type="text"
                       value={travelers}
                       onChange={(e) => setTravelers(e.target.value)}
-                      className="w-full px-3 py-2 pr-8 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                      className="app-form-select"
                     />
                     <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-2.5 pointer-events-none" />
                   </div>
@@ -1237,14 +1237,14 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                         type="date"
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                        className="app-form-control"
                       />
                     </div>
                     <div className="col-span-4 relative">
                       <select
                         value={startSlot}
                         onChange={(e) => setStartSlot(e.target.value as '上午' | '下午')}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-7"
+                        className="app-form-select"
                       >
                         <option value="上午">上午</option>
                         <option value="下午">下午</option>
@@ -1265,14 +1265,14 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                         type="date"
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                        className="app-form-control"
                       />
                     </div>
                     <div className="col-span-4 relative">
                       <select
                         value={endSlot}
                         onChange={(e) => setEndSlot(e.target.value as '上午' | '下午')}
-                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-7"
+                        className="app-form-select"
                       >
                         <option value="上午">上午</option>
                         <option value="下午">下午</option>
@@ -1322,7 +1322,7 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
                     <select
                       value={fromCity}
                       onChange={(e) => setFromCity(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-8"
+                      className="app-form-select"
                     >
                       <option value="广州市">广州市</option>
                       <option value="深圳市">深圳市</option>
@@ -1488,4 +1488,3 @@ export const TravelApplicationConfirmModal: React.FC<TravelApplicationConfirmMod
 
 // Backward-compatibility alias
 export const EditTravelApplicationModal = TravelApplicationConfirmModal;
-

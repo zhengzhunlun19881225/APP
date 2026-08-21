@@ -110,7 +110,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
     return (
       <div className="flex flex-col h-full bg-[#f4f5f8] relative overflow-hidden select-none animate-fade-in">
         {/* Top Bar */}
-        <div className="bg-white px-4 py-3 border-b border-slate-100 flex items-center justify-between shadow-2xs">
+        <div className="bg-white px-2 py-3 border-b border-slate-100 flex items-center justify-between shadow-2xs">
           <button
             onClick={() => setIsFormOpen(false)}
             className="system-back-button"
@@ -123,7 +123,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
 
         {/* Form Body Container */}
         <form onSubmit={handleFormSubmit} className="flex-1 overflow-y-auto p-4 space-y-4">
-          <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-4">
+          <div className="app-card p-4 space-y-4">
             {/* 整改结果 Selection */}
             <div>
               <label className="text-[13px] font-bold text-slate-900 block mb-2">
@@ -157,24 +157,24 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
             {formMode === 'postpone' && (
               <>
                 <div>
-                  <label className="text-[13px] font-bold text-slate-900 block mb-1.5">
+                  <label className="app-form-label">
                     <span className="text-rose-500 mr-0.5">*</span>延期时间
                   </label>
                   <div className="relative">
-                    <Calendar className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+                    <Calendar className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       value={postponeDate}
                       onChange={(e) => setPostponeDate(e.target.value)}
                       placeholder="选择日期"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-3.5 py-2.5 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500"
+                      className="app-form-control app-form-control-with-icon"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-[13px] font-bold text-slate-900 block mb-1.5">
+                  <label className="app-form-label">
                     <span className="text-rose-500 mr-0.5">*</span>备注
                   </label>
                   <textarea
@@ -182,7 +182,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
                     value={remarkText}
                     onChange={(e) => setRemarkText(e.target.value)}
                     placeholder="请输入延期说明及处置规划..."
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 resize-none"
+                    className="app-form-textarea min-h-[120px]"
                     required
                   />
                 </div>
@@ -193,7 +193,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
             {formMode === 'rectified' && (
               <>
                 <div>
-                  <label className="text-[13px] font-bold text-slate-900 block mb-1.5">
+                  <label className="app-form-label">
                     <span className="text-rose-500 mr-0.5">*</span>备注
                   </label>
                   <textarea
@@ -201,13 +201,13 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
                     value={remarkText}
                     onChange={(e) => setRemarkText(e.target.value)}
                     placeholder="请输入整改说明..."
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 resize-none"
+                    className="app-form-textarea min-h-[112px]"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="text-[13px] font-bold text-slate-900 block mb-1.5">
+                  <label className="app-form-label">
                     <span className="text-rose-500 mr-0.5">*</span>整改责任人：
                   </label>
                   <input
@@ -215,37 +215,37 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
                     value={rectifyPerson}
                     onChange={(e) => setRectifyPerson(e.target.value)}
                     placeholder="请输入责任人姓名"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500"
+                    className="app-form-control"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="text-[13px] font-bold text-slate-900 block mb-1.5">
+                  <label className="app-form-label">
                     <span className="text-rose-500 mr-0.5">*</span>责任人电话：
                   </label>
                   <input
-                    type="text"
+                    type="tel"
                     value={rectifyPhone}
                     onChange={(e) => setRectifyPhone(e.target.value)}
                     placeholder="请输入责任人联系电话"
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500"
+                    className="app-form-control"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="text-[13px] font-bold text-slate-900 block mb-1.5">
+                  <label className="app-form-label">
                     <span className="text-rose-500 mr-0.5">*</span>整改完成时间：
                   </label>
                   <div className="relative">
-                    <Calendar className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+                    <Calendar className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       value={rectifyDate}
                       onChange={(e) => setRectifyDate(e.target.value)}
                       placeholder="选择日期"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-3.5 py-2.5 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500"
+                      className="app-form-control app-form-control-with-icon"
                       required
                     />
                   </div>
@@ -305,7 +305,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] relative overflow-hidden select-none">
       {/* Top Header Section with Soft Blue Gradient */}
-      <div className="bg-gradient-to-b from-[#3a84f3] via-[#4d90f6] to-[#609df8] pt-3 pb-3 px-4 text-white relative z-20 shadow-xs">
+      <div className="bg-gradient-to-b from-[#3a84f3] via-[#4d90f6] to-[#609df8] pt-3 pb-3 px-2 text-white relative z-20 shadow-xs">
         <div className="flex items-center justify-between relative">
           <button
             onClick={onBack}
@@ -327,9 +327,9 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
       </div>
 
       {/* Main Body Scrollable Container */}
-      <div className="flex-1 overflow-y-auto px-3.5 py-3 space-y-3.5">
+      <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2">
         {/* Card 1: Header Inspection Area Card */}
-        <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-3">
+        <div className="app-card p-4 space-y-2">
           <div className="flex items-start justify-between gap-2">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-full bg-[#0070f3] text-white font-bold text-[15px] flex items-center justify-center shadow-2xs">
@@ -355,7 +355,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
             </div>
           </div>
 
-          <div className="bg-slate-50 rounded-xl p-2.5 text-[12px] text-slate-600 leading-relaxed border border-slate-100">
+          <div className="bg-slate-50 rounded-xl p-2.5 text-[14px] text-slate-600 leading-relaxed border border-slate-100">
             {isHeaderExpanded ? (
               <p>
                 消防控制室、供氧站、高压氧舱、胶片室、锅炉房、变配电室、定灭火系统的设备房、消防水泵房、发电机房荫品库房等资料库
@@ -376,7 +376,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
         </div>
 
         {/* Card 2: Hazard Details & Tabs Card */}
-        <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-3.5">
+        <div className="app-card p-4 space-y-2">
           {/* Hazard Tabs */}
           <div className="flex items-center gap-6 border-b border-slate-100 pb-2">
             <button
@@ -462,14 +462,14 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
         </div>
 
         {/* Card 3: Opinion / Difficulty / Basis Card */}
-        <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-4">
+        <div className="app-card p-4 space-y-4">
           {/* 整改意见 */}
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-slate-900 font-bold text-[14px]">
               <FileText className="w-4 h-4 text-blue-500" />
               <span>整改意见</span>
             </div>
-            <p className="text-[12px] text-slate-600 leading-relaxed pl-6">
+            <p className="text-[14px] text-slate-600 leading-relaxed pl-6">
               无生产管理制度安全检查和改进制度、施工设施设备及劳动防护用品的安全管理制度、事故隐患排查治理制度
             </p>
           </div>
@@ -480,7 +480,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
               <TrendingUp className="w-4 h-4 text-amber-500" />
               <span>整改难度</span>
             </div>
-            <p className="text-[12px] text-slate-600 leading-relaxed pl-6">
+            <p className="text-[14px] text-slate-600 leading-relaxed pl-6">
               施工设施设备及劳动防护用品的安全管理制度、事故隐患排查治理制度
             </p>
           </div>
@@ -491,7 +491,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
               <ShieldCheck className="w-4 h-4 text-emerald-500" />
               <span>整改依据</span>
             </div>
-            <p className="text-[12px] text-slate-600 leading-relaxed pl-6">
+            <p className="text-[14px] text-slate-600 leading-relaxed pl-6">
               安全生产责任制及考核制度、安全教育培训制度、安全生产技术管理制度、安全检查和改进制度、施工设施设备及劳动防护用品的安全管理制度、事故隐患排查治理制度
             </p>
           </div>
@@ -499,7 +499,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
 
         {/* Card 4 (Conditional): Filled Form Result Summary Card */}
         {submittedData.status !== 'none' && (
-          <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-3 animate-slide-up">
+          <div className="app-card p-4 space-y-2 animate-slide-up">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-4 bg-blue-600 rounded-full" />
@@ -617,7 +617,7 @@ export const RiskRectificationPage: React.FC<RiskRectificationPageProps> = ({ on
       {/* Checklist Selector Modal */}
       {isChecklistModalOpen && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-5 animate-fade-in">
-          <div className="bg-white rounded-3xl w-full max-w-xs p-5 space-y-4 animate-scale-up shadow-2xl">
+          <div className="app-modal w-full max-w-xs p-5 space-y-4 animate-scale-up shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-[17px] font-bold text-slate-900">检查项</h3>
               <button

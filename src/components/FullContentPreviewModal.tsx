@@ -78,7 +78,7 @@ export const FullContentPreviewModal: React.FC<FullContentPreviewModalProps> = (
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-[20px] w-full max-w-[380px] max-h-[85vh] shadow-2xl border border-slate-200/80 overflow-hidden flex flex-col animate-in zoom-in-95 duration-200"
+        className="app-modal w-full max-w-[380px] max-h-[85vh] shadow-2xl border border-slate-200/80 overflow-hidden flex flex-col animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 顶部 Header */}

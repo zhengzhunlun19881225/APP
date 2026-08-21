@@ -548,7 +548,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'home' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-10">
           {/* Header */}
-          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
+          <div className="px-2 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={onBack}
               className="system-back-button"
@@ -566,9 +566,9 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </button>
           </div>
 
-          <div className="p-3 space-y-3.5">
+          <div className="px-2 py-2 space-y-4">
             {/* Blue Banner Banner Card (对照图1顶部) */}
-            <div className="relative w-full rounded-[22px] bg-gradient-to-r from-[#2f7bf6] via-[#3b82f6] to-[#60a5fa] p-4 text-white shadow-sm overflow-hidden flex items-center justify-between">
+            <div className="relative w-full rounded-[16px] bg-gradient-to-r from-[#2f7bf6] via-[#3b82f6] to-[#60a5fa] p-4 text-white shadow-sm overflow-hidden flex items-center justify-between">
               <div className="relative z-10 space-y-1.5 max-w-[65%]">
                 <h2 className="text-[18px] font-bold tracking-tight text-white leading-snug">
                   会议室预约 轻松办公
@@ -603,7 +603,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </div>
 
             {/* Quick Grid Navigation (5 Icons - 对照图1 middle) */}
-            <div className="bg-white rounded-[20px] p-3.5 border border-slate-100 shadow-2xs grid grid-cols-5 gap-1 text-center">
+            <div className="app-card p-3 border border-slate-100 shadow-2xs grid grid-cols-5 gap-1 text-center">
               {/* 全部会议室 */}
               <div
                 onClick={() => setActiveView('all-rooms')}
@@ -709,11 +709,11 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </div>
 
             {/* Meeting Room Cards (对照图1) */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               {mockRooms.map((room) => (
                 <div
                   key={room.id}
-                  className="bg-white rounded-[20px] p-3 border border-slate-100 shadow-2xs flex gap-3 relative overflow-hidden"
+                  className="app-card p-3 border border-slate-100 shadow-2xs flex gap-3 relative overflow-hidden"
                 >
                   {/* Left Room Image */}
                   <div className="w-28 h-28 rounded-2xl overflow-hidden flex-shrink-0 bg-slate-100 relative">
@@ -795,7 +795,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'all-rooms' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-10 bg-[#f4f5f8]">
           {/* Top Header */}
-          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
+          <div className="px-2 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={() => setActiveView('home')}
               className="system-back-button"
@@ -815,14 +815,14 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
 
           {/* Search Input Box */}
           <div className="p-3 bg-white border-b border-slate-100 sticky top-[53px] z-10 space-y-2.5">
-            <div className="h-10 bg-[#f2f4f8] rounded-xl px-3 py-0 flex items-center gap-2 text-[13px]">
+            <div className="app-search-shell !bg-[#f8fafc] !border-slate-200/80 !backdrop-blur-none">
               <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <input
                 type="text"
                 placeholder="搜索会议室 / 楼层 / 设备"
                 value={roomSearchQuery}
                 onChange={(e) => setRoomSearchQuery(e.target.value)}
-                className="w-full bg-transparent outline-none text-slate-800 placeholder:text-slate-400"
+                className="app-search-input"
               />
               {roomSearchQuery && (
                 <button
@@ -949,7 +949,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
                     >
                       <span className="text-[10px] opacity-80">{item.name}</span>
                       <span className="text-[15px] leading-tight my-0.5 font-bold">{item.day}</span>
-                      <span className="text-[9px] opacity-75">{item.full}</span>
+                      <span className="text-[10px] opacity-75">{item.full}</span>
                     </button>
                   );
                 })}
@@ -967,7 +967,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
           </div>
 
           {/* Meeting Room Cards List */}
-          <div className="p-3 space-y-4">
+          <div className="px-2 py-2 space-y-2">
             {filteredRooms.length === 0 ? (
               <div className="bg-white rounded-2xl p-8 text-center text-slate-400 space-y-2">
                 <Building2 className="w-10 h-10 mx-auto text-slate-300 stroke-[1.5]" />
@@ -989,7 +989,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
               filteredRooms.map((room) => (
                 <div
                   key={room.id}
-                  className="bg-white rounded-[22px] p-3.5 border border-slate-100 shadow-2xs space-y-3 relative overflow-hidden"
+                  className="app-card p-3 border border-slate-100 shadow-2xs space-y-2 relative overflow-hidden"
                 >
                   {/* Top Room Basic Info */}
                   <div className="flex gap-3">
@@ -1125,7 +1125,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
                       </div>
 
                       <div className="flex items-center gap-1 text-[#0070f3] font-bold">
-                        <span className="text-[9px]">▲</span>
+                        <span className="text-[10px]">▲</span>
                         <span>当前时间 10:30</span>
                       </div>
                     </div>
@@ -1141,7 +1141,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'my-bookings' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-10">
           {/* Header */}
-          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
+          <div className="px-2 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={() => setActiveView('home')}
               className="system-back-button"
@@ -1209,15 +1209,15 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
           </div>
 
           {/* Search & Date Picker Filter Row (对照图2) */}
-          <div className="px-3 py-3 flex items-center gap-2">
-            <div className="flex-1 h-10 bg-white rounded-xl px-3 py-0 border border-slate-200/80 flex items-center gap-2 text-[12px]">
+          <div className="px-2 py-2 flex items-center gap-2">
+            <div className="app-search-shell flex-1 !bg-white !border-slate-200/80 !backdrop-blur-none">
               <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <input
                 type="text"
                 placeholder="搜索会议主题 / 会议室"
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                className="w-full bg-transparent outline-none text-slate-800 placeholder:text-slate-400"
+                className="app-search-input"
               />
             </div>
 
@@ -1232,7 +1232,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
           </div>
 
           {/* Booking Cards List (对照图2) */}
-          <div className="px-3 space-y-3.5">
+          <div className="px-2 space-y-2">
             {filteredMeetings.length === 0 ? (
               <div className="bg-white rounded-2xl p-8 text-center text-slate-400 space-y-2">
                 <CalendarCheck className="w-10 h-10 mx-auto text-slate-300 stroke-[1.5]" />
@@ -1242,7 +1242,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
               filteredMeetings.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-2xs space-y-3"
+                  className="app-card p-4 border border-slate-100 shadow-2xs space-y-2"
                 >
                   {/* Card Title & Status Badge */}
                   <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
@@ -1392,7 +1392,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {activeView === 'detail' && (
         <div className="flex-1 flex flex-col overflow-y-auto pb-20">
           {/* Header */}
-          <div className="px-3 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
+          <div className="px-2 py-3 app-plan-query-bg flex items-center justify-between sticky top-0 z-20">
             <button
               onClick={() => setActiveView('my-bookings')}
               className="system-back-button"
@@ -1405,9 +1405,9 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             <div className="w-8" />
           </div>
 
-          <div className="p-3 space-y-3.5">
+          <div className="px-2 py-2 space-y-4">
             {/* Top Meeting Info Card (对照图3) */}
-            <div className="bg-white rounded-[22px] p-4 border border-slate-100 shadow-2xs relative overflow-hidden flex items-center justify-between">
+            <div className="app-card p-4 border border-slate-100 shadow-2xs relative overflow-hidden flex items-center justify-between">
               <div className="space-y-2 max-w-[65%]">
                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0ca678] bg-[#e6fcf5] px-2.5 py-0.5 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#12b886]" />
@@ -1464,7 +1464,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </div>
 
             {/* Section 2: 参会人 (对照图3) */}
-            <div className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-2xs space-y-3">
+            <div className="app-card p-4 border border-slate-100 shadow-2xs space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-[15px] font-bold text-slate-900">
                   参会人 ({currentMeeting.attendeesCount}人)
@@ -1496,7 +1496,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </div>
 
             {/* Section 3: 会议室信息 (对照图3) */}
-            <div className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-2xs space-y-3">
+            <div className="app-card p-4 border border-slate-100 shadow-2xs space-y-2">
               <h3 className="text-[15px] font-bold text-slate-900">
                 会议室信息
               </h3>
@@ -1542,7 +1542,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </div>
 
             {/* Section 4: 签到方式 (对照图3) */}
-            <div className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-2xs space-y-3">
+            <div className="app-card p-4 border border-slate-100 shadow-2xs space-y-3">
               <h3 className="text-[15px] font-bold text-slate-900">
                 签到方式
               </h3>
@@ -1580,7 +1580,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             </div>
 
             {/* Section 5: 温馨提示 (对照图3) */}
-            <div className="bg-white rounded-[20px] p-4 border border-slate-100 shadow-2xs space-y-2.5">
+            <div className="app-card p-4 border border-slate-100 shadow-2xs space-y-2.5">
               <h3 className="text-[15px] font-bold text-slate-900">
                 温馨提示
               </h3>
@@ -1651,7 +1651,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
             <form onSubmit={handleSubmitBooking} className="space-y-3.5">
               {/* 会议主题 */}
               <div className="space-y-1">
-                <label className="text-[13px] font-bold text-slate-800">
+                <label className="app-form-label">
                   会议主题 <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -1660,13 +1660,13 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
                   value={formTitle}
                   onChange={(e) => setFormTitle(e.target.value)}
                   placeholder="例如: 产品需求评审会"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-blue-500 text-[14px]"
+                  className="app-form-control"
                 />
               </div>
 
               {/* 预订会议室 */}
               <div className="space-y-1">
-                <label className="text-[13px] font-bold text-slate-800">
+                <label className="app-form-label">
                   选择会议室
                 </label>
                 <select
@@ -1675,7 +1675,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
                     const found = mockRooms.find((r) => r.id === e.target.value);
                     if (found) setSelectedRoomForBooking(found);
                   }}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 outline-none text-[14px] bg-white"
+                  className="app-form-select"
                 >
                   {mockRooms.map((r) => (
                     <option key={r.id} value={r.id}>
@@ -1688,25 +1688,25 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
               {/* 日期与时间 */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-slate-800">
+                  <label className="app-form-label">
                     会议日期
                   </label>
                   <input
                     type="date"
                     value={formDate}
                     onChange={(e) => setFormDate(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 outline-none text-[13px]"
+                    className="app-form-control"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-slate-800">
+                  <label className="app-form-label">
                     时间段
                   </label>
                   <select
                     value={formTimeSlot}
                     onChange={(e) => setFormTimeSlot(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 outline-none text-[13px] bg-white"
+                    className="app-form-select"
                   >
                     <option value="10:00 - 11:30">10:00 - 11:30</option>
                     <option value="11:00 - 12:00">11:00 - 12:00</option>
@@ -1719,19 +1719,19 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
               {/* 主持人与参会人数 */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-slate-800">
+                  <label className="app-form-label">
                     主持人
                   </label>
                   <input
                     type="text"
                     value={formHost}
                     onChange={(e) => setFormHost(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 outline-none text-[13px]"
+                    className="app-form-control"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[13px] font-bold text-slate-800">
+                  <label className="app-form-label">
                     参会人数
                   </label>
                   <input
@@ -1740,7 +1740,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
                     max="50"
                     value={formAttendeesCount}
                     onChange={(e) => setFormAttendeesCount(Number(e.target.value))}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 outline-none text-[13px]"
+                    className="app-form-control"
                   />
                 </div>
               </div>
@@ -1804,7 +1804,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 3: 会议室导航 MODAL ----------------- */}
       {showNavigationModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[24px] p-5 max-w-xs w-full text-center space-y-4 shadow-2xl relative">
+          <div className="app-modal p-5 max-w-xs w-full text-center space-y-4 shadow-2xl relative">
             <button
               onClick={() => setShowNavigationModal(false)}
               className="absolute top-3 right-3 text-slate-400 hover:text-slate-600 cursor-pointer"
@@ -1843,7 +1843,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 4: 评价会议 MODAL ----------------- */}
       {showEvaluateModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[24px] p-5 max-w-xs w-full space-y-4 shadow-2xl relative">
+          <div className="app-modal p-5 max-w-xs w-full space-y-4 shadow-2xl relative">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <h3 className="text-[16px] font-bold text-slate-900">评价本次会议</h3>
               <button
@@ -1877,7 +1877,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
               placeholder="输入您对会议室设备、环境的反馈评价..."
               value={evalComment}
               onChange={(e) => setEvalComment(e.target.value)}
-              className="w-full p-2.5 border border-slate-200 rounded-xl text-[12px] outline-none"
+              className="app-form-textarea"
             />
 
             <button
@@ -1896,7 +1896,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 5: 取消预约确认 MODAL ----------------- */}
       {showCancelConfirmModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[24px] p-5 max-w-xs w-full text-center space-y-4 shadow-2xl">
+          <div className="app-modal p-5 max-w-xs w-full text-center space-y-4 shadow-2xl">
             <div className="w-12 h-12 rounded-full bg-rose-50 text-rose-500 mx-auto flex items-center justify-center">
               <Trash2 className="w-6 h-6 stroke-[2]" />
             </div>
@@ -1929,7 +1929,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 6: 选择园区 Popup ----------------- */}
       {showCampusDropdown && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
-          <div className="bg-white rounded-t-[24px] sm:rounded-[24px] p-5 w-full max-w-sm space-y-4 shadow-2xl">
+          <div className="app-bottom-sheet sm:rounded-[20px] p-5 w-full max-w-sm space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-[16px] font-bold text-slate-900">选择园区</h3>
               <button
@@ -1966,7 +1966,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 7: 选择容纳人数 Popup ----------------- */}
       {showCapacityDropdown && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
-          <div className="bg-white rounded-t-[24px] sm:rounded-[24px] p-5 w-full max-w-sm space-y-4 shadow-2xl">
+          <div className="app-bottom-sheet sm:rounded-[20px] p-5 w-full max-w-sm space-y-4 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-[16px] font-bold text-slate-900">选择容纳人数</h3>
               <button
@@ -2011,7 +2011,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 8: 高级筛选 Drawer ----------------- */}
       {showFilterDrawer && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-end justify-center animate-fade-in">
-          <div className="bg-white rounded-t-[24px] p-5 w-full max-w-md space-y-5 shadow-2xl max-h-[85vh] overflow-y-auto">
+          <div className="app-bottom-sheet p-5 w-full max-w-md space-y-5 shadow-2xl max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-[17px] font-bold text-slate-900">高级筛选</h3>
               <button
@@ -2101,7 +2101,7 @@ export const MeetingSystemPage: React.FC<MeetingSystemPageProps> = ({
       {/* ----------------- MODAL 9: 日历选择 Modal ----------------- */}
       {showCalendarPicker && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[24px] p-5 max-w-xs w-full space-y-4 shadow-2xl relative">
+          <div className="app-modal p-5 max-w-xs w-full space-y-4 shadow-2xl relative">
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <h3 className="text-[16px] font-bold text-slate-900">选择预约日期</h3>
               <button

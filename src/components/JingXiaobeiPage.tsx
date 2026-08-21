@@ -404,10 +404,10 @@ export const JingXiaobeiPage: React.FC<JingXiaobeiPageProps> = ({ onBack, onSele
           {/* Stacked Cards Deck Area */}
           <div className="w-full max-w-[340px] relative my-auto py-4 flex flex-col items-center">
             {/* Background Layer Card 2 */}
-            <div className="absolute top-0 w-[84%] h-[180px] bg-white/40 rounded-[24px] border border-white/60 shadow-xs -translate-y-2 pointer-events-none" />
+            <div className="absolute top-0 w-[84%] h-[180px] bg-white/40 rounded-[16px] border border-white/60 shadow-xs -translate-y-2 pointer-events-none" />
             
             {/* Background Layer Card 1 (Underneath card showing next question during drag) */}
-            <div className="absolute top-2 w-[92%] h-[185px] bg-white/85 backdrop-blur-xs rounded-[24px] border border-white/90 shadow-md -translate-y-1 p-5 flex flex-col justify-center overflow-hidden pointer-events-none transition-all">
+            <div className="absolute top-2 w-[92%] h-[185px] bg-white/85 backdrop-blur-xs rounded-[16px] border border-white/90 shadow-md -translate-y-1 p-5 flex flex-col justify-center overflow-hidden pointer-events-none transition-all">
               <span className="absolute top-2 left-3 text-3xl text-slate-200/90 font-serif leading-none select-none">“</span>
               <span className="absolute bottom-4 right-3 text-3xl text-slate-200/90 font-serif leading-none select-none">”</span>
 
@@ -436,7 +436,7 @@ export const JingXiaobeiPage: React.FC<JingXiaobeiPageProps> = ({ onBack, onSele
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, x: -100 }}
                 transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                className="relative w-full bg-white/95 backdrop-blur-md rounded-[26px] p-6 shadow-xl border border-white/90 flex flex-col justify-between min-h-[200px] z-10 touch-pan-y cursor-grab active:cursor-grabbing select-none"
+                className="relative w-full bg-white/95 backdrop-blur-md rounded-[16px] p-6 shadow-xl border border-white/90 flex flex-col justify-between min-h-[200px] z-10 touch-pan-y cursor-grab active:cursor-grabbing select-none"
               >
                 {/* Decorative Quotes */}
                 <span className="absolute top-3 left-4 text-4xl text-slate-200/90 font-serif leading-none select-none pointer-events-none">

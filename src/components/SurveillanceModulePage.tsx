@@ -188,19 +188,20 @@ export const SurveillanceModulePage: React.FC<SurveillanceModulePageProps> = ({ 
             >
               <ChevronLeft />
             </button>
-            <div className="flex-1 relative flex items-center">
+            <div className="app-search-shell flex-1 !bg-[#f8fafc] !border-slate-200 !backdrop-blur-none">
+              <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <input
                 type="text"
                 autoFocus
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
                 placeholder="搜索监控探头名称、点位地址或国标编号"
-                className="w-full h-10 pl-3.5 pr-8 bg-slate-50 border border-slate-200 rounded-lg text-[14px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white"
+                className="app-search-input"
               />
               {searchKeyword && (
                 <button
                   onClick={() => setSearchKeyword('')}
-                  className="absolute right-2.5 text-slate-400 hover:text-slate-600 cursor-pointer"
+                  className="text-slate-400 hover:text-slate-600 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>

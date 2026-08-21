@@ -121,7 +121,7 @@ export const WhitelistPage: React.FC<WhitelistPageProps> = ({
     return (
       <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative overflow-hidden">
         {/* Top Header */}
-        <div className="px-3 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
+        <div className="px-2 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
           <button
             onClick={() => setSubView('list')}
             className="system-back-button"
@@ -137,7 +137,7 @@ export const WhitelistPage: React.FC<WhitelistPageProps> = ({
         </div>
 
         {/* Search Bar */}
-        <div className="px-3 mb-3">
+        <div className="px-2 mb-4">
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
@@ -146,7 +146,7 @@ export const WhitelistPage: React.FC<WhitelistPageProps> = ({
         </div>
 
         {/* Member Candidates List */}
-        <div className="px-3 flex-1 overflow-y-auto pb-20">
+        <div className="px-2 flex-1 overflow-y-auto pb-20">
           <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100/80 divide-y divide-slate-100">
             {filteredCandidates.map((member) => {
               const isChecked = selectedIdsToAdd.includes(member.id);
@@ -205,7 +205,7 @@ export const WhitelistPage: React.FC<WhitelistPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative overflow-hidden">
       {/* Top Header */}
-      <div className="px-3 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
+      <div className="px-2 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
         <button
           onClick={onBack}
           className="system-back-button"

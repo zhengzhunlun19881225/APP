@@ -877,7 +877,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
     return (
       <div className="flex flex-col h-full app-plan-query-page-bg select-none relative">
         {/* Top Header Bar */}
-        <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-transparent z-10">
+        <div className="px-2 py-3 flex items-center justify-between sticky top-0 bg-transparent z-10">
           <button
             onClick={handleCancelOrBack}
             className="h-8 min-w-[56px] flex items-center justify-start rounded-full text-[14px] font-medium text-[#0070f3] hover:bg-blue-50 active:scale-95 transition-all"
@@ -900,20 +900,20 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
         </div>
 
         {/* Search Bar */}
-        <div className="px-4 mt-1 mb-2">
-          <div className="relative flex items-center w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+        <div className="px-2 mt-1 mb-2">
+          <div className="app-search-shell">
+            <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
             <input
               type="text"
               value={pickerSearch}
               onChange={(e) => setPickerSearch(e.target.value)}
               placeholder="搜索"
-              className="w-full h-10 bg-white rounded-xl pl-9 pr-4 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+              className="app-search-input"
             />
             {pickerSearch && (
               <button
                 onClick={() => setPickerSearch('')}
-                className="absolute right-3 text-slate-400 hover:text-slate-600"
+                className="text-slate-400 hover:text-slate-600"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -923,7 +923,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
 
         {/* Breadcrumb Path (面包屑层级导航) */}
         {!pickerSearch && (
-          <div className="px-4 py-1.5 flex items-center flex-wrap gap-1 text-[13px] text-slate-500 overflow-x-auto">
+          <div className="px-2 py-1.5 flex items-center flex-wrap gap-1 text-[13px] text-slate-500 overflow-x-auto">
             {navStack.map((item, index) => {
               const isLast = index === navStack.length - 1;
               return (
@@ -947,10 +947,10 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
         )}
 
         {/* Main List Area */}
-        <div className="px-4 flex-1 overflow-y-auto pb-24 space-y-2.5">
+        <div className="px-2 flex-1 overflow-y-auto pb-24 space-y-2">
           {/* SEARCH MODE */}
           {searchResults ? (
-            <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100/80 divide-y divide-slate-100/80">
+            <div className="app-card p-3 divide-y divide-slate-100/80">
               {searchResults.matchedNodes.length === 0 &&
               searchResults.matchedMembers.length === 0 ? (
                 <div className="py-12 text-center text-slate-400 text-[14px]">
@@ -988,10 +988,10 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
                           </div>
 
                           <div className="flex items-center gap-1.5 truncate">
-                            <span className="text-[16px] font-normal text-slate-900">
+                            <span className="text-[15px] font-medium text-slate-900">
                               {formatOrgDisplayName(node.name)}
                             </span>
-                            <span className="text-[14px] text-slate-400">
+                            <span className="text-[13px] text-slate-400">
                               ({node.count}人)
                             </span>
                           </div>
@@ -1043,7 +1043,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
             </div>
           ) : (
             /* NORMAL TREE HIERARCHY (广新集团及各级子部门) */
-            <div className="bg-white rounded-[16px] p-2 shadow-2xs border border-slate-100/80 divide-y divide-slate-100/80">
+            <div className="app-card p-3 divide-y divide-slate-100/80">
               {/* 1. 下级子部门 / 节点列表 */}
               {currentNode.children && currentNode.children.length > 0 && (
                 <>
@@ -1082,10 +1082,10 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
 
                           {/* 节点名称与人数 */}
                           <div className="flex items-center gap-1.5 truncate">
-                            <span className="text-[16px] font-normal text-slate-900 group-hover:text-blue-600 transition-colors">
+                            <span className="text-[15px] font-medium text-slate-900 group-hover:text-blue-600 transition-colors">
                               {formatOrgDisplayName(childNode.name)}
                             </span>
-                            <span className="text-[14px] text-slate-400 font-normal">
+                            <span className="text-[13px] text-slate-400 font-normal">
                               ({childNode.count}人)
                             </span>
                           </div>
@@ -1188,7 +1188,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
         {/* 已选择人员抽屉 / Modal */}
         {showSelectedSheet && (
           <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 backdrop-blur-2xs animate-fade-in">
-            <div className="w-full max-w-md bg-white rounded-t-[20px] overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[540px] animate-slide-up">
+            <div className="w-full max-w-md app-bottom-sheet overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[540px] animate-slide-up">
               {/* Header */}
               <div className="px-5 py-4 flex items-center justify-between border-b border-slate-100">
                 <button
@@ -1289,7 +1289,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
   return (
     <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-hidden">
       {/* Navigation Top Header */}
-      <div className="px-4 py-3 flex items-center justify-between bg-transparent z-20 shrink-0">
+      <div className="px-2 py-3 flex items-center justify-between bg-transparent z-20 shrink-0">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -1305,21 +1305,21 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
       </div>
 
       <div className="flex-1 overflow-y-auto pb-24">
-      <div className="px-4 mt-2 space-y-4">
+      <div className="px-2 mt-2 space-y-4">
         {/* Card 1: 群组名称 Input */}
-        <div className="bg-white rounded-[16px] px-4 py-3.5 shadow-2xs border border-slate-100/80 flex items-center justify-between">
+        <div className="app-card p-4 flex items-center justify-between">
           <span className="text-[15px] font-bold text-slate-900">群组名称</span>
           <input
             type="text"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
             placeholder="请输入"
-            className="text-right text-[15px] text-slate-800 placeholder-slate-300 focus:outline-none bg-transparent w-48 font-medium"
+            className="h-11 w-48 rounded-xl bg-slate-50 px-3 text-right text-[15px] font-medium text-slate-800 placeholder-slate-300 outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/10"
           />
         </div>
 
         {/* Card 2: 群组成员 Grid */}
-        <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-4">
+        <div className="app-card p-4 space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-[15px] font-bold text-slate-900">群组成员</span>
             <span className="text-[14px] text-slate-400 font-medium">

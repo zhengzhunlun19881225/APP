@@ -815,7 +815,7 @@ export const QaAgentChatView: React.FC<QaAgentChatViewProps> = ({ agent, onBack 
       {/* Policy Knowledge Base Modal */}
       {isKnowledgeModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-end justify-center animate-fade-in">
-          <div className="bg-white rounded-t-3xl w-full max-w-md p-5 space-y-4 animate-slide-up shadow-2xl">
+          <div className="app-bottom-sheet w-full max-w-md p-5 space-y-4 animate-slide-up shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2">
                 <Folder className="w-5 h-5 text-blue-500" />

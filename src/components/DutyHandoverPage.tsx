@@ -618,7 +618,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative overflow-hidden">
       {/* Top Banner Header with Sky Blue Gradient */}
-      <div className="relative app-plan-query-bg text-slate-900 pt-3 pb-3 px-3 flex-shrink-0">
+      <div className="relative app-plan-query-bg text-slate-900 pt-3 pb-3 px-2 flex-shrink-0">
         {/* Navigation & Month bar */}
         <div className="relative flex items-center justify-center">
           <div className="absolute left-0 top-1/2 -translate-y-1/2">
@@ -662,7 +662,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
         </div>
 
         {/* Week Day Selector Strip */}
-        <div className="-mx-3 mt-5 flex gap-1.5 overflow-x-auto no-scrollbar px-3 pb-0.5">
+        <div className="mt-5 flex gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
           {monthDays.map((w) => {
             const isSelected = selectedDay === w.date;
             return (
@@ -689,14 +689,14 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
       </div>
 
       {/* Content Container */}
-      <div className="flex-1 overflow-y-auto px-3 py-3 space-y-4 pb-24">
+      <div className="flex-1 overflow-y-auto px-2 py-2 space-y-4 pb-24">
         {/* Section 1: 值班领导 */}
         <div className="space-y-2">
           <div className="text-[16px] font-bold text-slate-900 px-1">
             <span>值班领导</span>
           </div>
 
-          <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 flex items-center justify-between relative overflow-hidden">
+          <div className="app-card p-4 flex items-center justify-between relative overflow-hidden">
             {/* Left Info: Avatar + Details */}
             <div className="flex items-center gap-3.5">
               <Avatar
@@ -748,7 +748,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
             <span>值班成员</span>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-2xs border border-slate-100 divide-y divide-slate-100 overflow-hidden">
+          <div className="app-card divide-y divide-slate-100 overflow-hidden">
             {currentSchedule.members.map((member) => {
               const isMorning = member.shiftType === '早班';
               const isMiddle = member.shiftType === '中班';
@@ -835,7 +835,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
       {/* Modal: View Handover Logs Sheet */}
       {showHandoverLogsModal && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
-          <div className="bg-[#f4f5f8] rounded-t-3xl max-h-[85%] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-250">
+          <div className="app-bottom-sheet !bg-[#f4f5f8] max-h-[85%] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-250">
             {/* Header */}
             <div className="px-4 py-3.5 bg-white border-b border-slate-100 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -886,7 +886,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
                     onClick={() => {
                       setSelectedLogDetail(log);
                     }}
-                    className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 hover:border-blue-200 transition-all cursor-pointer"
+                    className="app-card p-4 hover:border-blue-200 transition-all cursor-pointer"
                   >
                     {/* Header: Date + Shift Tag + Status */}
                     <div className="flex items-center justify-between pb-2 border-b border-slate-100">
@@ -943,7 +943,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
                     </div>
 
                     {/* Incident Summary Snippet */}
-                    <p className="line-clamp-2 text-slate-600 text-[12px] leading-relaxed">
+                    <p className="line-clamp-2 text-slate-600 text-[14px] leading-relaxed">
                       {log.incidentSummary}
                     </p>
 
@@ -962,7 +962,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
       {/* Modal: View Handover Log Detail */}
       {selectedLogDetail && (
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
-          <div className="bg-white rounded-t-3xl max-h-[90%] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-250">
+          <div className="app-bottom-sheet max-h-[90%] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-250">
             {/* Modal Header */}
             <div className="px-4 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
               <div className="flex items-center gap-2">
@@ -1091,7 +1091,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
         <div className="absolute inset-0 z-50 bg-black/60 backdrop-blur-xs flex flex-col justify-end animate-in fade-in duration-200">
           <form
             onSubmit={handleCreateSubmit}
-            className="bg-white rounded-t-3xl max-h-[92%] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-250"
+            className="app-bottom-sheet max-h-[92%] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-250"
           >
             {/* Header */}
             <div className="px-4 py-3.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
@@ -1138,25 +1138,25 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
               {/* 交班人 与 接班人 */}
               <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-[12px] font-bold text-slate-700 mb-1">
+                  <label className="app-form-label">
                     交班人
                   </label>
                   <input
                     type="text"
                     value={formHandoverPerson}
                     onChange={(e) => setFormHandoverPerson(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-bold text-slate-900 focus:bg-white focus:border-blue-500 outline-none"
+                    className="app-form-control font-bold"
                   />
                 </div>
                 <div>
-                  <label className="block text-[12px] font-bold text-slate-700 mb-1">
+                  <label className="app-form-label">
                     接班人
                   </label>
                   <input
                     type="text"
                     value={formTakeoverPerson}
                     onChange={(e) => setFormTakeoverPerson(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] font-bold text-slate-900 focus:bg-white focus:border-blue-500 outline-none"
+                    className="app-form-control font-bold"
                   />
                 </div>
               </div>
@@ -1164,7 +1164,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
               {/* 本班处置情况 */}
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <label className="text-[13px] font-bold text-slate-900">
+                  <label className="app-form-label !mb-0">
                     本班处置情况与重要事项 <span className="text-rose-500">*</span>
                   </label>
                   <button
@@ -1184,13 +1184,13 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
                   value={formSummary}
                   onChange={(e) => setFormSummary(e.target.value)}
                   placeholder="请输入本班次发生的主要事件、处置措施及当前状态..."
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-[13px] text-slate-900 focus:bg-white focus:border-blue-500 outline-none resize-none leading-relaxed"
+                  className="app-form-textarea"
                 />
               </div>
 
               {/* 遗留待办与交接备忘 */}
               <div>
-                <label className="block text-[13px] font-bold text-slate-900 mb-1">
+                <label className="app-form-label">
                   遗留事项与交接备忘
                 </label>
                 <textarea
@@ -1198,20 +1198,20 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
                   value={formPending}
                   onChange={(e) => setFormPending(e.target.value)}
                   placeholder="交由接班人员继续跟进或留意的注意事项..."
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-[13px] text-slate-900 focus:bg-white focus:border-blue-500 outline-none resize-none leading-relaxed"
+                  className="app-form-textarea"
                 />
               </div>
 
               {/* 设备与物资运行情况 */}
               <div>
-                <label className="block text-[13px] font-bold text-slate-900 mb-1">
+                <label className="app-form-label">
                   系统设备与应急物资检查情况
                 </label>
                 <input
                   type="text"
                   value={formEquipment}
                   onChange={(e) => setFormEquipment(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-[13px] text-slate-800 focus:bg-white focus:border-blue-500 outline-none"
+                  className="app-form-control"
                 />
               </div>
             </div>

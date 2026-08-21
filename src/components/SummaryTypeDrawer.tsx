@@ -99,7 +99,7 @@ export const SummaryTypeDrawer: React.FC<SummaryTypeDrawerProps> = ({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="relative w-full max-w-md bg-white rounded-t-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] z-10"
+            className="relative w-full max-w-md app-bottom-sheet shadow-2xl overflow-hidden flex flex-col max-h-[85vh] z-10"
           >
             {/* Header */}
             <div className="p-4 pb-3 border-b border-slate-100 flex items-center justify-between">

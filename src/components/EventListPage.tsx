@@ -203,7 +203,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
       )}
 
       {/* Top Header */}
-      <div className="bg-transparent px-3 py-2.5 flex items-center justify-between z-10">
+      <div className="bg-transparent px-2 py-2.5 flex items-center justify-between z-10">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -219,25 +219,27 @@ export const EventListPage: React.FC<EventListPageProps> = ({
       </div>
 
       {/* Search & Filter Bar */}
-      <div className="bg-transparent px-3 pt-2 pb-2.5 space-y-2.5">
+      <div className="bg-transparent px-2 pt-2 pb-2.5 space-y-4">
         {/* Search Input */}
         <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="搜索事件名称 / 类别 / 地点 / 编号..."
-            className="w-full h-10 pl-9 pr-8 py-0 bg-white/85 text-slate-800 placeholder-slate-400 text-[13px] rounded-full focus:outline-none focus:ring-1 focus:ring-blue-500 border border-white/60 shadow-2xs backdrop-blur-md"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          )}
+          <div className="app-search-shell">
+            <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="搜索事件名称 / 类别 / 地点 / 编号..."
+              className="app-search-input"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="text-slate-400 hover:text-slate-600 cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Level Filters Pill Tabs */}
@@ -246,10 +248,10 @@ export const EventListPage: React.FC<EventListPageProps> = ({
             <button
               key={lvl}
               onClick={() => setActiveLevelFilter(lvl)}
-              className={`px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all flex-shrink-0 cursor-pointer ${
+              className={`app-filter-chip flex-shrink-0 cursor-pointer ${
                 activeLevelFilter === lvl
-                  ? 'bg-[#1677ff] text-white shadow-2xs'
-                  : 'bg-white/75 text-slate-700 hover:bg-white'
+                  ? 'app-filter-chip-active'
+                  : 'hover:bg-white/75'
               }`}
             >
               {lvl === '全部' ? '全部级别' : `${lvl}事件`}
@@ -259,7 +261,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
       </div>
 
       {/* Events List Scroll View */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3 pb-8">
+      <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2 pb-8">
         {filteredEvents.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-slate-400">
             <AlertCircle className="w-12 h-12 stroke-[1.5] text-slate-300 mb-2" />
@@ -270,7 +272,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
             <div
               key={evt.id}
               onClick={() => onSelectEvent(evt)}
-              className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100/90 hover:border-blue-200 transition-all cursor-pointer relative group space-y-2.5"
+              className="app-card p-4 hover:border-blue-200 transition-all cursor-pointer relative group space-y-2.5"
             >
               {/* Header: Accent bar + Title + Status badge */}
               <div className="flex items-center justify-between gap-2">
@@ -283,11 +285,11 @@ export const EventListPage: React.FC<EventListPageProps> = ({
 
                 {/* Status Badge */}
                 {evt.status === '响应中' ? (
-                  <span className="px-2.5 py-0.5 bg-[#e6f4ff] text-[#1677ff] text-[12px] font-medium rounded-[4px] flex-shrink-0">
+                  <span className="px-2.5 py-0.5 bg-[#e6f4ff] text-[#1677ff] text-[12px] font-medium app-badge flex-shrink-0">
                     响应中
                   </span>
                 ) : (
-                  <span className="px-2.5 py-0.5 bg-[#e6f4ff]/80 text-[#4096ff] text-[12px] font-medium rounded-[4px] flex-shrink-0">
+                  <span className="px-2.5 py-0.5 bg-[#e6f4ff]/80 text-[#4096ff] text-[12px] font-medium app-badge flex-shrink-0">
                     未响应
                   </span>
                 )}
@@ -318,7 +320,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
               <div className="flex items-center gap-2 pt-0.5">
                 {/* Level Tag */}
                 <span
-                  className={`text-[11px] font-medium px-2.5 py-0.5 rounded-[4px] ${getLevelBadgeStyle(
+                  className={`text-[11px] font-medium px-2.5 py-0.5 app-badge ${getLevelBadgeStyle(
                     evt.level
                   )}`}
                 >
@@ -326,12 +328,12 @@ export const EventListPage: React.FC<EventListPageProps> = ({
                 </span>
 
                 {/* Type Tag */}
-                <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-[4px] bg-[#fff1f0] text-[#ff4d4f]">
+                <span className="text-[11px] font-medium px-2.5 py-0.5 app-badge bg-[#fff1f0] text-[#ff4d4f]">
                   {evt.type}
                 </span>
 
                 {/* Status Tag */}
-                <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-[4px] bg-[#e6f4ff] text-[#1677ff]">
+                <span className="text-[11px] font-medium px-2.5 py-0.5 app-badge bg-[#e6f4ff] text-[#1677ff]">
                   {evt.status === '已办结' ? '已办' : '待办'}
                 </span>
               </div>
@@ -414,7 +416,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
       {/* Modal 1: 事件续报弹窗 (Event Follow-up Report) */}
       {reportModalEvent && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in">
-          <div className="bg-white w-full max-w-sm rounded-t-3xl sm:rounded-2xl p-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
+          <div className="app-bottom-sheet w-full max-w-sm sm:rounded-[20px] p-4 shadow-2xl border border-slate-100 max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
@@ -437,7 +439,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
               {/* Event basic info brief */}
               <div className="bg-slate-50 rounded-xl p-2.5 border border-slate-100">
                 <div className="flex items-center gap-1.5 mb-1">
-                  <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-[2px] ${getLevelBadgeStyle(reportModalEvent.level)}`}>
+                  <span className={`text-[10px] font-bold px-1.5 py-0.2 app-badge ${getLevelBadgeStyle(reportModalEvent.level)}`}>
                     {reportModalEvent.level}
                   </span>
                   <span className="text-[13px] font-bold text-slate-800 line-clamp-1">
@@ -460,7 +462,7 @@ export const EventListPage: React.FC<EventListPageProps> = ({
                   value={reportText}
                   onChange={(e) => setReportText(e.target.value)}
                   placeholder="请输入现场处置人员最新到达情况、伤亡损耗、交通疏散或物资使用进展..."
-                  className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-[13px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                  className="app-form-textarea min-h-[112px]"
                 />
               </div>
 

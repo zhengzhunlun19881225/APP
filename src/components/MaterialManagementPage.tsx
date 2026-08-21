@@ -205,6 +205,12 @@ interface MaterialManagementPageProps {
 export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ onBack }) => {
   // Navigation stack view: 'list' | 'batch-detail' | 'space-detail' | 'add-purchase' | 'transfer' | 'add-space-material'
   const [currentView, setCurrentView] = useState<'list' | 'batch-detail' | 'space-detail' | 'add-purchase' | 'transfer' | 'add-space-material'>('list');
+  const materialHeaderStyle: React.CSSProperties = {
+    backgroundImage: `linear-gradient(180deg, rgb(255 255 255 / 0.1) 0%, rgb(244 245 248 / 0.04) 100%), url('${import.meta.env.BASE_URL}material-management-bg.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center bottom',
+    backgroundRepeat: 'no-repeat'
+  };
 
   // List State
   const [materials, setMaterials] = useState<MaterialBatchItem[]>(initialMaterials);
@@ -395,7 +401,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'list' && (
         <div className="flex flex-col h-full">
           {/* Top Sky & Cloud Gradient Header */}
-          <div className="app-plan-query-bg pt-0 pb-3 px-3 relative z-20">
+          <div className="pt-0 pb-3 px-2 relative z-20" style={materialHeaderStyle}>
             <div className="-mx-3 mb-1">
               <StatusBar />
             </div>
@@ -467,14 +473,14 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
 
             {/* Search Input Bar */}
             <div className="relative mb-3">
-              <div className="bg-white/85 backdrop-blur-md rounded-xl flex h-10 items-center px-3 py-0 shadow-2xs border border-white/60 focus-within:bg-white transition-all">
-                <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
+              <div className="app-search-shell">
+                <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="搜索房间、物资种类或批次..."
-                  className="bg-transparent text-[13px] text-slate-800 placeholder-slate-400 focus:outline-none w-full"
+                  className="app-search-input"
                 />
                 {searchQuery && (
                   <button
@@ -535,7 +541,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
           </div>
 
           {/* Material Cards List */}
-          <div className="flex-1 overflow-y-auto px-3 py-3.5 space-y-3">
+          <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2">
             {filteredMaterials.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 text-center text-slate-400">
                 <Package className="w-12 h-12 stroke-1 mb-2 text-slate-300" />
@@ -549,7 +555,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                     setSelectedBatch(item);
                     setCurrentView('batch-detail');
                   }}
-                  className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-3 hover:shadow-xs cursor-pointer active:scale-[0.99] transition-all"
+                  className="app-card p-4 space-y-2 hover:shadow-xs cursor-pointer active:scale-[0.99] transition-all"
                 >
                   {/* Top Room Header */}
                   <div className="flex items-center justify-between">
@@ -611,7 +617,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'batch-detail' && selectedBatch && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+          <div className="pt-0 pb-3 px-2 sticky top-0 z-20" style={materialHeaderStyle}>
             <div className="-mx-3 mb-1">
               <StatusBar />
             </div>
@@ -629,9 +635,9 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
           </div>
 
-          <div className="p-4 space-y-3.5 pb-8">
+          <div className="px-2 py-2 space-y-2 pb-8">
             {/* Top Room Banner */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 flex items-center gap-3">
+            <div className="app-card p-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
                 <Home className="w-5 h-5" />
               </div>
@@ -642,7 +648,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
 
             {/* Batch Info Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5 text-[13px]">
+            <div className="app-card p-4 space-y-2 text-[13px]">
               <div className="flex justify-between py-1 border-b border-slate-50">
                 <span className="text-slate-400 font-medium">物资种类</span>
                 <span className="text-slate-900 font-bold">{selectedBatch.categoryName}</span>
@@ -694,7 +700,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
 
             {/* Creator & Notes */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5 text-[13px]">
+            <div className="app-card p-4 space-y-2 text-[13px]">
               <div className="flex justify-between py-1 border-b border-slate-50">
                 <span className="text-slate-400 font-medium">创建人</span>
                 <span className="text-slate-900 font-semibold">{selectedBatch.creator}</span>
@@ -712,7 +718,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
 
             {/* Other Spaces Storage Status Table */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3">
+            <div className="app-card p-4 space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-[14px] font-bold text-slate-900">其他存储情况</h3>
                 <span className="text-[11px] text-slate-400">点击空间可查看详情</span>
@@ -755,7 +761,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'space-detail' && selectedSpace && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+          <div className="pt-0 pb-3 px-2 sticky top-0 z-20" style={materialHeaderStyle}>
             <div className="-mx-3 mb-1">
               <StatusBar />
             </div>
@@ -773,9 +779,9 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
           </div>
 
-          <div className="p-4 space-y-3.5 pb-8">
+          <div className="px-2 py-2 space-y-2 pb-8">
             {/* Space Header Banner */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 flex items-center justify-between">
+            <div className="app-card p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
                   <Building2 className="w-5 h-5" />
@@ -807,7 +813,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
 
             {/* Detailed Info Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5 text-[13px]">
+            <div className="app-card p-4 space-y-2.5 text-[13px]">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">物资溯源与责任</h3>
               <div className="flex justify-between py-1 border-b border-slate-50">
                 <span className="text-slate-400 font-medium">责任人</span>
@@ -851,7 +857,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'add-purchase' && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+          <div className="pt-0 pb-3 px-2 sticky top-0 z-20" style={materialHeaderStyle}>
             <div className="-mx-3 mb-1">
               <StatusBar />
             </div>
@@ -871,15 +877,15 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
 
           <form onSubmit={handleSubmitPurchase} className="p-4 space-y-4 pb-12">
             {/* Form Section 1: 存放与分类 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3.5 text-[13px]">
+            <div className="app-card p-4 space-y-3.5 text-[13px]">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="app-form-label">
                   存储位置 <span className="text-rose-500">*</span>
                 </label>
                 <select
                   value={purchaseRoom}
                   onChange={(e) => setPurchaseRoom(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 font-medium"
+                  className="app-form-select"
                 >
                   {allLocations.filter((l) => l !== '全部位置').map((loc) => (
                     <option key={loc} value={loc}>{loc}</option>
@@ -888,13 +894,13 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="app-form-label">
                   物资种类 <span className="text-rose-500">*</span>
                 </label>
                 <select
                   value={purchaseCategory}
                   onChange={(e) => setPurchaseCategory(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 font-medium"
+                  className="app-form-select"
                 >
                   {allCategories.map((c) => (
                     <option key={c} value={c}>{c}</option>
@@ -903,7 +909,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="app-form-label">
                   批次名称
                 </label>
                 <input
@@ -911,13 +917,13 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                   value={purchaseBatchName}
                   onChange={(e) => setPurchaseBatchName(e.target.value)}
                   placeholder="例如：2024夏季特聘防灾A批"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 font-medium"
+                  className="app-form-control"
                 />
               </div>
 
               {/* Total Qty with Stepper (+ / -) */}
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="app-form-label">
                   购置总量 <span className="text-rose-500">*</span>
                 </label>
                 <div className="flex items-center gap-3">
@@ -948,21 +954,21 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                <label className="app-form-label">
                   购置日期
                 </label>
                 <input
                   type="date"
                   value={purchaseDate}
                   onChange={(e) => setPurchaseDate(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500 font-medium"
+                  className="app-form-select"
                 />
               </div>
             </div>
 
             {/* Form Section 2: 有效期设置 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3 text-[13px]">
-              <label className="text-xs font-bold text-slate-700 block">
+            <div className="app-card p-4 space-y-3 text-[13px]">
+              <label className="app-form-label">
                 有效期方式
               </label>
 
@@ -995,7 +1001,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                       type="month"
                       value={prodMonth}
                       onChange={(e) => setProdMonth(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium"
+                      className="app-form-control"
                     />
                   </div>
                   <div>
@@ -1003,7 +1009,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                     <select
                       value={validityDuration}
                       onChange={(e) => setValidityDuration(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium"
+                      className="app-form-select"
                     >
                       <option value="12个月">12个月</option>
                       <option value="24个月">24个月</option>
@@ -1016,48 +1022,48 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
             </div>
 
             {/* Form Section 3: 物资溯源 */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3 text-[13px]">
+            <div className="app-card p-4 space-y-3 text-[13px]">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">品牌</label>
+                <label className="app-form-label">品牌</label>
                 <input
                   type="text"
                   value={purchaseBrand}
                   onChange={(e) => setPurchaseBrand(e.target.value)}
                   placeholder="例如：海湾安全 (GST)"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
+                  className="app-form-control"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">规格型号</label>
+                <label className="app-form-label">规格型号</label>
                 <input
                   type="text"
                   value={purchaseModel}
                   onChange={(e) => setPurchaseModel(e.target.value)}
                   placeholder="例如：MFZ/ABC4 4kg"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
+                  className="app-form-control"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">生产厂家</label>
+                <label className="app-form-label">生产厂家</label>
                 <input
                   type="text"
                   value={purchaseManufacturer}
                   onChange={(e) => setPurchaseManufacturer(e.target.value)}
                   placeholder="例如：广东省江门市消防装备制造厂"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
+                  className="app-form-control"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">备注信息</label>
+                <label className="app-form-label">备注信息</label>
                 <textarea
                   rows={2}
                   value={purchaseRemarks}
                   onChange={(e) => setPurchaseRemarks(e.target.value)}
                   placeholder="填写物资用途、维保周期等说明..."
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
+                  className="app-form-textarea"
                 />
               </div>
             </div>
@@ -1079,7 +1085,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'transfer' && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+          <div className="pt-0 pb-3 px-2 sticky top-0 z-20" style={materialHeaderStyle}>
             <div className="-mx-3 mb-1">
               <StatusBar />
             </div>
@@ -1099,7 +1105,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
 
           <div className="p-4 space-y-4 pb-12">
             {/* Top Destination Room Selector Banner */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2">
+            <div className="app-card p-4 space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-blue-600" />
@@ -1125,7 +1131,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               {transferCards.map((card, index) => (
                 <div
                   key={card.id}
-                  className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3 text-[13px] relative"
+                  className="app-card p-4 space-y-3 text-[13px] relative"
                 >
                   {/* Card Header: 新增一 / 复制 / 删除 */}
                   <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
@@ -1160,7 +1166,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                     <select
                       value={card.sourceRoom}
                       onChange={(e) => handleUpdateTransferCard(index, 'sourceRoom', e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none"
+                      className="app-form-select"
                     >
                       {allLocations.filter((l) => l !== '全部位置').map((loc) => (
                         <option key={loc} value={loc}>{loc}</option>
@@ -1174,7 +1180,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                     <select
                       value={card.category}
                       onChange={(e) => handleUpdateTransferCard(index, 'category', e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none"
+                      className="app-form-select"
                     >
                       {allCategories.map((c) => (
                         <option key={c} value={c}>{c}</option>
@@ -1188,7 +1194,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                     <select
                       value={card.batch}
                       onChange={(e) => handleUpdateTransferCard(index, 'batch', e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none"
+                      className="app-form-select"
                     >
                       <option value="批次一">批次一 (2023-03购置 · 充足)</option>
                       <option value="批次二">批次二 (2023-04购置 · 充足)</option>
@@ -1263,7 +1269,7 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
       {currentView === 'add-space-material' && (
         <div className="flex flex-col h-full bg-[#f4f5f8] overflow-y-auto">
           {/* Header */}
-          <div className="app-plan-query-bg pt-0 pb-3 px-3 sticky top-0 z-20">
+          <div className="pt-0 pb-3 px-2 sticky top-0 z-20" style={materialHeaderStyle}>
             <div className="-mx-3 mb-1">
               <StatusBar />
             </div>
@@ -1283,9 +1289,9 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
 
           <form onSubmit={handleSubmitSpaceMaterial} className="p-4 space-y-4 pb-12">
             {/* QR Scan Simulation Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3 text-[13px]">
+            <div className="app-card p-4 space-y-3 text-[13px]">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-slate-700 block">二维码编码 / 铭牌编号</label>
+                <label className="app-form-label">二维码编码 / 铭牌编号</label>
                 <button
                   type="button"
                   onClick={() => {
@@ -1303,18 +1309,18 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
                 type="text"
                 value={spaceMatQrCode}
                 onChange={(e) => setSpaceMatQrCode(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-800 font-mono font-medium focus:outline-none focus:border-blue-500"
+                className="app-form-control font-mono"
               />
             </div>
 
             {/* Space and Specification */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3 text-[13px]">
+            <div className="app-card p-4 space-y-3 text-[13px]">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">分配空间位置</label>
+                <label className="app-form-label">分配空间位置</label>
                 <select
                   value={spaceMatRoom}
                   onChange={(e) => setSpaceMatRoom(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium focus:outline-none"
+                  className="app-form-select"
                 >
                   {allLocations.filter((l) => l !== '全部位置').map((l) => (
                     <option key={l} value={l}>{l}</option>
@@ -1323,11 +1329,11 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">物资种类</label>
+                <label className="app-form-label">物资种类</label>
                 <select
                   value={spaceMatCategory}
                   onChange={(e) => setSpaceMatCategory(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium focus:outline-none"
+                  className="app-form-select"
                 >
                   {allCategories.map((c) => (
                     <option key={c} value={c}>{c}</option>
@@ -1336,56 +1342,56 @@ export const MaterialManagementPage: React.FC<MaterialManagementPageProps> = ({ 
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">规格型号</label>
+                <label className="app-form-label">规格型号</label>
                 <input
                   type="text"
                   value={spaceMatModel}
                   onChange={(e) => setSpaceMatModel(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none"
+                  className="app-form-control"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">生产日期</label>
+                  <label className="app-form-label">生产日期</label>
                   <input
                     type="date"
                     value={spaceMatProdDate}
                     onChange={(e) => setSpaceMatProdDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium"
+                    className="app-form-control"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">有效截止</label>
+                  <label className="app-form-label">有效截止</label>
                   <input
                     type="date"
                     value={spaceMatExpiryDate}
                     onChange={(e) => setSpaceMatExpiryDate(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium"
+                    className="app-form-control"
                   />
                 </div>
               </div>
             </div>
 
             {/* Source & Condition */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-3 text-[13px]">
+            <div className="app-card p-4 space-y-3 text-[13px]">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">物资来源</label>
+                <label className="app-form-label">物资来源</label>
                 <input
                   type="text"
                   value={spaceMatSource}
                   onChange={(e) => setSpaceMatSource(e.target.value)}
                   placeholder="例如：南山区应急管理局统配"
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none"
+                  className="app-form-control"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">运行及保管状况</label>
+                <label className="app-form-label">运行及保管状况</label>
                 <select
                   value={spaceMatCondition}
                   onChange={(e) => setSpaceMatCondition(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs font-medium focus:outline-none"
+                  className="app-form-select"
                 >
                   <option value="良好待命">良好待命 (符合随时调动标准)</option>
                   <option value="需维护保养">需维护保养</option>

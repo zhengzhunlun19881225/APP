@@ -709,7 +709,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
           <>
             {/* Top 3 Tabs (集团 / 团队 / 个人) - Shown on root level */}
             {navStack.length === 0 && (
-              <div className="px-3 pt-3 pb-1 bg-transparent">
+              <div className="px-2 pt-3 pb-1 bg-transparent">
                 <div className="bg-slate-100/90 p-1 rounded-xl flex items-center">
                   <button
                     onClick={() => {
@@ -755,22 +755,22 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
             )}
 
             {/* Search Bar */}
-            <div className="px-3 py-2 bg-transparent">
-              <div className="relative flex items-center">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3 pointer-events-none" />
+            <div className="px-2 py-2 bg-transparent">
+              <div className="app-search-shell !bg-[#f8fafc] !border-slate-200/70 !backdrop-blur-none">
+                <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="搜索"
-                  className="w-full h-10 bg-slate-50 text-xs text-slate-800 placeholder-slate-400 pl-9 pr-4 py-0 rounded-xl border border-slate-200/70 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  className="app-search-input"
                 />
               </div>
             </div>
 
             {/* Breadcrumb path for nested levels (Matching Screenshot 5.2) */}
             {navStack.length > 0 && (
-              <div className="px-3 py-2 bg-white text-xs flex items-center gap-1.5 flex-wrap">
+              <div className="px-2 py-2 bg-white text-xs flex items-center gap-1.5 flex-wrap">
                 <button
                   onClick={() => setNavStack([])}
                   className="text-blue-600 font-medium hover:underline"
@@ -796,10 +796,10 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
             )}
 
             {/* List Content Area */}
-            <div className="flex-1 overflow-y-auto px-3 py-3">
+            <div className="flex-1 overflow-y-auto px-2 py-2">
               {/* Level 1: Root Department / Folder Grid & List */}
               {navStack.length === 0 && (
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-2xs divide-y divide-slate-100 overflow-hidden">
+                <div className="app-card divide-y divide-slate-100 overflow-hidden">
                   {currentRootItems
                     .filter((item) =>
                       item.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -851,7 +851,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
 
               {/* Level 2: Sub-Level Department / Sub-folders (e.g. 研发部 -> 业务开发, 平台开发) */}
               {navStack.length > 0 && currentNav.type === 'dept_list' && (
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-2xs divide-y divide-slate-100 overflow-hidden">
+                <div className="app-card divide-y divide-slate-100 overflow-hidden">
                   {(currentNav.data as DepartmentItem[])
                     .filter((sub) =>
                       sub.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -891,7 +891,7 @@ export const KnowledgeBasePage: React.FC<KnowledgeBasePageProps> = ({ onBack }) 
 
               {/* Level 3: Files & Sub-folder Items (Matching Screenshot 5.4) */}
               {navStack.length > 0 && currentNav.type === 'doc_list' && (
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-2xs divide-y divide-slate-100 overflow-hidden">
+                <div className="app-card divide-y divide-slate-100 overflow-hidden">
                   {(currentNav.data as KnowledgeDoc[])
                     .filter((doc) =>
                       doc.title.toLowerCase().includes(searchQuery.toLowerCase())

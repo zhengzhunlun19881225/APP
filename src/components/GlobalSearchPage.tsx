@@ -354,15 +354,15 @@ export const GlobalSearchPage: React.FC<GlobalSearchPageProps> = ({
     <div className="absolute inset-0 z-40 bg-white flex flex-col select-none overflow-hidden animate-in fade-in duration-200">
       {/* Top Search Header Bar */}
       <div className="pt-2 px-4 pb-2 bg-white flex items-center gap-2.5 border-b border-slate-100/80">
-        <div className="flex-1 h-10 flex items-center bg-[#f1f3f5] rounded-full px-3.5 py-0 border border-transparent focus-within:border-blue-300 focus-within:bg-white transition-all">
-          <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
+        <div className="app-search-shell flex-1 !bg-[#f8fafc] !border-slate-200/70 !backdrop-blur-none">
+          <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
           <input
             type="text"
             value={query}
             autoFocus
             onChange={(e) => setQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full text-[14px] text-slate-800 placeholder-slate-400 bg-transparent outline-none"
+            className="app-search-input"
           />
           {query && (
             <button

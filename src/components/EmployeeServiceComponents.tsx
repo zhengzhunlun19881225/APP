@@ -80,7 +80,7 @@ export const LeaveApplicationCard: React.FC<LeaveApplicationCardProps> = ({
   onSubmit
 }) => {
   return (
-    <div className="border border-slate-200/90 rounded-[20px] p-4.5 bg-gradient-to-b from-[#fffbf8] to-white shadow-2xs space-y-3.5 relative overflow-hidden">
+    <div className="app-card p-4.5 bg-gradient-to-b from-[#fffbf8] to-white shadow-2xs space-y-3.5 relative overflow-hidden">
       {/* Top Title */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -161,7 +161,7 @@ export const OvertimeApplicationCard: React.FC<OvertimeApplicationCardProps> = (
   const isJiaDian = data.overtimeType === '加点';
 
   return (
-    <div className="border border-slate-200/90 rounded-[20px] p-4.5 bg-gradient-to-b from-[#fffbf8] to-white shadow-2xs space-y-3.5 relative overflow-hidden">
+    <div className="app-card p-4.5 bg-gradient-to-b from-[#fffbf8] to-white shadow-2xs space-y-3.5 relative overflow-hidden">
       {/* Top Title */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -322,7 +322,7 @@ export const LeaveApplicationModal: React.FC<LeaveModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-2xs p-3 sm:p-4 animate-fade-in">
-      <div className="w-full max-w-sm bg-white rounded-[24px] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="w-full max-w-sm app-modal shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-slate-100">
           <div className="w-6" />
@@ -351,7 +351,7 @@ export const LeaveApplicationModal: React.FC<LeaveModalProps> = ({
                 value={leaveType}
                 onChange={(e) => setLeaveType(e.target.value)}
                 placeholder="事假"
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                className="app-form-control"
               />
             </div>
           </div>
@@ -365,7 +365,7 @@ export const LeaveApplicationModal: React.FC<LeaveModalProps> = ({
               <select
                 value={positionInfo}
                 onChange={(e) => setPositionInfo(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-8"
+                className="app-form-select"
               >
                 <option value="集团总部/人力资源部/招聘专员">集团总部/人力资源部/招聘专员</option>
                 <option value="集团总部/数字与人工智能部/开发工程师">集团总部/数字与人工智能部/开发工程师</option>
@@ -386,14 +386,14 @@ export const LeaveApplicationModal: React.FC<LeaveModalProps> = ({
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                  className="app-form-control"
                 />
               </div>
               <div className="col-span-5 relative">
                 <select
                   value={startTimeSlot}
                   onChange={(e) => setStartTimeSlot(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-7"
+                  className="app-form-select"
                 >
                   <option value="08:30">08:30</option>
                   <option value="09:00">09:00</option>
@@ -416,14 +416,14 @@ export const LeaveApplicationModal: React.FC<LeaveModalProps> = ({
                   type="date"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                  className="app-form-control"
                 />
               </div>
               <div className="col-span-5 relative">
                 <select
                   value={endTimeSlot}
                   onChange={(e) => setEndTimeSlot(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-7"
+                  className="app-form-select"
                 >
                   <option value="12:00">12:00</option>
                   <option value="17:30">17:30</option>
@@ -446,7 +446,7 @@ export const LeaveApplicationModal: React.FC<LeaveModalProps> = ({
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="请输入"
                 maxLength={200}
-                className="w-full p-3 pb-6 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 resize-none bg-white"
+                className="app-form-textarea min-h-[112px] pb-6"
               />
               <span className="absolute right-2.5 bottom-2 text-[11px] text-slate-400">
                 {reason.length}/200
@@ -569,7 +569,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-2xs p-3 sm:p-4 animate-fade-in">
-      <div className="w-full max-w-sm bg-white rounded-[24px] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+      <div className="w-full max-w-sm app-modal shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-slate-100">
           <div className="w-6" />
@@ -596,7 +596,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
               <select
                 value={overtimeType}
                 onChange={(e) => setOvertimeType(e.target.value as '加整班' | '加点')}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-8"
+                className="app-form-select"
               >
                 <option value="加整班">加整班</option>
                 <option value="加点">加点</option>
@@ -614,7 +614,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
               type="date"
               value={overtimeDate}
               onChange={(e) => setOvertimeDate(e.target.value)}
-              className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+              className="app-form-control"
             />
           </div>
 
@@ -630,7 +630,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
                     type="time"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                    className="app-form-control"
                   />
                 </div>
                 <div className="space-y-1">
@@ -641,7 +641,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
                     type="time"
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white"
+                    className="app-form-control"
                   />
                 </div>
               </div>
@@ -663,7 +663,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
               <select
                 value={overtimeProject}
                 onChange={(e) => setOvertimeProject(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-8"
+                className="app-form-select"
               >
                 <option value="工作日加班">工作日加班</option>
                 <option value="休息日加班">休息日加班</option>
@@ -683,7 +683,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
                 <select
                   value={positionInfo}
                   onChange={(e) => setPositionInfo(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 bg-white appearance-none pr-8"
+                  className="app-form-select"
                 >
                   <option value="集团总部/人力资源部/招聘专员">集团总部/人力资源部/招聘专员</option>
                   <option value="集团总部/数字与人工智能部/开发工程师">集团总部/数字与人工智能部/开发工程师</option>
@@ -769,7 +769,7 @@ export const OvertimeApplicationModal: React.FC<OvertimeModalProps> = ({
                 onChange={(e) => setReason(e.target.value)}
                 placeholder="请输入"
                 maxLength={200}
-                className="w-full p-3 pb-6 rounded-xl border border-slate-200 text-[13px] text-slate-800 focus:outline-none focus:border-blue-500 resize-none bg-white"
+                className="app-form-textarea min-h-[112px] pb-6"
               />
               <span className="absolute right-2.5 bottom-2 text-[11px] text-slate-400">
                 {reason.length}/200

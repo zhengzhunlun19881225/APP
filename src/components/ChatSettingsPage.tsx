@@ -242,7 +242,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
     return (
       <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative overflow-hidden">
         {/* Navigation Bar */}
-        <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/95 backdrop-blur-xs z-10 border-b border-slate-200/50">
+        <div className="px-2 py-3 flex items-center justify-between sticky top-0 bg-[#f4f5f8]/95 backdrop-blur-xs z-10 border-b border-slate-200/50">
           <button
             onClick={() => setIsAddingMode(false)}
             className="system-back-button"
@@ -259,19 +259,19 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
 
         {/* Search Input Bar */}
         <div className="px-4 mt-2.5 mb-2">
-          <div className="relative flex items-center w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none" />
+          <div className="app-search-shell">
+            <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
             <input
               type="text"
               value={pickerSearch}
               onChange={(e) => setPickerSearch(e.target.value)}
               placeholder="搜索联系人、部门、职位"
-              className="w-full h-10 bg-white rounded-xl pl-9 pr-8 py-0 text-[14px] text-slate-800 placeholder-slate-400 border border-slate-100/80 shadow-2xs focus:outline-none focus:border-blue-500 transition-colors"
+              className="app-search-input"
             />
             {pickerSearch && (
               <button
                 onClick={() => setPickerSearch('')}
-                className="absolute right-3 text-slate-400 hover:text-slate-600"
+                className="text-slate-400 hover:text-slate-600"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -302,7 +302,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
 
         {/* Contact List Content Card */}
         <div className="flex-1 px-4 overflow-y-auto pb-24">
-          <div className="bg-white rounded-[20px] p-3 shadow-2xs border border-slate-100/80 divide-y divide-slate-100/80">
+          <div className="app-card p-3 divide-y divide-slate-100/80">
             {pickerSearch ? (
               /* 搜索结果展示 */
               searchResults.length === 0 ? (
@@ -506,7 +506,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
         {/* Selected Members Drawer */}
         {showSelectedSheet && (
           <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 backdrop-blur-2xs animate-fade-in">
-            <div className="w-full max-w-md bg-white rounded-t-[20px] overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[520px] animate-slide-up">
+            <div className="w-full max-w-md app-bottom-sheet overflow-hidden shadow-2xl flex flex-col max-h-[85vh] h-[520px] animate-slide-up">
               <div className="px-5 py-4 flex items-center justify-between border-b border-slate-100">
                 <button
                   onClick={() => setShowSelectedSheet(false)}
@@ -597,7 +597,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-8">
       {/* Top Header */}
-      <div className="px-4 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
+      <div className="px-2 py-3 flex items-center justify-between bg-[#f4f5f8]/95 backdrop-blur-md sticky top-0 z-20">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -623,7 +623,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
 
       {/* Removing mode notice banner */}
       {isRemovingMode && (
-        <div className="mx-4 mb-2 bg-rose-50 border border-rose-200/80 rounded-xl px-3.5 py-2 flex items-center justify-between animate-in fade-in">
+        <div className="mx-2 mb-2 bg-rose-50 border border-rose-200/80 rounded-xl px-3.5 py-2 flex items-center justify-between animate-in fade-in">
           <span className="text-[13px] text-rose-700 font-medium">
             点击成员右上角减号或点击头像移出群聊
           </span>
@@ -636,11 +636,11 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
         </div>
       )}
 
-      <div className="px-4 space-y-3 mt-1">
+      <div className="px-2 space-y-2 mt-1">
         {/* GROUP CHAT SETTINGS */}
         {isGroup ? (
           <>
-            <div className="bg-white rounded-[12px] p-4 shadow-2xs border border-slate-100/80">
+            <div className="app-card p-4">
               {/* Group Avatar & Name Header */}
               <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
                 <Avatar
@@ -758,7 +758,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
             </div>
 
             {/* Group Name Setting Item */}
-            <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80">
+            <div className="app-card p-3">
               <div
                 onClick={() => {
                   setNewGroupNameInput(currentGroupName);
@@ -779,7 +779,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
             </div>
 
             {/* Other Options */}
-            <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80 divide-y divide-slate-100">
+            <div className="app-card p-3 divide-y divide-slate-100">
               <div
                 onClick={() => setShowGroupMute(true)}
                 className="flex items-center justify-between py-2.5 px-2 hover:bg-slate-50 rounded-[12px] cursor-pointer transition-colors"
@@ -838,7 +838,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
             </div>
 
             {/* Exit/Dissolve Group Buttons */}
-            <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80 divide-y divide-slate-100 text-center">
+            <div className="app-card p-3 divide-y divide-slate-100 text-center">
               <button
                 onClick={() => {
                   handleNotice('已退出群聊');
@@ -862,7 +862,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
         ) : (
           /* SINGLE 1-ON-1 CHAT SETTINGS */
           <>
-            <div className="bg-white rounded-[12px] p-4 shadow-2xs border border-slate-100/80">
+            <div className="app-card p-4">
               <div
                 onClick={() => {
                   const matched = initialContacts.find(
@@ -919,7 +919,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
               </div>
             </div>
 
-            <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80 divide-y divide-slate-100">
+            <div className="app-card p-3 divide-y divide-slate-100">
               <div
                 onClick={() => setShowGroupMute(true)}
                 className="flex items-center justify-between py-2.5 px-2 hover:bg-slate-50 rounded-[12px] cursor-pointer transition-colors"
@@ -977,7 +977,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
               </div>
             </div>
 
-            <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80 text-center">
+            <div className="app-card p-3 text-center">
               <button
                 onClick={() => handleNotice('已将该联系人拉黑')}
                 className="w-full py-2.5 text-[15px] font-medium text-[#f44336] hover:bg-red-50/50 rounded-[12px] transition-colors cursor-pointer"
@@ -1001,7 +1001,7 @@ export const ChatSettingsPage: React.FC<ChatSettingsPageProps> = ({
               value={newGroupNameInput}
               onChange={(e) => setNewGroupNameInput(e.target.value)}
               placeholder="请输入群聊名称"
-              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-[15px] focus:outline-none focus:border-blue-500"
+              className="app-form-control text-[15px]"
               autoFocus
             />
             <div className="flex items-center gap-3 pt-1">

@@ -100,16 +100,16 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          <button className="relative mt-1 flex size-8 items-center justify-center text-slate-800 transition-opacity hover:opacity-80">
-            <Bell className="size-[24px] fill-slate-900/10 stroke-[1.8]" />
-            <span className="absolute right-[-1px] top-[-1px] flex h-[13px] min-w-[18px] items-center justify-center rounded-full bg-[#f05656] px-1 text-[9px] font-medium leading-none text-white">
+          <button className="relative mt-1 flex size-8 items-center justify-center text-white transition-opacity hover:opacity-80">
+            <Bell className="size-[24px] fill-white/20 stroke-[1.8]" />
+            <span className="absolute right-[-1px] top-[-1px] flex h-[13px] min-w-[18px] items-center justify-center rounded-full bg-[#f05656] px-1 text-[10px] font-medium leading-none text-white">
               26
             </span>
           </button>
         </div>
 
         {/* Quick action glass panel */}
-        <div className="absolute left-0 right-0 top-[174px] z-20 h-[196px] rounded-t-[16px] rounded-b-[12px] border border-white bg-gradient-to-b from-white/70 to-white shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-[4px]">
+        <div className="absolute left-0 right-0 top-[174px] z-20 h-[190px] rounded-t-[16px] rounded-b-[12px] border border-white bg-gradient-to-b from-white/70 to-white shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-[4px]">
           <div className="grid grid-cols-4 gap-y-[13px] px-0 pb-4 pt-5 text-center">
             {quickActions.map((item) => (
               <button
@@ -175,11 +175,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       </div>
 
       {/* Task Cards List */}
-      <div className="px-3 space-y-2 flex-1">
+      <div className="px-2 space-y-2 flex-1">
         {/* Incident Detail Task Card (Navigates to EventDetailPage for 人员踩踏事件) */}
         <div
           onClick={onNavigateToEventDetail}
-          className="bg-white rounded-[16px] p-3.5 shadow-2xs border border-slate-100/80 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between gap-3"
+          className="app-card p-3.5 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between gap-3"
         >
           <div className="flex-1 min-w-0 space-y-2">
             <h3 className="text-[17px] font-semibold text-slate-900 flex items-center gap-1.5 leading-[22px]">
@@ -227,7 +227,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Personnel Dispatch Task Card (Navigates to PersonnelDispatchPage) - Exact match to user request */}
         <div
           onClick={onNavigateToPersonnelDispatch}
-          className="bg-white rounded-[16px] p-3.5 shadow-2xs border border-slate-100/80 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between gap-3"
+          className="app-card p-3.5 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between gap-3"
         >
           <div className="flex-1 min-w-0 space-y-2">
             <h3 className="text-[17px] font-semibold text-slate-900 flex items-center gap-1.5 leading-[22px]">
@@ -275,7 +275,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Risk Hazard Task Card (Navigates to RiskRectificationPage) */}
         <div
           onClick={onNavigateToRiskRectification}
-          className="bg-white rounded-[16px] p-3.5 shadow-2xs border border-slate-100/80 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between gap-3"
+          className="app-card p-3.5 cursor-pointer active:scale-[0.99] transition-all flex items-center justify-between gap-3"
         >
           <div className="flex-1 min-w-0 space-y-2">
             <h3 className="text-[17px] font-semibold text-slate-900 flex items-center gap-1.5 leading-[22px]">
@@ -315,7 +315,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
 
         {/* Card 1 */}
-        <div className="bg-white rounded-[16px] p-3.5 shadow-2xs border border-slate-100/80 flex items-center justify-between gap-3">
+        <div className="app-card p-3.5 flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0 space-y-2">
             <h3 className="text-[17px] font-semibold text-slate-900 leading-[22px]">突发事件审批</h3>
 
@@ -346,7 +346,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white rounded-[16px] p-3.5 shadow-2xs border border-slate-100/80 flex items-center justify-between gap-3">
+        <div className="app-card p-3.5 flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0 space-y-2">
             <h3 className="text-[17px] font-semibold text-slate-900 leading-[22px]">突发事件审批</h3>
 

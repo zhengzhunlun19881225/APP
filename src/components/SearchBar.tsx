@@ -20,8 +20,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <div className="relative w-full" onClick={onClick}>
-      <div className="flex h-10 items-center bg-white rounded-[12px] px-3 py-0 border border-slate-100 shadow-2xs transition-all focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400 cursor-pointer">
-        <Search className="w-4 h-4 text-slate-400 mr-2.5 flex-shrink-0" />
+      <div className="app-search-shell cursor-pointer">
+        <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
         <input
           type="text"
           value={value}
@@ -30,7 +30,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           onFocus={onFocus}
           readOnly={readOnly}
           placeholder={placeholder}
-          className="w-full text-[14px] text-slate-800 placeholder-slate-400 bg-transparent outline-none cursor-pointer"
+          className="app-search-input cursor-pointer"
         />
         {value && onChange && (
           <button
@@ -38,7 +38,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               e.stopPropagation();
               onChange('');
             }}
-            className="p-0.5 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100 ml-1"
+            className="p-0.5 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100"
           >
             <X className="w-4 h-4" />
           </button>

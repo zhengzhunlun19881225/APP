@@ -223,7 +223,7 @@ export const WritingTemplateDrawer: React.FC<WritingTemplateDrawerProps> = ({
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder={selectedTemplate.placeholder}
-            className="w-full bg-transparent text-[13px] text-blue-500 placeholder-blue-400/80 focus:outline-none py-1"
+            className="w-full bg-transparent text-[14px] text-blue-500 placeholder-blue-400/80 focus:outline-none py-1"
           />
         </div>
 
@@ -461,7 +461,7 @@ export const WritingKnowledgeBaseSelector: React.FC<KnowledgeBaseSelectorProps> 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="搜索"
-            className="w-full bg-transparent text-[13px] text-slate-800 placeholder-slate-400 focus:outline-none"
+            className="w-full bg-transparent text-[14px] text-slate-800 placeholder-slate-400 focus:outline-none"
           />
           {searchQuery && (
             <button type="button" onClick={() => setSearchQuery('')}>

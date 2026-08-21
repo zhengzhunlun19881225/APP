@@ -142,6 +142,12 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
   const [activeDropdown, setActiveDropdown] = useState<'category' | 'org' | 'date' | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<PlanItem | null>(null);
   const [bookmarkedPlans, setBookmarkedPlans] = useState<string[]>(['p1']);
+  const planQueryHeaderStyle: React.CSSProperties = {
+    backgroundImage: `linear-gradient(180deg, rgb(255 255 255 / 0.04) 0%, rgb(244 245 248 / 0.08) 100%), url('${import.meta.env.BASE_URL}plan-query-bg.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
+    backgroundRepeat: 'no-repeat'
+  };
 
   // Filter options
   const categories = ['全部', '综合预案', '专项预案', '现场处置方案'];
@@ -228,7 +234,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] relative overflow-hidden select-none">
       {/* Top Header with Soft Sky Gradient Background */}
-      <div className="app-plan-query-bg pt-0 pb-3.5 px-3 relative z-20">
+      <div className="pt-0 pb-3.5 px-2 relative z-20" style={planQueryHeaderStyle}>
         <div className="-mx-3 mb-1">
           <StatusBar />
         </div>
@@ -248,14 +254,14 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
 
         {/* Search Bar Input */}
         <div className="relative mb-3">
-          <div className="bg-white/85 backdrop-blur-md rounded-xl flex h-10 items-center px-3 py-0 shadow-2xs border border-white/60 focus-within:bg-white transition-all">
-            <Search className="w-4 h-4 text-slate-400 mr-2 flex-shrink-0" />
+          <div className="app-search-shell">
+            <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="搜索"
-              className="bg-transparent text-xs text-slate-800 placeholder-slate-400 focus:outline-none w-full"
+              className="app-search-input"
             />
             {searchQuery && (
               <button
@@ -269,17 +275,17 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
         </div>
 
         {/* Filter Bar Row */}
-        <div className="flex items-center justify-between gap-1.5 text-xs text-slate-800 font-medium">
+        <div className="flex items-center justify-between gap-1.5 text-slate-800 font-medium">
           {/* 事件类型 Dropdown */}
           <div className="relative flex-1">
             <button
               onClick={() =>
                 setActiveDropdown(activeDropdown === 'category' ? null : 'category')
               }
-              className={`w-full flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-colors ${
+              className={`w-full app-filter-chip ${
                 selectedCategory !== '全部'
-                  ? 'bg-blue-600 text-white font-semibold'
-                  : 'bg-white/40 active:bg-white/60 text-slate-900'
+                  ? 'app-filter-chip-active'
+                  : 'active:bg-white/65'
               }`}
             >
               <span className="truncate">
@@ -320,10 +326,10 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
               onClick={() =>
                 setActiveDropdown(activeDropdown === 'org' ? null : 'org')
               }
-              className={`w-full flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-colors ${
+              className={`w-full app-filter-chip ${
                 selectedOrg !== '全部'
-                  ? 'bg-blue-600 text-white font-semibold'
-                  : 'bg-white/40 active:bg-white/60 text-slate-900'
+                  ? 'app-filter-chip-active'
+                  : 'active:bg-white/65'
               }`}
             >
               <span className="truncate">
@@ -364,7 +370,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
               onClick={() =>
                 setActiveDropdown(activeDropdown === 'date' ? null : 'date')
               }
-              className="flex items-center gap-1.5 py-1.5 px-2.5 rounded-lg bg-white/40 active:bg-white/60 text-slate-900 transition-colors"
+              className="app-filter-chip active:bg-white/65"
             >
               <Calendar className="w-3.5 h-3.5 text-slate-800" />
               <span className="text-[11px] tracking-tight">{dateRange}</span>
@@ -401,7 +407,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
       {/* Main List Area */}
       <div
         onClick={() => setActiveDropdown(null)}
-        className="flex-1 overflow-y-auto px-3 py-3 space-y-3"
+        className="flex-1 overflow-y-auto px-2 py-3 space-y-2"
       >
         {filteredPlans.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center text-slate-400">
@@ -415,7 +421,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
               <div
                 key={plan.id}
                 onClick={() => setSelectedPlan(plan)}
-                className="bg-white rounded-2xl p-3 shadow-2xs border border-slate-100 flex gap-3.5 items-stretch cursor-pointer active:scale-[0.99] transition-transform relative overflow-hidden group"
+                className="app-card p-3 flex gap-3.5 items-stretch cursor-pointer active:scale-[0.99] transition-transform relative overflow-hidden group"
               >
                 {/* Book Cover Design */}
                 <div
@@ -434,7 +440,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
                 <div className="flex-1 flex flex-col justify-between py-0.5">
                   <div>
                     {/* Plan Title */}
-                    <h3 className="text-[14px] font-bold text-slate-800 leading-snug mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-[15px] font-bold text-slate-800 leading-snug mb-2 group-hover:text-blue-600 transition-colors">
                       {plan.title}
                     </h3>
 

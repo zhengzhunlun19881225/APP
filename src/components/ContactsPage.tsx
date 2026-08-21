@@ -29,6 +29,12 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const communicationHeaderStyle: React.CSSProperties = {
+    backgroundImage: `url('${import.meta.env.BASE_URL}communication-bg.png')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center top',
+    backgroundRepeat: 'no-repeat'
+  };
 
   const filteredContacts = contacts.filter((c) =>
     c.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -36,7 +42,7 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
 
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-hidden relative">
-      <div className="app-plan-query-bg px-3 pb-3 relative z-20 shrink-0">
+      <div className="px-2 pb-3 relative z-20 shrink-0" style={communicationHeaderStyle}>
         <div className="-mx-3 mb-1">
           <StatusBar />
         </div>
@@ -84,8 +90,8 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
 
       <div className="flex-1 overflow-y-auto pb-6">
       {/* Top Navigation Groups Card */}
-      <div className="px-3 mb-2.5">
-        <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80 space-y-3">
+      <div className="px-2 mb-4">
+        <div className="app-card p-3 space-y-3">
           {/* 我的群组 */}
           <div
             onClick={onOpenMyGroups}
@@ -143,13 +149,13 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
       </div>
 
       {/* Section Heading: 最近联系人 */}
-      <div className="px-4 mb-1.5">
+      <div className="px-2 mb-2">
         <span className="text-[13px] text-slate-500 font-normal leading-[18px]">最近联系人</span>
       </div>
 
       {/* Contacts List Card */}
-      <div className="px-3 flex-1">
-        <div className="bg-white rounded-[12px] p-2.5 shadow-2xs border border-slate-100/80">
+      <div className="px-2 flex-1">
+        <div className="app-card p-2.5">
           {filteredContacts.length === 0 ? (
             <div className="py-12 text-center text-slate-400 text-[15px]">
               未找到相关联系人

@@ -324,7 +324,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
       {currentView === 'main' && (
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Top Blue Header */}
-          <div className="bg-[#0070f3] text-white px-3.5 py-3 flex items-center justify-between shadow-xs sticky top-0 z-20">
+          <div className="bg-[#0070f3] text-white px-2 py-3 flex items-center justify-between shadow-xs sticky top-0 z-20">
             <button
               onClick={onBack}
               className="system-back-button"
@@ -338,7 +338,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
           </div>
 
           {/* Scrollable Content Area */}
-          <div className="flex-1 overflow-y-auto pb-24 p-3 space-y-3">
+          <div className="flex-1 overflow-y-auto pb-24 px-2 py-2 space-y-2">
             {/* Out of Range Banner (Image 3: "未到签到范围") */}
             {showOutOfRangeBanner && (
               <div className="bg-[#8b7f58] text-[#fef08a] px-4 py-2 rounded-xl text-[13px] font-bold text-center shadow-xs flex items-center justify-between">
@@ -353,7 +353,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
             )}
 
             {/* 1. Main Task Summary Card (Card 1) */}
-            <div className="bg-white rounded-[18px] p-4 shadow-2xs border border-slate-100/80 space-y-3.5">
+            <div className="app-card p-4 space-y-3.5">
               {/* Title */}
               <h2 className="text-[16px] font-bold text-slate-900 leading-snug tracking-tight">
                 派出由民政部负责人带队、有关部门参加的联合工作组赴灾区慰问受灾群众
@@ -394,7 +394,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
             </div>
 
             {/* 2. Task Attachments Card (Card 2) */}
-            <div className="bg-white rounded-[18px] p-4 shadow-2xs border border-slate-100/80 space-y-3">
+            <div className="app-card p-4 space-y-3">
               {/* Section Header with Blue Vertical Indicator */}
               <div className="flex items-center gap-2">
                 <span className="w-1 h-3.5 bg-[#0070f3] rounded-full inline-block" />
@@ -464,7 +464,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
             </div>
 
             {/* 3. Dispatcher Card (Card 3) */}
-            <div className="bg-white rounded-[18px] p-4 shadow-2xs border border-slate-100/80 space-y-3">
+            <div className="app-card p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <span className="w-1 h-3.5 bg-[#0070f3] rounded-full inline-block" />
                 <h3 className="text-[14px] font-bold text-slate-900 tracking-tight">
@@ -489,7 +489,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
             </div>
 
             {/* 4. Execution Personnel Card (Card 4) */}
-            <div className="bg-white rounded-[18px] p-4 shadow-2xs border border-slate-100/80 space-y-3">
+            <div className="app-card p-4 space-y-3">
               <div className="flex items-center gap-2">
                 <span className="w-1 h-3.5 bg-[#0070f3] rounded-full inline-block" />
                 <h3 className="text-[14px] font-bold text-slate-900 tracking-tight">
@@ -653,7 +653,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
             >
               <div className="relative">
                 <MessageSquare className="w-5 h-5 stroke-[2] mb-0.5 text-[#0070f3]" />
-                <span className="absolute -top-1 -right-2 bg-rose-500 text-white text-[9px] font-bold px-1 rounded-full border border-white">
+                <span className="absolute -top-1 -right-2 bg-rose-500 text-white text-[10px] font-bold px-1 rounded-full border border-white">
                   8
                 </span>
               </div>
@@ -669,7 +669,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
       {currentView === 'feedback' && (
         <div className="flex-1 flex flex-col overflow-hidden bg-[#f4f5f8]">
           {/* Top Blue Header */}
-          <div className="bg-[#0070f3] text-white px-3.5 py-3 flex items-center justify-between shadow-xs sticky top-0 z-20">
+          <div className="bg-[#0070f3] text-white px-2 py-3 flex items-center justify-between shadow-xs sticky top-0 z-20">
             <button
               onClick={() => setCurrentView('main')}
               className="system-back-button"
@@ -696,8 +696,8 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
           </div>
 
           {/* Scrollable Feedbacks Container */}
-          <div className="flex-1 overflow-y-auto p-3.5 space-y-3.5">
-            <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-4">
+          <div className="flex-1 overflow-y-auto px-2 py-2 space-y-2">
+            <div className="app-card p-4 space-y-4">
               {filteredFeedbacks.length === 0 ? (
                 <div className="text-center py-10 text-slate-400 text-[13px]">
                   暂无您的反馈记录
@@ -781,14 +781,14 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
             </div>
 
             {/* Bottom Feedback Input Form (Exact match to Image 8) */}
-            <div className="bg-white rounded-[20px] p-4 shadow-2xs border border-slate-100/80 space-y-3">
+            <div className="app-card p-4 space-y-3">
               {/* Text Input Area */}
               <textarea
                 rows={3}
                 value={feedbackInput}
                 onChange={(e) => setFeedbackInput(e.target.value)}
                 placeholder="请输入反馈内容"
-                className="w-full text-[13px] text-slate-800 placeholder:text-slate-400 outline-none resize-none bg-transparent"
+                className="app-form-textarea"
               />
 
               {/* Media Previews when user selects something */}
@@ -860,7 +860,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
       {/* ========================================================================= */}
       {selectedPerson && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[24px] p-5 w-full max-w-[320px] shadow-2xl space-y-4 relative">
+          <div className="app-modal p-5 w-full max-w-[320px] shadow-2xl space-y-4 relative">
             {/* Top Close Button */}
             <button
               onClick={() => setSelectedPerson(null)}
@@ -986,7 +986,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
       {/* ========================================================================= */}
       {showStatusChangeModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-[22px] p-5 w-full max-w-[290px] shadow-2xl space-y-4 text-center">
+          <div className="app-modal p-5 w-full max-w-[290px] shadow-2xl space-y-4 text-center">
             <h3 className="text-[17px] font-bold text-slate-900 tracking-tight">
               任务状态变动
             </h3>
@@ -1010,7 +1010,7 @@ export const PersonnelDispatchPage: React.FC<PersonnelDispatchPageProps> = ({
       {/* ========================================================================= */}
       {showNavSheet && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-end justify-center animate-fade-in">
-          <div className="bg-white rounded-t-[24px] w-full max-w-sm overflow-hidden shadow-2xl divide-y divide-slate-100">
+          <div className="app-bottom-sheet w-full max-w-sm overflow-hidden shadow-2xl divide-y divide-slate-100">
             <button
               onClick={() => {
                 setShowNavSheet(false);
