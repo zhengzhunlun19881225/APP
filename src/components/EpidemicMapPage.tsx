@@ -122,7 +122,7 @@ interface EpidemicMapPageProps {
 }
 
 export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
-  // Top Tabs: 疫情地图 | 病例轨迹 | 确诊数量
+  // Top Tabs: 隐患地图 | 隐患轨迹 | 隐患数量
   const [activeSubTab, setActiveSubTab] = useState<'map' | 'track' | 'cases'>('map');
 
   // Filter State
@@ -178,7 +178,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
     if (mapInstanceRef.current) {
       mapInstanceRef.current.flyTo(coords, 13, { duration: 1.2 });
     }
-    triggerToast(`已定位至【${cityName}】开源疫情管控网格`);
+    triggerToast(`已定位至【${cityName}】开源防汛隐患网格`);
   };
 
   // Filter POIs based on selections
@@ -196,7 +196,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
     lat: p.lat,
     lng: p.lng,
     title: p.name,
-    category: p.levelText + '管控区',
+    category: p.levelText + '隐患点',
     iconType: p.level === 'high' ? 'risk' : 'pin',
     status: p.level,
     details: {
@@ -212,7 +212,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
       lat: 23.169,
       lng: 113.259,
       title: '广钢医院(北郊分院)',
-      category: '发热门诊 / 定点救治',
+      category: '排水泵站 / 应急抢险',
       iconType: 'hospital'
     },
     {
@@ -220,7 +220,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
       lat: 23.158,
       lng: 113.268,
       title: '白藤街道999高空探头',
-      category: '疫情防控视频监测',
+      category: '防汛隐患视频监测',
       iconType: 'camera'
     }
   );
@@ -229,7 +229,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
   const polygons: MapPolygonData[] = [
     {
       id: 'poly-nanyue',
-      name: '南悦花苑高风险封控区',
+      name: '南悦花苑高风险防汛隐患区',
       level: 'high',
       coordinates: [
         [23.167, 113.261],
@@ -240,7 +240,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
     },
     {
       id: 'poly-taiyang',
-      name: '太阳新天地中风险管控区',
+      name: '太阳新天地中风险防汛隐患区',
       level: 'medium',
       coordinates: [
         [23.127, 113.338],
@@ -303,7 +303,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
           <ChevronLeft />
         </button>
         <h1 className="text-[17px] font-bold text-slate-900 tracking-tight flex items-center gap-1.5">
-          <span>疫情管控地图</span>
+          <span>防汛隐患地图</span>
           <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-200 font-normal">
             开源OSM
           </span>
@@ -311,12 +311,12 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
         <div className="w-8" />
       </div>
 
-      {/* 2. Three Tabs: 疫情地图 | 病例轨迹 | 确诊数量 */}
+      {/* 2. Three Tabs: 隐患地图 | 隐患轨迹 | 隐患数量 */}
       <div className="bg-white px-4 border-b border-slate-100 flex items-center justify-around z-20">
         {[
-          { id: 'map', label: '疫情地图' },
-          { id: 'track', label: '病例轨迹' },
-          { id: 'cases', label: '确诊数量' }
+          { id: 'map', label: '隐患地图' },
+          { id: 'track', label: '隐患轨迹' },
+          { id: 'cases', label: '隐患数量' }
         ].map((tab) => {
           const isActive = activeSubTab === tab.id;
           return (
@@ -341,7 +341,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
         })}
       </div>
 
-      {/* 3. Triple Filter Bar (广州市 ▾ | 位置距离 ▾ | 风险地区 ▾) */}
+      {/* 3. Triple Filter Bar (广州市 ▾ | 位置距离 ▾ | 隐患区域 ▾) */}
       <div className="bg-white/95 backdrop-blur-md px-3 py-2 border-b border-slate-100 flex items-center justify-between gap-2 shadow-2xs z-20">
         {/* City Filter */}
         <button
@@ -388,7 +388,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
         >
           <span className="truncate">
             {selectedRisk === 'all'
-              ? '风险地区'
+              ? '隐患区域'
               : selectedRisk === 'high'
               ? '高风险'
               : selectedRisk === 'medium'
@@ -439,7 +439,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
                         onClick={() => {
                           setSelectedDistrict(dist);
                           setActiveDropdown(null);
-                          triggerToast(`已按【${dist}】过滤风险区域`);
+                          triggerToast(`已按【${dist}】过滤隐患区域`);
                         }}
                         className="w-full py-2.5 px-3 flex items-center justify-between text-[13px] hover:bg-slate-50 rounded-lg cursor-pointer"
                       >
@@ -542,13 +542,13 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
           }}
         />
 
-        {/* Top Floating Analysis Popover (Matches 2.1疫情分析提示.png) */}
+        {/* Top Floating Analysis Popover */}
         {showAnalysisCard && (
           <div className="absolute top-3 left-4 right-16 z-20 bg-white/95 backdrop-blur-md rounded-2xl p-3.5 shadow-xl border border-slate-100 animate-in fade-in duration-200">
             <div className="flex items-center justify-between mb-1.5">
               <h4 className="text-[14px] font-black text-slate-900 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-                疫情管控实时分析
+                防汛隐患实时分析
               </h4>
               <button
                 onClick={() => setShowAnalysisCard(false)}
@@ -558,7 +558,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
               </button>
             </div>
             <p className="text-[13px] text-slate-700 leading-relaxed">
-              {selectedCity}当前已公布<span className="text-rose-600 font-bold px-1">{filteredPois.length}</span>个重点管控场所，距离最近的【{selectedPoi?.name || '南悦花苑'}】处于严密网格化巡查中。
+              {selectedCity}当前已发现<span className="text-rose-600 font-bold px-1">{filteredPois.length}</span>个重点防汛隐患场所，距离最近的【{selectedPoi?.name || '南悦花苑'}】处于网格化巡查中。
             </p>
           </div>
         )}
@@ -591,7 +591,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
           </div>
 
           <button
-            onClick={() => triggerToast('疫情管控更新记录：今日已同步 15 处风险地区轨迹')}
+            onClick={() => triggerToast('防汛隐患更新记录：今日已同步 15 处隐患区域轨迹')}
             className="w-10 h-10 bg-white/95 backdrop-blur-md rounded-xl shadow-lg border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer"
           >
             <Clock className="w-4 h-4 mb-0.5 stroke-[2.2]" />
@@ -705,7 +705,7 @@ export const EpidemicMapPage: React.FC<EpidemicMapPageProps> = ({ onBack }) => {
           <div className="absolute inset-0 bg-white z-40 flex flex-col animate-in slide-in-from-bottom duration-200">
             <div className="h-12 border-b border-slate-100 px-4 flex items-center justify-between">
               <span className="text-[15px] font-bold text-slate-900">
-                共找到 {filteredPois.length} 处管控区域
+                共找到 {filteredPois.length} 处隐患区域
               </span>
               <button
                 onClick={() => setShowExpandedSheet(false)}

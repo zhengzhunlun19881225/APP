@@ -30,8 +30,8 @@ export const MessagesPage: React.FC<MessagesPageProps> = ({
   );
 
   return (
-    <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-6 relative">
-      <div className="app-plan-query-bg px-3 pb-3 relative z-10">
+    <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-hidden relative">
+      <div className="app-plan-query-bg px-3 pb-3 relative z-20 shrink-0">
         <div className="-mx-3 mb-1">
           <StatusBar />
         </div>
@@ -78,7 +78,7 @@ export const MessagesPage: React.FC<MessagesPageProps> = ({
       </div>
 
       {/* Main Message List Card */}
-      <div className="px-3 flex-1">
+      <div className="px-3 flex-1 overflow-y-auto pb-6">
         <div className="bg-white rounded-[12px] p-2.5 shadow-2xs border border-slate-100/80">
           {filteredMessages.length === 0 ? (
             <div className="py-12 text-center text-slate-400 text-[15px]">

@@ -57,13 +57,14 @@ export interface OpenSourceMapProps {
   onPolygonClick?: (polygon: MapPolygonData) => void;
   onMoveEnd?: (center: [number, number], zoom: number) => void;
   onMapReady?: (map: L.Map) => void;
+  showMarkerLabels?: boolean;
   className?: string;
 }
 
 export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
   center,
   zoom = 13,
-  tileProviderId = 'amapVector',
+  tileProviderId = 'cartoVoyager',
   markers = [],
   polygons = [],
   circle = null,
@@ -75,6 +76,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
   onPolygonClick,
   onMoveEnd,
   onMapReady,
+  showMarkerLabels = true,
   className = 'w-full h-full'
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -103,7 +105,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
       });
 
       // Default tile provider
-      const provider: TileProvider = OPEN_SOURCE_TILE_PROVIDERS[tileProviderId] || OPEN_SOURCE_TILE_PROVIDERS.amapVector;
+      const provider: TileProvider = OPEN_SOURCE_TILE_PROVIDERS[tileProviderId] || OPEN_SOURCE_TILE_PROVIDERS.cartoVoyager;
       const tileLayer = L.tileLayer(provider.url, {
         maxZoom: provider.maxZoom || 18,
         subdomains: provider.subdomains || ['1', '2', '3', '4']
@@ -167,7 +169,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
   // 3. Handle Tile Provider change
   useEffect(() => {
     if (!mapRef.current) return;
-    const provider = OPEN_SOURCE_TILE_PROVIDERS[tileProviderId] || OPEN_SOURCE_TILE_PROVIDERS.amapVector;
+    const provider = OPEN_SOURCE_TILE_PROVIDERS[tileProviderId] || OPEN_SOURCE_TILE_PROVIDERS.cartoVoyager;
     if (tileLayerRef.current) {
       mapRef.current.removeLayer(tileLayerRef.current);
     }
@@ -199,7 +201,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
             <div class="w-10 h-10 rounded-full ${bgColor} flex items-center justify-center font-bold text-sm shadow-md ring-4 ${ringColor} border-2 border-white">
               ${m.count !== undefined ? m.count : '1'}
             </div>
-            ${m.title ? `<div class="absolute -bottom-5 whitespace-nowrap bg-white/95 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full shadow border border-slate-200">${m.title}</div>` : ''}
+            ${showMarkerLabels && m.title ? `<div class="absolute -bottom-5 whitespace-nowrap bg-white/95 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full shadow border border-slate-200">${m.title}</div>` : ''}
           </div>
         `;
         iconSize = [40, 40];
@@ -208,11 +210,13 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
         // High risk warning marker (e.g. 南悦花苑)
         iconHtml = `
           <div class="relative flex flex-col items-center cursor-pointer group">
-            <div class="bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap">
-              <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-              ${m.title}
-            </div>
-            <div class="w-2.5 h-2.5 bg-red-600 rotate-45 -mt-1 shadow-sm border-r border-b border-white"></div>
+            ${showMarkerLabels ? `
+              <div class="bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap">
+                <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                ${m.title}
+              </div>
+              <div class="w-2.5 h-2.5 bg-red-600 rotate-45 -mt-1 shadow-sm border-r border-b border-white"></div>
+            ` : ''}
             <div class="w-7 h-7 rounded-full bg-red-50 border-2 border-red-600 flex items-center justify-center -mt-1 shadow-md">
               <svg class="w-4 h-4 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
@@ -222,8 +226,8 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
             </div>
           </div>
         `;
-        iconSize = [90, 60];
-        iconAnchor = [45, 60];
+        iconSize = showMarkerLabels ? [90, 60] : [36, 36];
+        iconAnchor = showMarkerLabels ? [45, 60] : [18, 18];
       } else if (m.iconType === 'surveillanceCluster') {
         // Matches surveillance cluster marker from 1.1地图.png (Camera icon + Count in dark circular badge with amber rim)
         iconHtml = `
@@ -236,7 +240,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
                 <span class="text-[12px] font-black text-white font-mono">${m.count || '123'}</span>
               </div>
             </div>
-            ${m.title ? `<div class="absolute -bottom-5 whitespace-nowrap bg-white/95 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full shadow border border-slate-200">${m.title}</div>` : ''}
+            ${showMarkerLabels && m.title ? `<div class="absolute -bottom-5 whitespace-nowrap bg-white/95 text-slate-800 text-[10px] font-bold px-2 py-0.5 rounded-full shadow border border-slate-200">${m.title}</div>` : ''}
           </div>
         `;
         iconSize = [44, 44];
@@ -279,11 +283,11 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
                 </svg>
               `}
             </div>
-            ${m.title ? `<div class="bg-white/95 text-slate-800 text-[10px] font-bold px-1.5 py-0.5 rounded shadow border border-slate-200 mt-1 whitespace-nowrap">${m.title}</div>` : ''}
+            ${showMarkerLabels && m.title ? `<div class="bg-white/95 text-slate-800 text-[10px] font-bold px-1.5 py-0.5 rounded shadow border border-slate-200 mt-1 whitespace-nowrap">${m.title}</div>` : ''}
           </div>
         `;
-        iconSize = [70, 48];
-        iconAnchor = [35, 20];
+        iconSize = showMarkerLabels ? [70, 48] : [36, 36];
+        iconAnchor = showMarkerLabels ? [35, 20] : [18, 18];
       } else if (m.iconType === 'hospital') {
         // Medical Hospital
         iconHtml = `
@@ -293,11 +297,11 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
                 <path d="M12 6v12"/><path d="M6 12h12"/>
               </svg>
             </div>
-            ${m.title ? `<div class="bg-white/95 text-slate-800 text-[10px] font-bold px-1.5 py-0.5 rounded shadow border border-slate-200 mt-1 whitespace-nowrap">${m.title}</div>` : ''}
+            ${showMarkerLabels && m.title ? `<div class="bg-white/95 text-slate-800 text-[10px] font-bold px-1.5 py-0.5 rounded shadow border border-slate-200 mt-1 whitespace-nowrap">${m.title}</div>` : ''}
           </div>
         `;
-        iconSize = [70, 48];
-        iconAnchor = [35, 20];
+        iconSize = showMarkerLabels ? [70, 48] : [36, 36];
+        iconAnchor = showMarkerLabels ? [35, 20] : [18, 18];
       } else {
         // Standard Pin
         iconHtml = `
@@ -307,11 +311,11 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
               </svg>
             </div>
-            ${m.title ? `<div class="bg-white/95 text-slate-800 text-[10px] font-bold px-1.5 py-0.5 rounded shadow border border-slate-200 mt-0.5 whitespace-nowrap">${m.title}</div>` : ''}
+            ${showMarkerLabels && m.title ? `<div class="bg-white/95 text-slate-800 text-[10px] font-bold px-1.5 py-0.5 rounded shadow border border-slate-200 mt-0.5 whitespace-nowrap">${m.title}</div>` : ''}
           </div>
         `;
-        iconSize = [60, 44];
-        iconAnchor = [30, 20];
+        iconSize = showMarkerLabels ? [60, 44] : [36, 36];
+        iconAnchor = showMarkerLabels ? [30, 20] : [18, 18];
       }
 
       const customDivIcon = L.divIcon({
@@ -350,7 +354,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
 
       markersLayerGroupRef.current?.addLayer(marker);
     });
-  }, [markers]);
+  }, [markers, showMarkerLabels]);
 
   // 5. Render Polygons (Risk Zones, Controlled Areas)
   useEffect(() => {
@@ -375,7 +379,7 @@ export const OpenSourceMap: React.FC<OpenSourceMapProps> = ({
         <div class="p-2 font-sans">
           <div class="text-xs font-bold text-slate-900">${poly.name}</div>
           <div class="text-[11px] ${isHigh ? 'text-red-600' : 'text-amber-600'} font-medium mt-0.5">
-            ${isHigh ? '高风险封控区' : isMedium ? '中风险管控区' : '重点防范区'}
+            ${isHigh ? '高风险防汛隐患区' : isMedium ? '中风险防汛隐患区' : '重点防范区'}
           </div>
         </div>
       `);

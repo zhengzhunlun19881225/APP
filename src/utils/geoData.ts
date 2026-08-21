@@ -66,6 +66,10 @@ export const OPEN_SOURCE_TILE_PROVIDERS: Record<string, TileProvider> = {
   }
 };
 
+export const SELECTABLE_TILE_PROVIDERS = Object.values(OPEN_SOURCE_TILE_PROVIDERS).filter(
+  (provider) => provider.id !== 'amapVector' && provider.id !== 'osm'
+);
+
 export const CITY_COORDINATES: Record<string, [number, number]> = {
   '广州市': [23.1291, 113.2644],
   '深圳市': [22.5431, 114.0579],

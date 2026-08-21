@@ -29,18 +29,17 @@ import {
   MapPin,
   Info,
   Tv,
-  ListVideo
 } from 'lucide-react';
 import L from 'leaflet';
 import { EpidemicMapPage } from './EpidemicMapPage';
 import { LocationPickerModal } from './LocationPickerModal';
 import { OpenSourceMap, MapMarkerData, MapPolygonData } from './OpenSourceMap';
-import { OPEN_SOURCE_TILE_PROVIDERS } from '../utils/geoData';
+import { StatusBar } from './StatusBar';
+import { SELECTABLE_TILE_PROVIDERS } from '../utils/geoData';
 import {
   SURVEILLANCE_CAMERAS,
   SurveillanceCamera
 } from '../data/surveillanceData';
-import { SurveillanceDrawer } from './SurveillanceDrawer';
 import { SurveillanceModal } from './SurveillanceModal';
 import { SurveillanceFullscreenModal } from './SurveillanceFullscreenModal';
 
@@ -58,7 +57,7 @@ const SEARCH_MOCK_RESULTS: SearchResultItem[] = [
   {
     id: 'sr-1',
     name: '南悦花苑',
-    category: '高风险封控小区',
+    category: '高风险防汛隐患点',
     address: '广东省深圳市福田区莲花街道福中一路',
     tag: '高风险',
     lat: 22.5488,
@@ -67,7 +66,7 @@ const SEARCH_MOCK_RESULTS: SearchResultItem[] = [
   {
     id: 'sr-2',
     name: '广钢医院(北郊分院)',
-    category: '医疗机构 / 发热门诊',
+    category: '医疗机构 / 应急保障',
     address: '广东省广州市白云区机场路118号',
     lat: 23.165,
     lng: 113.255
@@ -90,8 +89,8 @@ const SEARCH_MOCK_RESULTS: SearchResultItem[] = [
   },
   {
     id: 'sr-5',
-    name: '马务小学集中核酸采样点',
-    category: '采样检测点',
+    name: '马务小学临时防汛排查点',
+    category: '防汛排查点',
     address: '广东省广州市白云区黄石东路88号',
     lat: 23.195,
     lng: 113.272
@@ -115,20 +114,18 @@ const SEARCH_MOCK_RESULTS: SearchResultItem[] = [
   }
 ];
 
-export interface MapPageProps {
-  initialOpenSurveillanceDrawer?: boolean;
+interface MapPageProps {
+  onOverlayChange?: (active: boolean) => void;
 }
 
-export const MapPage: React.FC<MapPageProps> = ({
-  initialOpenSurveillanceDrawer = false
-}) => {
+export const MapPage: React.FC<MapPageProps> = ({ onOverlayChange }) => {
   // Sub-pages state (e.g. Epidemic Control Map, Location Picker)
   const [activeSubPage, setActiveSubPage] = useState<'epidemic' | 'picker' | null>(null);
 
   // Map state (defaults around Shenzhen center / Shenda station)
   const [center, setCenter] = useState<[number, number]>([22.5488, 114.0556]);
   const [zoom, setZoom] = useState<number>(13);
-  const [activeTileId, setActiveTileId] = useState<string>('amapVector');
+  const [activeTileId, setActiveTileId] = useState<string>('cartoVoyager');
   const [showTileSelector, setShowTileSelector] = useState(false);
 
   // Search state
@@ -137,21 +134,12 @@ export const MapPage: React.FC<MapPageProps> = ({
   const [selectedSearchResult, setSelectedSearchResult] = useState<SearchResultItem | null>(null);
 
   // Selected item modal/card on map (for POI)
-  const [selectedPoi, setSelectedPoi] = useState<MapMarkerData | SearchResultItem | null>({
-    id: 'sr-1',
-    name: '南悦花苑',
-    category: '商务楼宇 / 封控区',
-    address: '广东省深圳市福田区莲花街道福中一路',
-    tag: '高风险',
-    lat: 22.5488,
-    lng: 114.0556
-  });
+  const [selectedPoi, setSelectedPoi] = useState<MapMarkerData | SearchResultItem | null>(null);
 
   // Layer Drawer state
   const [showLayerDrawer, setShowLayerDrawer] = useState(false);
 
   // Surveillance (监控) States
-  const [showSurveillanceDrawer, setShowSurveillanceDrawer] = useState(initialOpenSurveillanceDrawer);
   const [activeSurveillanceCamera, setActiveSurveillanceCamera] = useState<SurveillanceCamera | null>(null);
   const [isFullscreenSurveillance, setIsFullscreenSurveillance] = useState(false);
   const [favoriteCameraIds, setFavoriteCameraIds] = useState<Set<string>>(new Set(['cam-shenda', 'cam-4', 'cam-sz-baoan']));
@@ -162,11 +150,19 @@ export const MapPage: React.FC<MapPageProps> = ({
 
   const mapInstanceRef = useRef<L.Map | null>(null);
 
+  useEffect(() => {
+    onOverlayChange?.(showLayerDrawer);
+    return () => onOverlayChange?.(false);
+  }, [showLayerDrawer, onOverlayChange]);
+
   // Active Layers Toggles in Drawer
   const [activeLayers, setActiveLayers] = useState<Record<string, boolean>>({
     personnel: true,
     camera: true,
     truck: true,
+    worksite: false,
+    rescueTeam: false,
+    warehouse: false,
     risk: true,
     shelter: true,
     police: true,
@@ -333,7 +329,7 @@ export const MapPage: React.FC<MapPageProps> = ({
       lat: 22.5488,
       lng: 114.0556,
       title: '南悦花苑',
-      category: '高风险封控区',
+      category: '高风险防汛隐患区',
       iconType: 'risk',
       status: 'high',
       details: {
@@ -351,8 +347,8 @@ export const MapPage: React.FC<MapPageProps> = ({
       id: 'truck-1',
       lat: 22.542,
       lng: 114.048,
-      title: '应急消杀车 粤B·88219',
-      category: '防疫特种车',
+      title: '应急排涝车 粤B·88219',
+      category: '防汛特种车',
       iconType: 'truck'
     });
   }
@@ -381,12 +377,147 @@ export const MapPage: React.FC<MapPageProps> = ({
     });
   }
 
+  if (activeLayers.personnel) {
+    mapMarkers.push({
+      id: 'personnel-1',
+      lat: 22.5465,
+      lng: 114.052,
+      title: '现场处置人员',
+      category: '应急处置小组',
+      iconType: 'personnel',
+      details: {
+        address: '福中一路南悦花苑周边',
+        subtext: '队员 8 人 · 已到场'
+      }
+    });
+  }
+
+  if (activeLayers.worksite) {
+    mapMarkers.push({
+      id: 'worksite-1',
+      lat: 22.556,
+      lng: 114.041,
+      title: '福田排水改造工点',
+      category: '防汛施工工点',
+      iconType: 'pin',
+      details: {
+        address: '北环大道辅路',
+        subtext: '施工围挡 · 需巡查'
+      }
+    });
+  }
+
+  if (activeLayers.rescueTeam) {
+    mapMarkers.push({
+      id: 'rescue-team-1',
+      lat: 22.536,
+      lng: 114.047,
+      title: '福田应急救援队',
+      category: '救援队伍',
+      iconType: 'pin',
+      details: {
+        address: '福田综合片区',
+        subtext: '待命 16 人'
+      }
+    });
+  }
+
+  if (activeLayers.warehouse) {
+    mapMarkers.push({
+      id: 'warehouse-1',
+      lat: 22.55,
+      lng: 114.04,
+      title: '中心应急物资综合储备库',
+      category: '物资仓库',
+      iconType: 'warehouse',
+      details: {
+        address: '深圳市福田区中心片区',
+        subtext: '沙袋、水泵、照明设备'
+      }
+    });
+  }
+
+  if (activeLayers.police) {
+    mapMarkers.push({
+      id: 'police-1',
+      lat: 22.553,
+      lng: 114.063,
+      title: '莲花派出所',
+      category: '派出所',
+      iconType: 'police',
+      details: {
+        address: '莲花街道景田路',
+        subtext: '治安联动保障'
+      }
+    });
+  }
+
+  if (activeLayers.trafficPolice) {
+    mapMarkers.push({
+      id: 'traffic-police-1',
+      lat: 22.538,
+      lng: 114.058,
+      title: '福田交警执勤点',
+      category: '交警队',
+      iconType: 'pin',
+      details: {
+        address: '福中一路与金田路交叉口',
+        subtext: '交通疏导中'
+      }
+    });
+  }
+
+  if (activeLayers.fire) {
+    mapMarkers.push({
+      id: 'fire-1',
+      lat: 22.543,
+      lng: 114.071,
+      title: '福田消防救援站',
+      category: '消防队',
+      iconType: 'fire',
+      details: {
+        address: '福田中心区',
+        subtext: '排涝救援备勤'
+      }
+    });
+  }
+
+  if (activeLayers.hotel) {
+    mapMarkers.push({
+      id: 'hotel-1',
+      lat: 22.532,
+      lng: 114.055,
+      title: '福田协议安置酒店',
+      category: '协议酒店',
+      iconType: 'hotel',
+      details: {
+        address: '福田区滨河大道',
+        subtext: '可安置 120 人'
+      }
+    });
+  }
+
+  if (activeLayers.nucleic) {
+    mapMarkers.push({
+      id: 'water-check-1',
+      lat: 22.558,
+      lng: 114.052,
+      title: '福中一路积水排查点',
+      category: '积水排查',
+      iconType: 'pin',
+      details: {
+        address: '福中一路低洼路段',
+        subtext: '巡查频次：30分钟/次'
+      }
+    });
+  }
+
   // Polygons for High Risk Zone Area
   const mapPolygons: MapPolygonData[] = [];
   if (activeLayers.risk || activeLayers.epidemic) {
     mapPolygons.push({
       id: 'poly-nanyue',
-      name: '南悦花苑封控区',
+      name: '南悦花苑防汛隐患区',
       level: 'high',
       coordinates: [
         [22.551, 114.052],
@@ -397,7 +528,7 @@ export const MapPage: React.FC<MapPageProps> = ({
     });
     mapPolygons.push({
       id: 'poly-buffer',
-      name: '福中一路周边管控圈',
+      name: '福中一路周边防汛警戒圈',
       level: 'medium',
       coordinates: [
         [22.554, 114.048],
@@ -427,6 +558,10 @@ export const MapPage: React.FC<MapPageProps> = ({
 
   return (
     <div className="relative w-full h-full bg-[#f1f5f9] flex flex-col overflow-hidden select-none">
+      <div className="absolute top-0 left-0 right-0 z-40 pointer-events-none">
+        <StatusBar />
+      </div>
+
       {/* Toast Alert Notice */}
       {toastMsg && (
         <div className="absolute top-16 left-1/2 -translate-x-1/2 z-60 bg-slate-900/90 text-white text-xs px-4 py-2 rounded-full shadow-lg border border-slate-700 backdrop-blur-md animate-fade-in flex items-center gap-1.5 pointer-events-none">
@@ -437,25 +572,16 @@ export const MapPage: React.FC<MapPageProps> = ({
 
       {/* 1. Top Search Bar (Matches 1.1地图.png & 3.5-搜索.png) */}
       {!isSearchOpen ? (
-        <div className="absolute top-3 left-3 right-3 z-30 flex items-center gap-2">
+        <div className="absolute top-[58px] left-3 right-3 z-30 flex items-center gap-2">
           <div
             onClick={() => setIsSearchOpen(true)}
-            className="flex-1 h-11 bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 px-3.5 flex items-center gap-2.5 cursor-pointer hover:bg-white transition-all"
+            className="h-[38px] w-full bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 px-3.5 flex items-center gap-2.5 cursor-pointer hover:bg-white transition-all"
           >
             <Search className="w-4 h-4 text-slate-400 stroke-[2.5]" />
             <span className="text-[13px] text-slate-500 font-medium truncate">
               {selectedSearchResult ? selectedSearchResult.name : '搜索地点、应急场所、监控探头'}
             </span>
           </div>
-
-          {/* Open-Source Tile Switcher Button */}
-          <button
-            onClick={() => setShowTileSelector((v) => !v)}
-            title="切换开源底图图源"
-            className="h-11 w-11 bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 transition-all cursor-pointer flex-shrink-0"
-          >
-            <Globe className="w-5 h-5" />
-          </button>
         </div>
       ) : (
         /* Fullscreen Search Mode (Matches 3.5-搜索.png & 3.6-搜索结果.png) */
@@ -535,7 +661,7 @@ export const MapPage: React.FC<MapPageProps> = ({
 
       {/* Open-Source Tile Layer Selection Popup */}
       {showTileSelector && (
-        <div className="absolute top-16 right-3 z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200 p-3 w-64 animate-in fade-in zoom-in-95 duration-150">
+        <div className="absolute top-[118px] right-3 z-40 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200 p-3 w-64 animate-in fade-in zoom-in-95 duration-150">
           <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
             <div className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
               <Globe className="w-3.5 h-3.5 text-blue-600" />
@@ -549,7 +675,7 @@ export const MapPage: React.FC<MapPageProps> = ({
             </button>
           </div>
           <div className="space-y-1.5">
-            {Object.values(OPEN_SOURCE_TILE_PROVIDERS).map((tp) => (
+            {SELECTABLE_TILE_PROVIDERS.map((tp) => (
               <button
                 key={tp.id}
                 onClick={() => {
@@ -585,6 +711,7 @@ export const MapPage: React.FC<MapPageProps> = ({
           onMapReady={(map) => {
             mapInstanceRef.current = map;
           }}
+          showMarkerLabels={zoom >= 15}
           onMoveEnd={(newCenter, newZoom) => {
             setCenter(newCenter);
             setZoom(newZoom);
@@ -615,14 +742,14 @@ export const MapPage: React.FC<MapPageProps> = ({
       </div>
 
       {/* 3. Floating Quick Action Controls (Right Sidebar) */}
-      <div className="absolute right-3 top-20 z-20 flex flex-col gap-2.5 items-end">
-        {/* Surveillance Drawer Toggle (Matches 📑 目录/区划 bottom sheet in 1.1地图.png) */}
+      <div className="absolute right-3 top-[134px] z-20 flex flex-col gap-2.5 items-end">
+        {/* Open-Source Tile Switcher Button */}
         <button
-          onClick={() => setShowSurveillanceDrawer(true)}
-          title="监控目录与区划列表"
-          className="w-10 h-10 rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 border border-blue-500 flex items-center justify-center hover:bg-blue-700 active:scale-95 transition-all cursor-pointer"
+          onClick={() => setShowTileSelector((v) => !v)}
+          title="切换开源底图图源"
+          className="w-[38px] h-[38px] rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-500/30 border border-blue-500 flex items-center justify-center hover:bg-blue-700 active:scale-95 transition-all cursor-pointer"
         >
-          <ListVideo className="w-5 h-5" />
+          <Globe className="w-[18px] h-[18px]" />
         </button>
 
         {/* Real-time Traffic Toggle (Matches 1.1) */}
@@ -633,63 +760,67 @@ export const MapPage: React.FC<MapPageProps> = ({
             triggerToast(next ? '已开启实时路况仿真叠加' : '已关闭实时路况');
           }}
           title="实时路况"
-          className={`w-10 h-10 rounded-xl shadow-md border flex items-center justify-center transition-all cursor-pointer ${
+          className={`w-[38px] h-[38px] rounded-xl shadow-md border flex items-center justify-center transition-all cursor-pointer ${
             trafficOn
               ? 'bg-white/95 text-blue-600 border-blue-200'
               : 'bg-white/95 text-slate-700 border-slate-200/80 hover:bg-white'
           }`}
         >
-          <Car className="w-5 h-5" />
+          <Car className="w-[18px] h-[18px]" />
         </button>
 
         {/* Layer Drawer Toggle */}
         <button
           onClick={() => setShowLayerDrawer(true)}
           title="图层管理"
-          className="w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white transition-all cursor-pointer"
+          className="w-[38px] h-[38px] rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white transition-all cursor-pointer"
         >
-          <Layers className="w-5 h-5" />
+          <Layers className="w-[18px] h-[18px]" />
         </button>
 
-        {/* Location Picker */}
-        <button
-          onClick={() => setActiveSubPage('picker')}
-          title="选取位置分享"
-          className="w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white transition-all cursor-pointer"
-        >
-          <MapPin className="w-5 h-5" />
-        </button>
+        {!selectedPoi && (
+          <>
+            {/* Location Picker */}
+            <button
+              onClick={() => setActiveSubPage('picker')}
+              title="选取位置分享"
+              className="w-[38px] h-[38px] rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white transition-all cursor-pointer"
+            >
+              <MapPin className="w-[18px] h-[18px]" />
+            </button>
 
-        {/* Zoom In & Out Controls */}
-        <div className="flex flex-col bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 overflow-hidden divide-y divide-slate-100">
-          <button
-            onClick={handleZoomIn}
-            title="放大"
-            className="w-10 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
-          >
-            <Plus className="w-5 h-5" />
-          </button>
-          <button
-            onClick={handleZoomOut}
-            title="缩小"
-            className="w-10 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
-          >
-            <Minus className="w-5 h-5" />
-          </button>
-        </div>
+            {/* Zoom In & Out Controls */}
+            <div className="flex flex-col bg-white/95 backdrop-blur-md rounded-xl shadow-md border border-slate-200/80 overflow-hidden divide-y divide-slate-100">
+              <button
+                onClick={handleZoomIn}
+                title="放大"
+                className="w-[38px] h-[38px] flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+              >
+                <Plus className="w-[18px] h-[18px]" />
+              </button>
+              <button
+                onClick={handleZoomOut}
+                title="缩小"
+                className="w-[38px] h-[38px] flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
+              >
+                <Minus className="w-[18px] h-[18px]" />
+              </button>
+            </div>
 
-        {/* GPS Locate Me Button */}
-        <button
-          onClick={handleLocateMe}
-          title="定位到我的位置"
-          className="w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white transition-all cursor-pointer"
-        >
-          <Crosshair className="w-5 h-5" />
-        </button>
+            {/* GPS Locate Me Button */}
+            <button
+              onClick={handleLocateMe}
+              title="定位到我的位置"
+              className="w-[38px] h-[38px] rounded-xl bg-white/95 backdrop-blur-md shadow-md border border-slate-200/80 flex items-center justify-center text-slate-700 hover:text-blue-600 hover:bg-white transition-all cursor-pointer"
+            >
+              <Crosshair className="w-[18px] h-[18px]" />
+            </button>
+          </>
+        )}
       </div>
 
       {/* 4. Bottom Selected Location Card (Matches 1.2地图-选中点.png) */}
-      {selectedPoi && !showSurveillanceDrawer && !activeSurveillanceCamera && (
+      {selectedPoi && !activeSurveillanceCamera && (
         <div className="absolute bottom-4 left-3 right-3 z-30 bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-100 p-3.5 animate-in slide-in-from-bottom-3 duration-200">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
@@ -707,7 +838,7 @@ export const MapPage: React.FC<MapPageProps> = ({
               <div className="flex items-center gap-3 mt-2 text-[11px] text-slate-600">
                 <span className="flex items-center gap-1">
                   <Activity className="w-3.5 h-3.5 text-blue-600" />
-                  已管控区域
+                  已排查区域
                 </span>
                 <span className="text-slate-300">|</span>
                 <span>网格责任人：陈书记</span>
@@ -729,21 +860,6 @@ export const MapPage: React.FC<MapPageProps> = ({
           </div>
         </div>
       )}
-
-      {/* 5. Surveillance Bottom Sheet Drawer (Matches 列表-区划, 列表-预案, 列表-热点, 列表-历史) */}
-      <SurveillanceDrawer
-        isOpen={showSurveillanceDrawer}
-        onClose={() => setShowSurveillanceDrawer(false)}
-        onSelectCamera={(cam) => {
-          setActiveSurveillanceCamera(cam);
-        }}
-        onLocateCameraOnMap={(cam) => {
-          setShowSurveillanceDrawer(false);
-          handleLocateCamera(cam);
-        }}
-        favoriteCameraIds={favoriteCameraIds}
-        onToggleFavorite={toggleFavorite}
-      />
 
       {/* 6. Surveillance Live Preview & PTZ Modal (Matches 监控详情 1.png & 监控详情 2.png) */}
       {activeSurveillanceCamera && !isFullscreenSurveillance && (
@@ -796,7 +912,7 @@ export const MapPage: React.FC<MapPageProps> = ({
                 >
                   <div
                     className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-                      activeLayers.personnel ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                      activeLayers.personnel ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400'
                     }`}
                   >
                     <User className="w-5 h-5" />
@@ -810,7 +926,7 @@ export const MapPage: React.FC<MapPageProps> = ({
                 >
                   <div
                     className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-                      activeLayers.camera ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                      activeLayers.camera ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400'
                     }`}
                   >
                     <Video className="w-5 h-5" />
@@ -824,7 +940,7 @@ export const MapPage: React.FC<MapPageProps> = ({
                 >
                   <div
                     className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-                      activeLayers.truck ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                      activeLayers.truck ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400'
                     }`}
                   >
                     <Truck className="w-5 h-5" />
@@ -839,19 +955,19 @@ export const MapPage: React.FC<MapPageProps> = ({
               <h3 className="text-[14px] font-bold text-slate-900 mb-3">场所与重点设施</h3>
               <div className="grid grid-cols-3 gap-y-4 gap-x-2 text-center">
                 {[
-                  { key: 'worksite', label: '工点', icon: HardHat, defaultBg: 'bg-slate-100 text-slate-700' },
-                  { key: 'rescueTeam', label: '救援队', icon: Users, defaultBg: 'bg-slate-100 text-slate-700' },
-                  { key: 'warehouse', label: '物资仓库', icon: Warehouse, defaultBg: 'bg-slate-100 text-slate-700' },
-                  { key: 'risk', label: '风险源', icon: AlertTriangle, defaultBg: 'bg-blue-600 text-white' },
-                  { key: 'shelter', label: '避难场所', icon: Flame, defaultBg: 'bg-blue-600 text-white' },
-                  { key: 'police', label: '派出所', icon: ShieldAlert, defaultBg: 'bg-blue-600 text-white' },
-                  { key: 'trafficPolice', label: '交警队', icon: User, defaultBg: 'bg-blue-600 text-white' },
-                  { key: 'fire', label: '消防队', icon: Building2, defaultBg: 'bg-blue-600 text-white' },
-                  { key: 'hospital', label: '医院', icon: Activity, defaultBg: 'bg-blue-600 text-white' },
-                  { key: 'hotel', label: '协议酒店', icon: Hotel, defaultBg: 'bg-blue-600 text-white' }
+                  { key: 'worksite', label: '工点', icon: HardHat },
+                  { key: 'rescueTeam', label: '救援队', icon: Users },
+                  { key: 'warehouse', label: '物资仓库', icon: Warehouse },
+                  { key: 'risk', label: '风险源', icon: AlertTriangle },
+                  { key: 'shelter', label: '避难场所', icon: Flame },
+                  { key: 'police', label: '派出所', icon: ShieldAlert },
+                  { key: 'trafficPolice', label: '交警队', icon: User },
+                  { key: 'fire', label: '消防队', icon: Building2 },
+                  { key: 'hospital', label: '医院', icon: Activity },
+                  { key: 'hotel', label: '协议酒店', icon: Hotel }
                 ].map((item) => {
                   const Icon = item.icon;
-                  const isActive = activeLayers[item.key] ?? true;
+                  const isActive = Boolean(activeLayers[item.key]);
                   return (
                     <button
                       key={item.key}
@@ -860,7 +976,7 @@ export const MapPage: React.FC<MapPageProps> = ({
                     >
                       <div
                         className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-                          isActive ? item.defaultBg : 'bg-slate-100 text-slate-400 opacity-50'
+                          isActive ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400'
                         }`}
                       >
                         <Icon className="w-5 h-5" />
@@ -879,36 +995,36 @@ export const MapPage: React.FC<MapPageProps> = ({
               <h3 className="text-[14px] font-bold text-slate-900 mb-3">专题图层</h3>
               <div className="grid grid-cols-3 gap-2 text-center">
                 <button
-                  onClick={() => toggleLayer('epidemic', '疫情管控')}
+                  onClick={() => toggleLayer('epidemic', '防汛隐患')}
                   className="flex flex-col items-center gap-1.5 cursor-pointer group"
                 >
                   <div
                     className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-                      activeLayers.epidemic ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                      activeLayers.epidemic ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400'
                     }`}
                   >
                     <Activity className="w-5 h-5" />
                   </div>
-                  <span className="text-[12px] text-slate-700">疫情管控</span>
+                  <span className="text-[12px] text-slate-700">防汛隐患</span>
                 </button>
 
                 <button
-                  onClick={() => toggleLayer('nucleic', '核酸检测')}
+                  onClick={() => toggleLayer('nucleic', '积水排查')}
                   className="flex flex-col items-center gap-1.5 cursor-pointer group"
                 >
                   <div
                     className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
-                      activeLayers.nucleic ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-400'
+                      activeLayers.nucleic ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-400'
                     }`}
                   >
                     <Pipette className="w-5 h-5" />
                   </div>
-                  <span className="text-[12px] text-slate-700">核酸检测</span>
+                  <span className="text-[12px] text-slate-700">积水排查</span>
                 </button>
               </div>
             </div>
 
-            {/* Section 4: 专题地图入口 (Navigates to 疫情管控地图) */}
+            {/* Section 4: 专题地图入口 */}
             <div className="pt-2 border-t border-slate-100">
               <h3 className="text-[13px] text-slate-400 mb-2">专题地图入口</h3>
               <div
@@ -923,8 +1039,8 @@ export const MapPage: React.FC<MapPageProps> = ({
                     <Activity className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[14px] font-bold text-blue-900 block">疫情管控专题地图</span>
-                    <span className="text-[11px] text-blue-600">包含风险区域、周边图层清单与一键会商</span>
+                    <span className="text-[14px] font-bold text-blue-900 block">防汛隐患专题地图</span>
+                    <span className="text-[11px] text-blue-600">包含隐患区域、周边图层清单与一键会商</span>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-blue-600" />

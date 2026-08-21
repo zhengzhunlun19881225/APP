@@ -475,7 +475,7 @@ export const PlanQueryPage: React.FC<PlanQueryPageProps> = ({ onBack }) => {
 
       {/* Plan Details Full View (Matches 预案详情 Screenshots) */}
       {selectedPlan && (
-        <div className="fixed inset-0 z-50 bg-[#f4f6fb] animate-fade-in">
+        <div className="absolute inset-0 z-50 bg-[#f4f6fb] animate-fade-in">
           <PlanDetailPage
             plan={{
               id: selectedPlan.id,

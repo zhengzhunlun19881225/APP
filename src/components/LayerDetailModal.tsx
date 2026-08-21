@@ -31,7 +31,7 @@ export const LayerDetailModal: React.FC<LayerDetailModalProps> = ({
     {
       id: 'w-2',
       type: 'warehouse',
-      name: '珠江新城防疫应急物资储备点',
+      name: '珠江新城防汛应急物资储备点',
       address: '广州市天河区花城大道68号地下物资库',
       checked: true
     },
@@ -59,7 +59,7 @@ export const LayerDetailModal: React.FC<LayerDetailModalProps> = ({
     {
       id: 'c-2',
       type: 'camera',
-      name: '南悦花苑封控区正门全景监控03',
+      name: '南悦花苑防汛隐患区正门全景监控03',
       address: '广州市白云区南悦花苑正门路灯杆',
       checked: true
     },

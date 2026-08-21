@@ -26,7 +26,7 @@ import {
   SURVEILLANCE_CAMERAS,
   SurveillanceCamera
 } from '../data/surveillanceData';
-import { OPEN_SOURCE_TILE_PROVIDERS, TileProvider } from '../utils/geoData';
+import { SELECTABLE_TILE_PROVIDERS } from '../utils/geoData';
 import L from 'leaflet';
 
 interface SurveillanceModulePageProps {
@@ -37,7 +37,7 @@ export const SurveillanceModulePage: React.FC<SurveillanceModulePageProps> = ({ 
   // Map View States
   const [center, setCenter] = useState<[number, number]>([22.5488, 114.0556]); // Centered around Shenzhen Futian
   const [zoom, setZoom] = useState<number>(14);
-  const [activeTileId, setActiveTileId] = useState<string>('amapVector');
+  const [activeTileId, setActiveTileId] = useState<string>('cartoVoyager');
   const [showTileSelector, setShowTileSelector] = useState(false);
   const mapInstanceRef = useRef<L.Map | null>(null);
 
@@ -277,7 +277,7 @@ export const SurveillanceModulePage: React.FC<SurveillanceModulePageProps> = ({ 
             </button>
           </div>
           <div className="space-y-1.5">
-            {(Object.values(OPEN_SOURCE_TILE_PROVIDERS) as TileProvider[]).map((tp) => (
+            {SELECTABLE_TILE_PROVIDERS.map((tp) => (
               <button
                 key={tp.id}
                 onClick={() => {

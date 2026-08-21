@@ -35,6 +35,8 @@ export interface CreateGroupPageProps {
   onCreateSuccess: (groupName: string, selectedMembersCount: number) => void;
 }
 
+const formatOrgDisplayName = (name: string) => name.replace(/^\d+(?=[\u4e00-\u9fa5])/, '');
+
 // 当前登录用户 (管理员)
 export const CURRENT_USER: Contact = {
   id: 'sys_admin',
@@ -936,7 +938,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
                         : 'text-blue-600 hover:text-blue-700 hover:underline cursor-pointer'
                     }`}
                   >
-                    {item.name}
+                    {formatOrgDisplayName(item.name)}
                   </button>
                 </React.Fragment>
               );
@@ -987,7 +989,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
 
                           <div className="flex items-center gap-1.5 truncate">
                             <span className="text-[16px] font-normal text-slate-900">
-                              {node.name}
+                              {formatOrgDisplayName(node.name)}
                             </span>
                             <span className="text-[14px] text-slate-400">
                               ({node.count}人)
@@ -1081,7 +1083,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
                           {/* 节点名称与人数 */}
                           <div className="flex items-center gap-1.5 truncate">
                             <span className="text-[16px] font-normal text-slate-900 group-hover:text-blue-600 transition-colors">
-                              {childNode.name}
+                              {formatOrgDisplayName(childNode.name)}
                             </span>
                             <span className="text-[14px] text-slate-400 font-normal">
                               ({childNode.count}人)
@@ -1164,7 +1166,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
         <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-4 py-3 flex items-center justify-between z-20 shadow-lg">
           <div className="flex items-center gap-2">
             <span className="text-[15px] text-slate-800 font-normal">
-              已选择: <span className="text-[#0070f3] font-bold text-[17px]">{tempSelectedIds.length}</span> <span className="text-slate-400 font-normal text-[14px]">/ 1000</span>
+              已选 <span className="text-[#0070f3] font-bold text-[17px]">{tempSelectedIds.length}</span> 人 <span className="text-slate-400 font-normal text-[14px]">/ 最多 1000 人</span>
             </span>
             <button
               type="button"
@@ -1285,9 +1287,9 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
 
   // STEP 1: CREATE GROUP FORM (群组创建主界面)
   return (
-    <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-y-auto pb-24">
+    <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-hidden">
       {/* Navigation Top Header */}
-      <div className="px-4 py-3 flex items-center justify-between sticky top-0 bg-transparent z-10">
+      <div className="px-4 py-3 flex items-center justify-between bg-transparent z-20 shrink-0">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -1302,7 +1304,8 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
         <div className="w-8" />
       </div>
 
-      <div className="px-4 mt-2 space-y-4 flex-1">
+      <div className="flex-1 overflow-y-auto pb-24">
+      <div className="px-4 mt-2 space-y-4">
         {/* Card 1: 群组名称 Input */}
         <div className="bg-white rounded-[16px] px-4 py-3.5 shadow-2xs border border-slate-100/80 flex items-center justify-between">
           <span className="text-[15px] font-bold text-slate-900">群组名称</span>
@@ -1391,6 +1394,7 @@ export const CreateGroupPage: React.FC<CreateGroupPageProps> = ({
         >
           提交
         </button>
+      </div>
       </div>
     </div>
   );

@@ -537,7 +537,7 @@ export const SURVEILLANCE_CAMERAS: SurveillanceCamera[] = [
   },
   {
     id: 'cam-sz-ft-2',
-    name: '南悦花苑封控区主出入口',
+    name: '南悦花苑防汛隐患区主出入口',
     address: '广东省深圳市福田区莲花街道福中一路南悦花苑1号门',
     city: '深圳市',
     district: '福田区',

@@ -35,8 +35,8 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
   );
 
   return (
-    <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-y-auto pb-6 relative">
-      <div className="app-plan-query-bg px-3 pb-3 relative z-10">
+    <div className="flex flex-col h-full bg-[#f4f5f8] select-none overflow-hidden relative">
+      <div className="app-plan-query-bg px-3 pb-3 relative z-20 shrink-0">
         <div className="-mx-3 mb-1">
           <StatusBar />
         </div>
@@ -82,6 +82,7 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
         />
       </div>
 
+      <div className="flex-1 overflow-y-auto pb-6">
       {/* Top Navigation Groups Card */}
       <div className="px-3 mb-2.5">
         <div className="bg-white rounded-[12px] p-3 shadow-2xs border border-slate-100/80 space-y-3">
@@ -203,6 +204,7 @@ export const ContactsPage: React.FC<ContactsPageProps> = ({
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

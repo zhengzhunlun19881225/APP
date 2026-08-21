@@ -37,9 +37,9 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
   }
 
   return (
-    <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-y-auto pb-8">
+    <div className="flex flex-col h-full app-plan-query-page-bg select-none overflow-hidden">
       {/* Top Header */}
-      <div className="px-4 py-3 flex items-center justify-between bg-transparent sticky top-0 z-20">
+      <div className="px-4 py-3 flex items-center justify-between bg-transparent z-20 shrink-0">
         <button
           onClick={onBack}
           className="system-back-button"
@@ -55,7 +55,7 @@ export const TrainingExamPage: React.FC<TrainingExamPageProps> = ({ onBack }) =>
       </div>
 
       {/* Main Content Area */}
-      <div className="px-3 space-y-3.5 mt-2">
+      <div className="flex-1 overflow-y-auto px-3 space-y-3.5 mt-2 pb-8">
         {/* 我的学习数据 Blue Card */}
         <div className="relative w-full rounded-[20px] bg-gradient-to-r from-[#0070f3] via-[#0088ff] to-[#00b2ff] p-4 text-white overflow-hidden shadow-md">
           {/* Decorative Gold Trophy Image/Graphic */}

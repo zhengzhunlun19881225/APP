@@ -8,7 +8,6 @@ import {
   FileText,
   Shield,
   ShieldAlert,
-  ShieldCheck,
   Building2,
   Users,
   Radio,
@@ -274,6 +273,16 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
   };
 
   const currentResources = resourceDataByLevel[selectedLevel];
+  const detailRows = [
+    { label: '预案名称', value: planData.title },
+    { label: '所属单位', value: planData.department },
+    { label: '事项类型', value: planData.eventType },
+    { label: '预案类型', value: planData.category },
+    { label: '版本发布日期', value: planData.publishDate },
+    { label: '最近修订日期', value: planData.lastRevisedDate },
+    { label: '法律依据', value: planData.legalBasis },
+    { label: '备注', value: planData.notes }
+  ];
 
   // Render Sub-Level Selector Bar (Used on tabs: 应急组织, 操作指令, 资源预案, 处置流程)
   const renderLevelSelector = () => (
@@ -373,36 +382,26 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
         </div>
       </div>
 
-      {/* Hero Header Card (Matches Screenshot Gradient & 3D Graphic) */}
-      <div className="px-4 pb-3 pt-1 bg-gradient-to-b from-[#edf5ff] to-[#f4f6fb] relative overflow-hidden">
-        <div className="bg-gradient-to-r from-[#d9ebfc] via-[#e6f1fd] to-[#edf6ff] rounded-[22px] p-4 shadow-2xs border border-white/80 relative flex items-center justify-between">
-          <div className="z-10 max-w-[70%]">
-            <h2 className="text-[18px] font-extrabold text-slate-900 tracking-tight leading-snug mb-2">
-              {planData.title}
-            </h2>
-            <p className="text-[12px] text-slate-600 mb-0.5">
+      {/* Plan Summary: retained as a mobile-contained information block */}
+      <div className="px-4 pb-3 pt-1 bg-[#edf5ff] shrink-0">
+        <div className="rounded-2xl bg-[#d9ebfc]/80 px-3.5 py-3 border border-white/60">
+          <h2 className="text-[16px] font-bold text-slate-900 leading-snug break-words">
+            {planData.title}
+          </h2>
+          <div className="mt-2 space-y-1 text-[12px] leading-relaxed">
+            <p className="text-slate-600">
               发布单位：<span className="text-slate-800 font-medium">{planData.department}</span>
             </p>
-            <p className="text-[12px] text-slate-600">
+            <p className="text-slate-600">
               版本：<span className="text-slate-800 font-medium">{planData.version}</span>
             </p>
-          </div>
-
-          {/* 3D Shield Graphic on Right */}
-          <div className="relative w-16 h-16 flex items-center justify-center flex-shrink-0">
-            <div className="absolute inset-0 bg-blue-400/20 rounded-full blur-md" />
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#2563eb] to-[#60a5fa] p-0.5 shadow-md flex items-center justify-center relative transform rotate-3">
-              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-[14px] flex items-center justify-center">
-                <ShieldCheck className="w-8 h-8 text-white drop-shadow-sm" />
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Top 5 Navigation Tabs (基本信息 | 应急组织 | 操作指令 | 资源预案 | 处置流程) */}
-      <div className="bg-white border-b border-slate-100 px-2 shadow-2xs z-10">
-        <div className="flex items-center justify-between text-[13px] font-medium text-slate-500">
+      <div className="bg-white border-b border-slate-100 px-2 shadow-2xs z-10 overflow-x-auto">
+        <div className="flex items-center text-[13px] font-medium text-slate-500 min-w-max">
           {[
             { key: 'basic', label: '基本信息' },
             { key: 'org', label: '应急组织' },
@@ -415,7 +414,7 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key as TabKey)}
-                className={`py-3 px-2 flex-1 text-center font-medium transition-all relative whitespace-nowrap ${
+                className={`py-3 px-2 min-w-[74px] text-center font-medium transition-all relative whitespace-nowrap ${
                   isActive ? 'text-[#0070f3] font-bold' : 'hover:text-slate-800'
                 }`}
               >
@@ -435,43 +434,23 @@ export const PlanDetailPage: React.FC<PlanDetailPageProps> = ({
         {activeTab === 'basic' && (
           <div className="space-y-3 animate-fade-in">
             {/* Properties Table Card */}
-            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 space-y-2.5 text-[13px]">
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal">预案名称</span>
-                <span className="text-slate-800 font-medium">{planData.title}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal">所属单位</span>
-                <span className="text-slate-800 font-medium">{planData.department}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal">事项类型</span>
-                <span className="text-slate-800 font-medium">{planData.eventType}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal">预案类型</span>
-                <span className="text-slate-800 font-medium">{planData.category}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal">版本发布日期</span>
-                <span className="text-slate-800 font-medium">{planData.publishDate}</span>
-              </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal">最近修订日期</span>
-                <span className="text-slate-800 font-medium">{planData.lastRevisedDate}</span>
-              </div>
-              <div className="flex justify-between items-start py-1 border-b border-slate-50">
-                <span className="text-slate-400 font-normal flex-shrink-0 pt-0.5">法律依据</span>
-                <div className="text-right text-slate-800 font-medium space-y-0.5">
-                  {planData.legalBasis.map((law, idx) => (
-                    <p key={idx} className="leading-tight">{law}</p>
-                  ))}
+            <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-100 divide-y divide-slate-100 text-[13px]">
+              {detailRows.map((row) => (
+                <div key={row.label} className="py-2.5 first:pt-0 last:pb-0">
+                  <div className="text-[12px] text-slate-400 mb-1">{row.label}</div>
+                  <div className="text-[14px] text-slate-800 font-medium leading-relaxed break-words">
+                    {Array.isArray(row.value) ? (
+                      <div className="space-y-0.5">
+                        {row.value.map((law, idx) => (
+                          <p key={idx}>{law}</p>
+                        ))}
+                      </div>
+                    ) : (
+                      row.value
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between items-center py-1">
-                <span className="text-slate-400 font-normal">备注</span>
-                <span className="text-slate-800 font-medium">{planData.notes}</span>
-              </div>
+              ))}
             </div>
 
             {/* Accordion 1: 编制目的 */}

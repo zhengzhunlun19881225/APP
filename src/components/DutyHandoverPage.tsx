@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ChevronLeft,
   ChevronDown,
-  Calendar,
   Clock,
-  User,
-  Users,
   Phone,
   Plus,
   CheckCircle2,
@@ -83,17 +80,44 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
   const [formPending, setFormPending] = useState('');
   const [formEquipment, setFormEquipment] = useState('各监控终端及指挥大屏运行正常，对讲信道通畅');
   const [formMaterial, setFormMaterial] = useState('应急物资储备齐全，防汛物资就绪');
+  const selectedDateRef = useRef<HTMLButtonElement | null>(null);
 
-  // Days in week
-  const weekDays = [
-    { date: 18, dayName: '周一' },
-    { date: 19, dayName: '周二' },
-    { date: 20, dayName: '周三', isToday: true },
-    { date: 21, dayName: '周四' },
-    { date: 22, dayName: '周五' },
-    { date: 23, dayName: '周六' },
-    { date: 24, dayName: '周日' }
-  ];
+  const parseMonthLabel = (label: string) => {
+    const match = label.match(/^(\d{4})年(\d{1,2})月$/);
+    return {
+      year: match ? Number(match[1]) : 2026,
+      month: match ? Number(match[2]) : 8
+    };
+  };
+
+  const { year: selectedYear, month: selectedMonth } = parseMonthLabel(currentMonth);
+  const daysInSelectedMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+  const weekNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+  const monthDays = Array.from({ length: daysInSelectedMonth }, (_, index) => {
+    const date = index + 1;
+    const day = new Date(selectedYear, selectedMonth - 1, date).getDay();
+    return {
+      date,
+      dayName: weekNames[day]
+    };
+  });
+
+  useEffect(() => {
+    selectedDateRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center'
+    });
+  }, [currentMonth, selectedDay]);
+
+  const handleMonthChange = (monthLabel: string) => {
+    const { year, month } = parseMonthLabel(monthLabel);
+    const monthDayCount = new Date(year, month, 0).getDate();
+    setCurrentMonth(monthLabel);
+    setSelectedDay((prev) => Math.min(prev, monthDayCount));
+    setMonthDropdownOpen(false);
+    onShowToast?.(`已切换至 ${monthLabel}`);
+  };
 
   // Schedule mock by date
   const scheduleData: Record<
@@ -545,7 +569,9 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
     }
   ]);
 
-  const currentSchedule = scheduleData[selectedDay] || scheduleData[20];
+  const fallbackScheduleDays = [18, 19, 20, 21, 22, 23, 24];
+  const fallbackScheduleDay = fallbackScheduleDays[(selectedDay - 1) % fallbackScheduleDays.length];
+  const currentSchedule = scheduleData[selectedDay] || scheduleData[fallbackScheduleDay] || scheduleData[20];
 
   // Filter logs
   const filteredLogs = handoverLogs.filter((log) => {
@@ -562,7 +588,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
 
     const now = new Date();
     const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-    const dateStr = `2026-08-${selectedDay.toString().padStart(2, '0')}`;
+    const dateStr = `${selectedYear}-${selectedMonth.toString().padStart(2, '0')}-${selectedDay.toString().padStart(2, '0')}`;
 
     const newLog: HandoverLog = {
       id: `log_${Date.now()}`,
@@ -592,82 +618,59 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#f4f5f8] select-none relative overflow-hidden">
       {/* Top Banner Header with Sky Blue Gradient */}
-      <div className="relative app-plan-query-bg text-slate-900 pt-3 pb-3 px-4 flex-shrink-0">
+      <div className="relative app-plan-query-bg text-slate-900 pt-3 pb-3 px-3 flex-shrink-0">
         {/* Navigation & Month bar */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="relative flex items-center justify-center">
+          <div className="absolute left-0 top-1/2 -translate-y-1/2">
             <button
               onClick={onBack}
               className="system-back-button"
             >
               <ChevronLeft />
             </button>
-
-            {/* Month dropdown trigger */}
-            <div className="relative">
-              <button
-                onClick={() => setMonthDropdownOpen(!monthDropdownOpen)}
-                className="flex items-center gap-1.5 text-[20px] font-bold text-slate-900 hover:opacity-90 active:scale-98 transition-all cursor-pointer"
-              >
-                <span>{currentMonth}</span>
-                <ChevronDown className="w-4 h-4 text-slate-900 stroke-[2.5]" />
-              </button>
-
-              {monthDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 bg-white text-slate-800 rounded-xl shadow-xl border border-slate-100 py-1.5 z-40 w-36 animate-in fade-in zoom-in-95">
-                  {['2026年7月', '2026年8月', '2026年9月', '2026年10月'].map((m) => (
-                    <button
-                      key={m}
-                      onClick={() => {
-                        setCurrentMonth(m);
-                        setMonthDropdownOpen(false);
-                        onShowToast?.(`已切换至 ${m}`);
-                      }}
-                      className={`w-full text-left px-3 py-1.5 text-xs font-medium hover:bg-blue-50 flex items-center justify-between ${
-                        currentMonth === m ? 'text-blue-600 font-bold bg-blue-50/50' : 'text-slate-700'
-                      }`}
-                    >
-                      <span>{m}</span>
-                      {currentMonth === m && <Check className="w-3.5 h-3.5 text-blue-600" />}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
 
-          {/* Right: "今天值班" Button Card */}
-          <button
-            onClick={() => {
-              setSelectedDay(20);
-              onShowToast?.('已切换至今日值班 (8月20日 周三)');
-            }}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-3 py-1.5 rounded-xl shadow-md border border-white/30 active:scale-95 transition-all cursor-pointer"
-          >
-            <div className="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center">
-              <Calendar className="w-4 h-4 text-white" />
-            </div>
-            <div className="text-left">
-              <div className="text-[12px] font-bold leading-tight">今天值班</div>
-              <div className="text-[10px] text-white/90 leading-tight">8月20日 周三</div>
-            </div>
-          </button>
-        </div>
+          {/* Month dropdown trigger */}
+          <div className="relative">
+            <button
+              onClick={() => setMonthDropdownOpen(!monthDropdownOpen)}
+              className="flex items-center gap-1.5 text-[20px] font-bold text-slate-900 hover:opacity-90 active:scale-98 transition-all cursor-pointer"
+            >
+              <span>{currentMonth}</span>
+              <ChevronDown className="w-4 h-4 text-slate-900 stroke-[2.5]" />
+            </button>
 
-        {/* Subtitle: 本周值班区间 */}
-        <div className="text-[13px] text-slate-700 mt-1 font-medium tracking-tight">
-          本周值班：8月18日 ~ 8月24日
+            {monthDropdownOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-white text-slate-800 rounded-xl shadow-xl border border-slate-100 py-1.5 z-40 w-36 animate-in fade-in zoom-in-95">
+                {['2026年7月', '2026年8月', '2026年9月', '2026年10月'].map((m) => (
+                  <button
+                    key={m}
+                    onClick={() => {
+                      handleMonthChange(m);
+                    }}
+                    className={`w-full text-left px-3 py-1.5 text-xs font-medium hover:bg-blue-50 flex items-center justify-between ${
+                      currentMonth === m ? 'text-blue-600 font-bold bg-blue-50/50' : 'text-slate-700'
+                    }`}
+                  >
+                    <span>{m}</span>
+                    {currentMonth === m && <Check className="w-3.5 h-3.5 text-blue-600" />}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Week Day Selector Strip */}
-        <div className="grid grid-cols-7 gap-1.5 mt-3">
-          {weekDays.map((w) => {
+        <div className="-mx-3 mt-5 flex gap-1.5 overflow-x-auto no-scrollbar px-3 pb-0.5">
+          {monthDays.map((w) => {
             const isSelected = selectedDay === w.date;
             return (
               <button
                 key={w.date}
+                ref={isSelected ? selectedDateRef : null}
                 onClick={() => setSelectedDay(w.date)}
-                className={`flex flex-col items-center justify-center py-2 rounded-2xl transition-all cursor-pointer ${
+                className={`flex h-[58px] w-11 flex-none flex-col items-center justify-center rounded-2xl transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-[#007aff] text-white shadow-md font-bold scale-[1.03]'
                     : 'bg-white/90 hover:bg-white text-slate-700 shadow-2xs font-medium'
@@ -686,11 +689,10 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
       </div>
 
       {/* Content Container */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-4 pb-24">
+      <div className="flex-1 overflow-y-auto px-3 py-3 space-y-4 pb-24">
         {/* Section 1: 值班领导 */}
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-[16px] font-bold text-slate-900 px-1">
-            <User className="w-5 h-5 text-blue-500 fill-blue-500" />
+          <div className="text-[16px] font-bold text-slate-900 px-1">
             <span>值班领导</span>
           </div>
 
@@ -700,8 +702,8 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
               <Avatar
                 src={currentSchedule.leader.avatar}
                 name={currentSchedule.leader.name}
-                size="lg"
-                className="w-14 h-14 rounded-full border-2 border-blue-50 shadow-xs"
+                size="sm"
+                className="w-10 h-10 rounded-full border-2 border-blue-50 shadow-xs"
               />
               <div>
                 <h4 className="text-[17px] font-bold text-slate-900 leading-snug">
@@ -742,8 +744,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
 
         {/* Section 2: 值班成员 */}
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-[16px] font-bold text-slate-900 px-1">
-            <Users className="w-5 h-5 text-blue-500 fill-blue-500" />
+          <div className="text-[16px] font-bold text-slate-900 px-1">
             <span>值班成员</span>
           </div>
 
@@ -762,8 +763,8 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
                     <Avatar
                       src={member.avatar}
                       name={member.name}
-                      size="md"
-                      className="w-12 h-12 rounded-full border border-slate-100 shadow-2xs"
+                      size="sm"
+                      className="w-10 h-10 rounded-full border border-slate-100 shadow-2xs"
                     />
                     <div>
                       <div className="flex items-center gap-2">
@@ -794,9 +795,6 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
                     <div>
                       <div className="text-[15px] font-bold text-slate-900 tracking-tight">
                         {member.shiftTime}
-                      </div>
-                      <div className="text-[11px] text-slate-400">
-                        ({member.duration})
                       </div>
                     </div>
 
@@ -1100,7 +1098,7 @@ export const DutyHandoverPage: React.FC<DutyHandoverPageProps> = ({
               <div className="flex items-center gap-2">
                 <Edit3 className="w-5 h-5 text-blue-600" />
                 <h3 className="text-[16px] font-bold text-slate-900">
-                  填写交班日志 (8月{selectedDay}日)
+                  填写交班日志 ({selectedMonth}月{selectedDay}日)
                 </h3>
               </div>
               <button

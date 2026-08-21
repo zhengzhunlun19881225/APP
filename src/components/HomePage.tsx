@@ -7,7 +7,6 @@ import {
   SlidersHorizontal,
   UserRound
 } from 'lucide-react';
-import { AiAgentAvatar } from './AiAgentAvatar';
 import { StatusBar } from './StatusBar';
 
 interface HomePageProps {
@@ -36,7 +35,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   onNavigateToEventDetail,
   onNavigateToEventList,
   onNavigateToMonitoring,
-  onNavigateToAi,
   onNavigateToKnowledgeBase,
   onNavigateToProfile,
   onNavigateToDutyHandover
@@ -56,7 +54,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <div className="flex flex-col h-full bg-[#f0f3f7] select-none overflow-y-auto pb-6 relative">
-      <div className="relative z-0 h-[358px] flex-shrink-0 overflow-visible">
+      <div className="relative z-0 h-[378px] flex-shrink-0 overflow-visible">
         {/* Airport hero */}
         <div className="absolute inset-x-0 top-0 h-[217px] overflow-hidden bg-sky-500">
           <img
@@ -111,7 +109,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
 
         {/* Quick action glass panel */}
-        <div className="absolute left-0 right-0 top-[174px] z-20 h-[176px] rounded-t-[16px] rounded-b-[12px] border border-white bg-gradient-to-b from-white/70 to-white shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-[4px]">
+        <div className="absolute left-0 right-0 top-[174px] z-20 h-[196px] rounded-t-[16px] rounded-b-[12px] border border-white bg-gradient-to-b from-white/70 to-white shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-[4px]">
           <div className="grid grid-cols-4 gap-y-[13px] px-0 pb-4 pt-5 text-center">
             {quickActions.map((item) => (
               <button
@@ -381,22 +379,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </div>
 
-      {/* Floating AI+ Assistant Quick Launch Button */}
-      {onNavigateToAi && (
-        <button
-          onClick={onNavigateToAi}
-          className="fixed bottom-20 right-4 z-40 flex items-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white pl-2 pr-3.5 py-1.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer border border-white/20"
-        >
-          <div className="relative">
-            <AiAgentAvatar size="xs" />
-            <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400"></span>
-            </span>
-          </div>
-          <span className="text-[12px] font-bold tracking-tight">AI+ 智能体</span>
-        </button>
-      )}
     </div>
   );
 };

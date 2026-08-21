@@ -31,7 +31,7 @@ import { EnterpriseDirectoryPage } from './components/EnterpriseDirectoryPage';
 import { CreateGroupPage } from './components/CreateGroupPage';
 import { DutyHandoverPage } from './components/DutyHandoverPage';
 import { ScanQrModal } from './components/ScanQrModal';
-import { Sparkles, User, X } from 'lucide-react';
+import { AlertTriangle, X } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('home');
@@ -46,9 +46,9 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [createdGroups, setCreatedGroups] = useState<GroupInfo[]>(initialCreatedGroups);
   const [joinedGroups, setJoinedGroups] = useState<GroupInfo[]>(initialJoinedGroups);
-  const [openSurveillanceOnMap, setOpenSurveillanceOnMap] = useState(false);
   const [activeCallSession, setActiveCallSession] = useState<CallSession | null>(null);
   const [isScanQrOpen, setIsScanQrOpen] = useState(false);
+  const [isMapOverlayOpen, setIsMapOverlayOpen] = useState(false);
 
   const handleAddCreatedGroup = (newGroup: GroupInfo) => {
     setCreatedGroups((prev) => [newGroup, ...prev]);
@@ -165,6 +165,7 @@ export default function App() {
     (activeTab === 'home' && !subPage && !selectedContactProfile && !activeChat && !isSearching) ||
     (activeTab === 'messages' && !subPage && !selectedContactProfile && !activeChat && !isSearching) ||
     (activeTab === 'contacts' && !subPage && !selectedContactProfile && !activeChat && !isSearching) ||
+    (activeTab === 'map' && !subPage) ||
     subPage === 'plan-query' ||
     subPage === 'materials' ||
     subPage === 'knowledge-base';
@@ -198,7 +199,7 @@ export default function App() {
         <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 w-32 h-5 bg-slate-800 rounded-b-2xl z-30"></div>
 
         {!usesIntegratedStatusBar && (
-          <div className={`pt-1 md:pt-3 ${usesGradientExternalStatusBar ? 'app-plan-query-status-bg' : ''}`}>
+          <div className={usesGradientExternalStatusBar ? 'app-plan-query-status-bg' : ''}>
             <StatusBar />
           </div>
         )}
@@ -567,7 +568,7 @@ export default function App() {
 
               {/* 地图 (Map) */}
               {activeTab === 'map' && (
-                <MapPage initialOpenSurveillanceDrawer={openSurveillanceOnMap} />
+                <MapPage onOverlayChange={setIsMapOverlayOpen} />
               )}
 
               {/* AI+ 智能体群 */}
@@ -588,7 +589,7 @@ export default function App() {
         </div>
 
         {/* Bottom Navigation (Hidden inside active chat view, subPage, selectedContactProfile, or AI+ sub-view) */}
-        {!activeChat && !subPage && !selectedContactProfile && !isAiSubView && (
+        {!activeChat && !subPage && !selectedContactProfile && !isAiSubView && !isMapOverlayOpen && (
           <BottomNav
             activeTab={activeTab}
             onTabChange={(tab) => {
@@ -597,6 +598,18 @@ export default function App() {
             }}
             messagesUnreadCount={totalUnreadCount}
           />
+        )}
+
+        {!activeChat && !selectedContactProfile && !isSearching && !activeCallSession && !isScanQrOpen && !isMapOverlayOpen && (
+          <button
+            type="button"
+            onClick={() => showToast('上报事件入口待接入')}
+            className="absolute right-4 bottom-[76px] z-40 flex items-center gap-1.5 rounded-full bg-blue-600 px-3.5 py-2 text-[13px] font-bold text-white shadow-lg shadow-blue-600/25 border border-white/40 active:scale-95 transition-all"
+            title="上报事件"
+          >
+            <AlertTriangle className="w-4 h-4" />
+            <span>上报事件</span>
+          </button>
         )}
 
         {/* Global Search Page Modal Overlay */}
