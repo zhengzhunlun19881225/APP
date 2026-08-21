@@ -45,6 +45,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
       {/* 3. 智小星 (AI Assistant / JingXiaobei Hub) */}
       <button
         onClick={() => onTabChange('ai')}
+        aria-label="智小星"
         className={`flex flex-col items-center justify-center py-1 px-2.5 transition-colors cursor-pointer group ${
           activeTab === 'ai' ? 'text-purple-600 font-semibold' : 'text-slate-400 hover:text-slate-600'
         }`}
@@ -57,10 +58,8 @@ export const BottomNav: React.FC<BottomNavProps> = ({
           >
             <AiAgentAvatar type="qa" className="w-5 h-5 drop-shadow-xs" />
           </div>
-          {/* Subtle online spark dot */}
-          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full border border-white" />
         </div>
-        <span className="text-[10px] font-medium leading-[12px]">智小星</span>
+        <span aria-hidden="true" className="h-[12px]" />
       </button>
 
       {/* 4. 消息 (Messages) */}
